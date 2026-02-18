@@ -209,29 +209,6 @@ export default function InfoLibPage() {
                 ))}
               </div>
             </div>
-
-            <div className="bg-blue-50 rounded-xl p-5 border border-blue-100">
-              <h4 className="font-bold text-sm mb-2 text-slate-800">
-                Weekly Insights
-              </h4>
-              <p className="text-xs text-slate-500 leading-relaxed mb-3">
-                Get the latest research tips and library updates delivered to
-                your inbox.
-              </p>
-              <form
-                className="flex flex-col gap-2"
-                onSubmit={(e) => e.preventDefault()}
-              >
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="text-xs p-2 rounded border border-blue-200 focus:outline-none focus:ring-1 focus:ring-blue-400"
-                />
-                <button className="bg-blue-600 text-white text-xs font-bold py-2 rounded hover:bg-blue-700 transition-colors">
-                  Subscribe →
-                </button>
-              </form>
-            </div>
           </div>
         </aside>
 
