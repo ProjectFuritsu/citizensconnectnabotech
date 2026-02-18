@@ -69,7 +69,7 @@ export default function Custom_Footer() {
 
       {/* Bottom Copyright Section */}
       <div className="mt-16 pt-8 border-t border-blue-50 text-center">
-        <p className="text-blue-300 text-sm">© 2026 Made by NaboTech.org</p>
+        <p className="text-slate-900 text-sm">© 2026 Made by NaboTech.org</p>
       </div>
     </footer>
   );
