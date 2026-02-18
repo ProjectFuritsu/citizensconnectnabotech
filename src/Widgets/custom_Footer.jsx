@@ -1,13 +1,11 @@
-export default function Custom_Footer() {
+export default function   Custom_Footer() {
   const footerNavs = [
     {
       label: "INFORMATION",
       items: [
-        { href: "#", name: "Home" },
-        { href: "#", name: "Research Guides" },
-        { href: "#", name: "Research Guides" },
-        { href: "#", name: "Research Guides" },
-        { href: "#", name: "Accessibility" },
+        { href: "/", name: "Home" },
+        { href: "/info", name: "Guide Hub" },
+        { href: "/news-updates", name: "News & Updates" }
       ],
     },
     {
