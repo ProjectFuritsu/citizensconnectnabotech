@@ -1,17 +1,20 @@
-export default function   Custom_Footer() {
+export default function Custom_Footer() {
   const footerNavs = [
     {
       label: "INFORMATION",
       items: [
         { href: "/", name: "Home" },
         { href: "/info", name: "Guide Hub" },
-        { href: "/news-updates", name: "News & Updates" }
+        { href: "/news-updates", name: "News & Updates" },
       ],
     },
     {
       label: "Resources",
       items: [
-        { href: "https://panabocity.gov.ph/", name: "Panabo City Official Website" },
+        {
+          href: "https://panabocity.gov.ph/",
+          name: "Panabo City Official Website",
+        },
       ],
     },
   ];
@@ -66,9 +69,7 @@ export default function   Custom_Footer() {
 
       {/* Bottom Copyright Section */}
       <div className="mt-16 pt-8 border-t border-blue-50 text-center">
-        <p className="text-blue-300 text-sm">
-          © 2023 Made by Fritz 🔥
-        </p>
+        <p className="text-blue-300 text-sm">© 2023 Made by Fritz 🔥</p>
       </div>
     </footer>
   );
