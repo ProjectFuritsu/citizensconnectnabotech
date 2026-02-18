@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "last_updated": "2025-02-17",
+    "curated-by": "NaboTech.org",
+    "version": "1.0.0",
+    "slug":"/news-updates"
+  },
+  "data": [
+    {
+      "id": "NW-0126",
+      "title": "Sta. Cruz Day Care Overhaul Marks New Milestone for CSTEP Initiative",
+      "date": "2026-01-27",
+      "img-src": [
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771383615/622827145_1345120034321278_79344_wydrbw.png",
+          "caption": ""
+        },
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771383615/622880545_1345119934321288_39192_ypk5el.png",
+          "caption": ""
+        },
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771383615/622871972_1345120014321280_56716_x6swe1.png",
+          "caption": ""
+        }
+      ],
+      "desc": "<span class='font-sans font-medium text-gray-900 uppercase tracking-widest text-sm mr-3'>Panabo City —</span> \n    The Barangay Sta. Cruz Day Care Center has undergone a significant transformation through the Community Skills Training and Livelihood Entrepreneurship Program (CSTEP). This project serves as a cornerstone of the city's effort to deliver better facilities for children while providing local workers with tangible industry experience.\n  </p>\n\n  \n  <h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>Infrastructure Evolution</h2>\n  <div class='w-12 h-[1px] bg-gray-300 mb-6'></div>\n  <p class='mb-8 text-lg leading-loose'>\n    The renovation highlights high-impact improvements designed for long-term utility. Key upgrades include the installation of new tiled flooring and a fully functional, hygienic kitchen suitable for daily use and school nutritional programs.\n  </p>\n\n  \n  <h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>A Unique Training Model</h2>\n  <div class='w-12 h-[1px] bg-gray-300 mb-6'></div>\n  <p class='mb-8 text-lg leading-loose'>\n    Unlike traditional construction projects, this overhaul served as a live training site. CSTEP participants applied their classroom theories to actual construction as part of their On-the-Job Training (OJT), ensuring that the project benefits the community twice: once through the facility, and again through local job creation.\n  </p>\n\n  \n  <h2 class='text-sm uppercase tracking-[0.3em]  mt-12 mb-4 font-sans font-medium'>Future Roadmap</h2>\n  <div class='w-12 h-[1px] bg-gray-300 mb-6'></div>\n  <p class='mb-16 text-lg leading-loose'>\n    Coordinated by Councilor Relampagos alongside the City Mayor’s Office and CPESO, the success in Brgy. Sta. Cruz signals the start of a broader rollout. Program officials have confirmed that after the successful completion in Brgy. Buenavista and Sta. Cruz, the initiative will move next to Barangay Mabunao. </p>",
+      "author": "City Information Office",
+      "tags": ["Education"],
+      "sources": "https://panabocity.gov.ph/day-care-center-in-barangay-sta-cruz-renovated-through-cstep-program/"
+      
+    },
+    {
+      "id": "NW-0127",
+      "title": "PANABO CITY SPORTS FESTIVAL 2025 WRAPS UP WITH A GRAND CULMINATION AND EXCITING COMPETITIONS",
+      "date": "2025-12-22",
+      "img-src": [
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771385199/605130781_1313876574112291_26690_zmlxfj.png",
+          "caption": ""
+        },
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771385193/601821969_1313874954112453_36050_bgyktk.png",
+          "caption": ""
+        },
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771385193/600407309_1313875197445762_85562_scmn68.png",
+          "caption": ""
+        },
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771385194/604686676_1313873430779272_51315_gkeiqa.png",
+          "caption": ""
+        }
+      ],
+
+      "desc": "<h1>Sample</h1>",
+      "author": "City Information Office",
+      "tags": ["Festival"],
+      "sources": "https://panabocity.gov.ph/panabo-city-sports-festival-2025-wraps-up-with-a-grand-culmination-and-exciting-competitions/"
+    },
+    {
+      "id": "NW-0128",
+      "title": "BLESSING AND TURNOVER OF THE AIE FIRE SUBSTATION SUCCESSFULLY HELD",
+      "date": "2025-12-18",
+      "img-src": [
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771395044/601874016_1309490444550904_62705_kabbhz.png",
+          "caption": ""
+        },
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771395043/598874099_1309489561217659_81037_ggkkcv.png",
+          "caption": ""
+        },
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771394996/598373507_1309490277884254_68086_bjdukp.png",
+          "caption": ""
+        }
+      ],
+
+      "desc": "<h1>Sample</h1>",
+      "author": "City Information Office",
+      "tags": ["Infrastructure"],
+      "sources": "https://panabocity.gov.ph/blessing-and-turnover-of-the-aie-fire-substation-successfully-held/"
+    },
+    {
+      "id": "NW-0129",
+      "title": "PANABO CITY SPORTS FESTIVAL 2025 WRAPS UP WITH A GRAND CULMINATION AND EXCITING COMPETITIONS",
+      "date": "2025-12-11",
+      "img-src": [
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771395764/597216308_1302893865210562_34988_xnk25f.png",
+          "caption": ""
+        },
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771395766/597733490_1302892071877408_37618_fd4qhm.png",
+          "caption": ""
+        },
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771395763/596404386_1302892001877415_52492_naelj8.png",
+          "caption": ""
+        },
+        {
+          "url": "https://res.cloudinary.com/dxnpxkapb/image/upload/v1771395717/596398210_1302892061877409_34077_oksmel.png",
+          "caption": ""
+        }
+      ],
+
+      "desc": "<span class=''>Sample</span>",
+      "author": "City Information Office",
+      "tags": ["Festival"],
+      "sources": "https://panabocity.gov.ph/panabo-city-celebrates-a-vibrant-2025-paskohan-at-city-hall-grounds/"
+    }
+  ]
+}

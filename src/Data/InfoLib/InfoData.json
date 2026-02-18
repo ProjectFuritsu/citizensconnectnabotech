@@ -1,0 +1,533 @@
+{
+  "metadata": {
+    "last_updated": "Feb. 18, 2026",
+    "author": "NaboTech.org",
+    "version": "1.0.0",
+    "slug": "/info"
+  },
+  "data": [
+    {
+      "id": "PANABO-MARRIAGE-LICENSE-2026",
+      "title": "Application for Marriage License",
+      "date": "2026-02-18",
+      "desc": "Application for a Marriage License (AML) at the City Civil Registrar's Office for parties seeking to contract marriage.",
+      "tags": ["Civil Registry", "Marriage License"],
+      "fee": "PHP 1,877.00",
+      "total_duration": "10 Days, 2 hours and 43 minutes",
+      "icon_type": "Heart",
+      "icon_color": "text-red-600",
+      "button_text": "View Details",
+      "requirements": [
+        "Certificate of No Marriage (CENOMAR) - (1 original & 1 photocopy)",
+        "Pre-Marriage Counseling Seminar Certificate from CHO - (1 original)",
+        "Birth Certificate / Baptismal / Voter's Certification - (2 photocopies)",
+        "Barangay Certification - (1 original & 1 photocopy)",
+        "Recent CEDULA - (2 photocopies)",
+        "Valid ID of Applicants (National, UMID, SSS, Passport, etc.) - (2 photocopies)"
+      ],
+      "situational_requirements": [
+        {
+          "condition": "Applicants aged 18–25 years old",
+          "docs": [
+            "Personal appearance of parents",
+            "Valid IDs of parents - (2 photocopies)"
+          ]
+        },
+        {
+          "condition": "Widow / Widower Applicant",
+          "docs": ["Death Certificate of Deceased Spouse - (2 photocopies)"]
+        },
+        {
+          "condition": "Annulled or Divorced Marriage",
+          "docs": [
+            "Annotated Marriage Certificate",
+            "LCR Certificate of Registration - (2 photocopies)"
+          ]
+        },
+        {
+          "condition": "Foreigner Applicant",
+          "docs": [
+            "Certificate of Legal Capacity from Embassy",
+            "Passport with arrival date - (2 photocopies)"
+          ]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Fill out the Application for Marriage License and submit complete requirements to the CCRO for assessment and tracking barcode attachment.",
+          "duration": "30 minutes"
+        },
+        {
+          "step": 2,
+          "action": "Secure an Order of Payment and proceed to the City Treasurer's Office to pay the required fees (approx. PHP 525.00 - PHP 750.00).",
+          "duration": "35 minutes"
+        },
+        {
+          "step": 3,
+          "action": "Submit the Official Receipt to CCRO, undergo image capturing, and register biometrics.",
+          "duration": "10 days and 2 hours"
+        },
+        {
+          "step": 4,
+          "action": "Return to the CCRO to claim the owner's copy of the Marriage License through biometric verification.",
+          "duration": "5 minutes"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Official Website",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-MEDICAL-CONSULTATION-2026",
+      "title": "Medical Outpatient Consultation and Treatment Services",
+      "date": "2026-02-18",
+      "desc": "Primary Health Care Services including diagnosis, treatment of illnesses, and appropriate medical services for Panabo City constituents and eligible beneficiaries.",
+      "tags": ["Health", "Medical Services"],
+      "fee": "PHP 30.00 - 50.00 (Exemptions apply)",
+      "total_duration": "3 Hours",
+      "icon_type": "Stethoscope",
+      "icon_color": "text-blue-600",
+      "button_text": "View Details",
+      "requirements": [
+        "Referral Slip - (1 Original Copy)",
+        "Individual Treatment Record",
+        "Consent Form - (1 Original Copy)",
+        "Philhealth ID, MDR, or any valid ID (National, SSS, Passport, etc.)"
+      ],
+      "situational_requirements": [
+        {
+          "condition": "Panabo Residents",
+          "docs": ["Payment of PHP 30.00 Fee"]
+        },
+        {
+          "condition": "Residents outside Panabo City",
+          "docs": ["Payment of PHP 50.00 Fee"]
+        },
+        {
+          "condition": "Priority Groups (4Ps, IP, and NHTS beneficiaries)",
+          "docs": ["Proof of membership for Free (None) services"]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Submit Referral Slip, fill-out records, and present valid ID for vital signs and assessment.",
+          "duration": "1 Hour"
+        },
+        {
+          "step": 2,
+          "action": "Proceed to the consultation or treatment room for medical examination, diagnosis, or nursing health services.",
+          "duration": "1 Hour"
+        },
+        {
+          "step": 3,
+          "action": "Go to the Cashier at the City Treasurer's Office Satellite Office to pay required fees and secure an Official Receipt.",
+          "duration": "1 Hour"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Official Website",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-ANIMAL-BITE-TREATMENT-2026",
+      "title": "Availment of Animal Bite Treatment",
+      "date": "2026-02-18",
+      "desc": "This service intends to give appropriate medication of animal bite cases to prevent death due to rabies and promotes advocacy of responsible pet ownership.",
+      "tags": ["Health", "Animal Bite", "Medical Services"],
+      "fee": "None (Free if conditions met)",
+      "total_duration": "3 Hours and 55 minutes",
+      "icon_type": "Syringe",
+      "icon_color": "text-blue-500",
+      "button_text": "View Details",
+      "requirements": [
+        "Referral Slip from Barangay Health Station - (1 Original Copy)",
+        "Individual Treatment Record from CHO-Outpatient and Safe Birthing Facility",
+        "Post-Exposure Prophylaxis (PEP) or Pre-Exposure Prophylaxis Card/Slip from CHO-Animal Bite Treatment Center",
+        "Philhealth Member Data Record - (Original or photocopy) from PhilHealth Office",
+        "Valid ID - (Original or photocopy) of any Government office"
+      ],
+      "situational_requirements": [
+        {
+          "condition": "Free Rabies Vaccine Referral Slip",
+          "docs": ["1 Original Copy from the City Mayor's Office"]
+        },
+        {
+          "condition": "Vaccine Availability",
+          "docs": [
+            "Free of charge if vaccine is available from DOH or PhilHealth Animal Bite Package",
+            "Patient will secure it if not available"
+          ]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Submit the Referral Slip and wait for vital signs to be taken at the CHO-Outpatient and Safe Birthing Facility.",
+          "duration": "1 Hour"
+        },
+        {
+          "step": 2,
+          "action": "Proceed to the Consultation Room for patient examination and prescription.",
+          "duration": "10 Minutes"
+        },
+        {
+          "step": 3,
+          "action": "Return to the Nurse's Station to carry out orders, receive health instructions, and Tetanus Toxoid if ordered.",
+          "duration": "15 Minutes"
+        },
+        {
+          "step": 4,
+          "action": "Proceed to the PhilHealth and Accreditation Services Unit located in front of the Nurse's Station.",
+          "duration": "30 Minutes"
+        },
+        {
+          "step": 5,
+          "action": "Proceed to the Animal Bite treatment room for patient registration and administration of necessary treatment/vaccines.",
+          "duration": "2 Hours"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Official Website",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-MEDICAL-CERTIFICATE-2026",
+      "title": "Issuance of Medical Certificate",
+      "date": "2026-02-18",
+      "desc": "Medical certificate is issued as requirement or supporting document for employment purposes, remand, school requirements, travel and others.",
+      "tags": ["Health", "Medical Services"],
+      "fee": "PHP 30.00 - PHP 60.00",
+      "total_duration": "2 Hours and 30 minutes",
+      "icon_type": "FileText",
+      "icon_color": "text-blue-600",
+      "button_text": "View Details",
+      "requirements": [
+        "Vital signs result from City Health Office - (1 Original Copy)",
+        "Request Form from City Health Office - (1 Original Copy)"
+      ],
+      "situational_requirements": [
+        {
+          "condition": "For Employment (Public & Private) and Other Purposes",
+          "docs": [
+            "Result of Complete Blood Count (CBC) from CHO Laboratory Section - (1 Original Copy)",
+            "Result of Urinalysis (specimen < 1 hour old) from CHO Laboratory Section - (1 Original Copy)",
+            "Result of Stool Exam/Fecalysis (specimen < 1 hour old) from CHO Laboratory Section - (1 Original Copy)",
+            "Result of X-ray (not more than 6 months old) from Private Diagnostic Centers/Hospitals - (1 Original Copy)",
+            "Fee: PHP 60.00"
+          ]
+        },
+        {
+          "condition": "For Remand",
+          "docs": [
+            "Medical Endorsement from Police Station - (1 Original Copy)"
+          ]
+        },
+        {
+          "condition": "For School Requirement",
+          "docs": [
+            "Result of Complete Blood Count (CBC) from CHO Laboratory Section - (1 Original Copy)",
+            "Fee: PHP 30.00"
+          ]
+        },
+        {
+          "condition": "For Travel Purposes",
+          "docs": [
+            "Result of X-ray (not more than 6 months old) from Private Diagnostic Centers/Hospitals - (1 Original Copy)"
+          ]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Fill-out the request form and submit the complete requirements to the Nurse/Health Worker for assessment and encoding.",
+          "duration": "1 Hour"
+        },
+        {
+          "step": 2,
+          "action": "Secure an Order of Payment and proceed to the City Treasurer’s Office-Satellite Office to pay the required fee and secure an Official Receipt.",
+          "duration": "1 Hour"
+        },
+        {
+          "step": 3,
+          "action": "Return to the Nurse at the CHO-Outpatient to present the Official Receipt, sign the logbook, and claim the Medical Certificate.",
+          "duration": "30 Minutes"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Official Website",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-LEGAL-CONSULTATION-2026",
+      "title": "Legal Consultation",
+      "date": "2026-02-18",
+      "desc": "The City Legal Office provides free legal consultation/advice to walk-in clients, City/Barangay Officials and employees. Client's concerns/problems are responded to and acted upon with legal advice.",
+      "tags": ["Legal"],
+      "fee": "None",
+      "total_duration": "8 Hours",
+      "icon_type": "Scale",
+      "icon_color": "text-slate-700",
+      "button_text": "View Details",
+      "requirements": ["None"],
+      "situational_requirements": [
+        {
+          "condition": "General Consultation",
+          "docs": [
+            "Relevant/factual information and/or present necessary supporting documents relative to the concern"
+          ]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Fill-out the logbook and state the purpose of the visit at the City Legal Office.",
+          "duration": "3 Hours"
+        },
+        {
+          "step": 2,
+          "action": "Wait for the endorsement of the case to the assigned legal officer/authorized officer.",
+          "duration": "1 Hour"
+        },
+        {
+          "step": 3,
+          "action": "Narrate the problem/concern by providing honest and relevant/factual information and/or present necessary supporting documents.",
+          "duration": "4 Hours"
+        },
+        {
+          "step": 4,
+          "action": "Receive the legal advice rendered by the Legal Officer/Authorized Officer.",
+          "duration": "Part of Step 3"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Official Website",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-LEGAL-ASSISTANCE-2026",
+      "title": "Legal Assistance",
+      "date": "2026-02-18",
+      "desc": "The City Legal Office provides free legal assistance to walk-in clients, including the drafting of legal instruments (formal sworn statements of facts) signed by the affiant and/or witnesses.",
+      "tags": ["Legal"],
+      "fee": "None",
+      "total_duration": "8 Hours",
+      "icon_type": "Gavel",
+      "icon_color": "text-slate-800",
+      "button_text": "View Details",
+      "requirements": [
+        "Competent Evidence of Identity (Government Issued ID card) such as PhilID, GSIS, UMID, PRC, SSS, COMELEC, LTO, DFA Passport, BIR, Pag-IBIG, or Senior Citizen ID from issuing Government Office",
+        "Other supporting documents original/certified true copy from Client's file copy",
+        "Credible witness/es who has personal knowledge or can attest to a fact or event of the affiant/client"
+      ],
+      "situational_requirements": [
+        {
+          "condition": "Drafting of Legal Instruments",
+          "docs": ["Affidavits", "Special Power of Attorney"]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Fill-out the logbook and state the purpose of the visit for a preliminary interview and referral.",
+          "duration": "3 Hours"
+        },
+        {
+          "step": 2,
+          "action": "Provide honest and relevant information for interview, clarification, and document validation for the preparation of legal instruments.",
+          "duration": "4 Hours"
+        },
+        {
+          "step": 3,
+          "action": "Claim the requested legal instrument once recorded and released by the staff.",
+          "duration": "1 Hour"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Official Website",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-LAND-ASSESSMENT-TRANSFER-2026",
+      "title": "Application for Land New Assessment and Transfer",
+      "date": "2026-02-18",
+      "desc": "The application for transfer of Ownership is processed if the requester wishes to update or change the existing records for new ownership.",
+      "tags": ["Property"],
+      "fee": "PHP 225.00",
+      "total_duration": "5 Working Days",
+      "icon_type": "Landmark",
+      "icon_color": "text-green-700",
+      "button_text": "View Details",
+      "requirements": [
+        "Letter of consent or authorization letter of the property owner from the Property Owner - (1 original copy) / Special Power of Attorney SPA (1 photocopy) from a Law Office",
+        "Photocopy of Government ID of owner with 3 signatures from the Property Owner - (1 photocopy)",
+        "Photocopy of Government ID of the requestor with 3 signatures from the Requestor - (1 photocopy)",
+        "Certified True copy of Title (OCT, TCT & CCT) from the Registry of Deeds - (1 original certified copy)",
+        "Deed of Conveyance, Deed of Donation, Deed of Sale, Extra-judicial Settlement & etc. from a Law Office or Registry of Deeds - (1 photocopy)",
+        "Official Receipt of Transfer Fee from the City Treasurer's Office or Registry of Deeds - (1 photocopy)",
+        "Tax Clearance from the City Treasurer's Office - (1 photocopy)",
+        "Assessors Fee Receipt from the City Treasurer's Office - (1 original copy)"
+      ],
+      "situational_requirements": [],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Submit complete documentary requirements at Appraisal and Assessment Section (Window 1) and secure an Order of Payment.",
+          "duration": "30 minutes"
+        },
+        {
+          "step": 2,
+          "action": "Go to the City Treasurer’s Office and secure priority number at queuing machine and wait for the number to be called to pay assigned fees (PHP 225.00) in Window 3-5.",
+          "duration": "1 hour"
+        },
+        {
+          "step": 3,
+          "action": "Return to the CASSO Appraisal and Assessment Section to give the official receipt, sign the FAAS, and receive the Claim Stub for ocular inspection and technical processing.",
+          "duration": "4 Working Days & 3 hours"
+        },
+        {
+          "step": 4,
+          "action": "Return to the CASSO Records Management Section (Window 6) and present the Claim Stub to claim the Tax Declaration with Notice of Assessment.",
+          "duration": "30 minutes"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Official Website",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-SENIOR-CITIZEN-ID-2026",
+      "title": "Issuance of Senior Citizens ID",
+      "date": "2026-02-18",
+      "desc": "The senior citizen ID refers to the card issued by the OSCA office of the city or municipality where the elderly individual lives. This locally-issued ID is honored nationwide and is vital for the availment of privileges under Republic Act No. 9994.",
+      "tags": ["Senior Citizen"],
+      "fee": "None",
+      "total_duration": "30 Minutes",
+      "icon_type": "IdentificationCard",
+      "icon_color": "text-blue-800",
+      "button_text": "View Details",
+      "requirements": [
+        "Registration Form (OSCA Form No. 1) from Senior Citizen Day Center, New Pandan, P.C",
+        "Birth Certificate from Philippine Statistics Authority / City Civil Registrar Office - (1 Photocopy)",
+        "Barangay Certificate from Barangay Hall - (1 Original Copy)",
+        "2 pcs. 1x1 ID pic from Requesting Client",
+        "SC President Certificate from Office of the Barangay Association President of Senior Citizen - (1 Original Copy)"
+      ],
+      "situational_requirements": [],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Fill-out the registration form and submit complete requirements at the Office of the Senior Citizen Affairs (OSCA) Office.",
+          "duration": "10 Minutes"
+        },
+        {
+          "step": 2,
+          "action": "Wait for the printing of the ID and check the correctness of the ID upon receipt.",
+          "duration": "10 Minutes"
+        },
+        {
+          "step": 3,
+          "action": "Affix a signature to the ID and the logbook as proof of receipt.",
+          "duration": "10 Minutes"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Official Website",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-SENIOR-CITIZEN-BOOKLET-2026",
+      "title": "Issuance of Senior Citizens Purchase Booklet",
+      "date": "2026-02-18",
+      "desc": "The Office issues Purchase Slip Booklets to senior citizens to enable them avail of the 20% discount on medicines and 5% discount on basic necessities provided by Law (RA 9257).",
+      "tags": ["Senior Citizen"],
+      "fee": "None",
+      "total_duration": "10 Minutes",
+      "icon_type": "BookOpen",
+      "icon_color": "text-orange-600",
+      "button_text": "View Details",
+      "requirements": [
+        "Senior Citizens ID from Senior Citizen Day Center, New Pandan, P.C"
+      ],
+      "situational_requirements": [],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Present Senior Citizen ID at the Office of the Senior Citizen Affairs (OSCA) Office for validity checking.",
+          "duration": "5 Minutes"
+        },
+        {
+          "step": 2,
+          "action": "Receive the Booklet and affix signature to the ID and the Office’s Logbook as proof of receipt.",
+          "duration": "5 Minutes"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Official Website",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-SCHOLARSHIP-PROGRAM-2026",
+      "title": "Application for Scholarship Program",
+      "date": "2026-02-18",
+      "desc": "The Scholarship Program offers three educational grants (Iskolar ng Lungsod, Study Grant for IPs/Muslims, and Ladderized Educational grant) to students and high school graduates who are bonafide residents of Panabo City under City Ordinance no. 24-2020.",
+      "tags": ["Scholarship", "Education"],
+      "fee": "None",
+      "total_duration": "15 Days, 4 Hours, 35 Minutes",
+      "icon_type": "GraduationCap",
+      "icon_color": "text-blue-600",
+      "button_text": "View Details",
+      "requirements": [
+        "Scholarship Program Application Form (1 original)",
+        "Photo ID: 2x2 picture (1 piece) and 2x3 picture (1 piece)",
+        "Certification of Annual Gross Income and/or Affidavit of Low Income (income does not exceed P 60,000.00) (1 photocopy)",
+        "School Credentials (1 certified true copy): Form 138-A or Report Card",
+        "Certificate of Good Moral Character",
+        "Certificate of Residency (at least one (1) year and without derogatory record) (1 photocopy)",
+        "Certification from the Barangay that the applicant is the only member of the family to avail the Scholarship grant (1 photocopy)"
+      ],
+      "situational_requirements": [
+        {
+          "condition": "For Indigenous People (IP's)/Muslims",
+          "docs": ["Certificate of Indigency/Muslim"]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Submit the documentary requirements and fill out the Scholarship Program Application Form at Receiving desk.",
+          "duration": "30 Minutes"
+        },
+        {
+          "step": 2,
+          "action": "Take the Qualifying written examination and interview at the designated room assignment.",
+          "duration": "15 Days"
+        },
+        {
+          "step": 3,
+          "action": "Attend the Scholarship Orientation and receive the Certificate of Recognition.",
+          "duration": "4 Hours"
+        },
+        {
+          "step": 4,
+          "action": "Submit the filled out Assessment form for processing of scholarship grant.",
+          "duration": "5 Minutes"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Official Website",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    }
+  ]
+}
