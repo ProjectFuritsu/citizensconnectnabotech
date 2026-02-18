@@ -20,7 +20,7 @@ export default function InfoDetailsPage() {
   return (
     <Custom_PageLayout>
       {/* 2. Hero Header */}
-      <div className="max-w-7xl mx-auto px-8 pt-8">
+      <div className="max-w-7xl mx-auto px-8 pt-8 mb-10">
         <nav className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-6">
           <Link to="/" className="hover:text-blue-500">
             <LucideIcons.Home size={12} />
@@ -34,20 +34,37 @@ export default function InfoDetailsPage() {
         </nav>
 
         <div className="flex justify-between items-start">
-          <div className="mb-1">
-            <header className="mb-1">
+          <div className="mb-1 w-full">
+            <header className="mb-6">
               <h1 className="text-3xl font-bold text-slate-900 mb-3 tracking-tight">
                 {doc.title}
               </h1>
-              <p className="text-slate-500 leading-relaxed max-w-2xl">
+              <p className="text-slate-500 leading-relaxed max-w-2xl mb-4">
                 {doc.desc}
               </p>
+
+              {/* Improved Source Link */}
+              {doc.sources?.url && (
+                <a
+                  href={doc.sources.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors group"
+                >
+                  <LucideIcons.ExternalLink
+                    size={14}
+                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                  />
+                  <span>Official Source: {doc.sources.name}</span>
+                </a>
+              )}
             </header>
 
             {/* Clean Meta Row */}
-            <div className="flex gap-10 mb-1  border-slate-100 py-6">
-              <div>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+            <div className="flex flex-wrap gap-10 border-t border-slate-100 pt-6">
+              {/* Processing Fee */}
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                   Processing Fee
                 </p>
                 <div className="flex items-center gap-2 text-slate-900">
@@ -55,11 +72,13 @@ export default function InfoDetailsPage() {
                     size={18}
                     className="text-slate-400"
                   />
-                  <span className="font-semibold">{doc.fee}</span>
+                  <span className="font-semibold text-sm">{doc.fee}</span>
                 </div>
               </div>
-              <div>
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">
+
+              {/* Total Duration */}
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                   Total Duration
                 </p>
                 <div className="flex items-center gap-2 text-slate-900">
@@ -67,7 +86,7 @@ export default function InfoDetailsPage() {
                     size={18}
                     className="text-slate-400"
                   />
-                  <span className="font-semibold">
+                  <span className="font-semibold text-sm">
                     {doc.total_duration || "10 Days, 2 Hours"}
                   </span>
                 </div>
