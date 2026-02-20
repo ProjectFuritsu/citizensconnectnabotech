@@ -36,7 +36,7 @@ export default function UnderMaintenance() {
 
         <p className="text-lg text-gray-500 mb-10 leading-relaxed">
           We're currently performing some scheduled maintenance. Everything
-          should be back to normal in just a few minutes.
+          should be back to normal soon.
         </p>
 
         {/* Actions */}
