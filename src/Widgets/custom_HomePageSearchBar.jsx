@@ -4,7 +4,7 @@ import { Search, ChevronRight } from "lucide-react";
 
 // Assuming your JSON structure: { metadata: { slug: "/path" }, data: [...] }
 import guides from "../Data/InfoLib/InfoData.json";
-import news from "../Data/News/NewsData.json";
+// import news from "../Data/News/NewsData.json";
 
 export default function Custom_HomePageSearchBar() {
   const [query, setQuery] = useState("");
@@ -21,11 +21,11 @@ export default function Custom_HomePageSearchBar() {
         // Constructs path: /info/NW-0126
         fullPath: `${guides.metadata.slug}/${item.id}`,
       })),
-      ...news.data.map((item) => ({
-        ...item,
-        type: "News",
-        fullPath: `${news.metadata.slug}/${item.id}`,
-      })),
+      // ...news.data.map((item) => ({
+      //   ...item,
+      //   type: "News",
+      //   fullPath: `${news.metadata.slug}/${item.id}`,
+      // })),
     ];
     return combined;
   }, []);
