@@ -7,19 +7,18 @@ import NewsDetails from "../Pages/News/NewsDetails";
 import InfoDetailsPage from "../Pages/GuideHub/InfoDetailsPage";
 import VolunteersPage from "../Pages/Volunteers/VolunteersPage";
 import UnderMaintenance from "../Pages/Error/UnderMaintainance";
+import GeoMap from "../Pages/GeoFinder/GeoMap";
 
 const AppRoutes = () => {
   return (
-    
     <Routes>
-      
       <Route path="/" element={<HomePage />} />
       <Route path="/info" element={<InfoLibPage />} />
       <Route path="/info/:id" element={<InfoDetailsPage />} />
-      <Route path="/news-updates" element={<UnderMaintenance />} />
-      <Route path="/news-updates/:id" element={<NoFound />} />
+      <Route path="/news-updates" element={<NewsPage />} />
+      <Route path="/news-updates/:id" element={<NewsDetails />} />
       <Route path="/get-involved" element={<VolunteersPage />} />
-      
+      <Route path="/geo" element={<GeoMap />} />
       {/* 404 Catch-all Route */}
       <Route path="*" element={<NoFound />} />
     </Routes>

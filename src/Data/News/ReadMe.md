@@ -56,3 +56,19 @@ Each news is represented as a single JSON object.
 - th                          => py-4 border-b-2 border-gray-900 text-xs uppercase tracking-widest font-semibold
 - td                          => py-5 border-b border-gray-100 text-base leading-snug text-gray-700
 - Blockqoute                  => border-l-4 border-gray-900 pl-8 my-12 italic text-2xl font-serif text-gray-900 leading-tight
+
+### Sample Content
+
+```html
+<span class='font-sans font-medium text-gray-900 uppercase tracking-widest text-sm mr-3'>Panabo City —</span>
+<p class='mb-8 text-lg leading-loose'>Introduction paragraph here</p>
+<h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>Header</h2>
+<div class='w-12 h-[1px] bg-gray-300 mb-6'></div> <!-- Underline below the header design -->
+<p class='mb-8 text-lg leading-loose'>Content of the header</p>
+<h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>Header</h2>
+<div class='w-12 h-[1px] bg-gray-300 mb-6'></div> <!-- Underline below the header design -->
+<p class='mb-8 text-lg leading-loose'>Content of the header</p>
+<h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>Header</h2>
+<div class='w-12 h-[1px] bg-gray-300 mb-6'></div> <!-- Underline below the header design -->
+<p class='mb-8 text-lg leading-loose'>Content of the header</p>
+```

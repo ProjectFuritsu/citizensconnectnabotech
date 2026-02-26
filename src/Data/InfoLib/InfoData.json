@@ -528,6 +528,212 @@
         "name": "Panabo City Official Website",
         "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
       }
+    },
+    {
+      "id": "PANABO-IMMUNIZATION-SERVICES-2026",
+      "title": "Availment of Immunization Services",
+      "date": "2026-02-22",
+      "desc": "Under the supervision of the City Health Office, the Rural Health Midwives in the 40 Barangay Health Stations in the city provide free immunization to infants, 0-12 months old. The infants are vaccinated against the seven (7) immunizable diseases.",
+      "tags": ["Health", "Immunization","Medical Services"],
+      "fee": "None",
+      "total_duration": "1 Hour and 10 minutes",
+      "icon_type": "Syringe",
+      "icon_color": "text-green-600",
+      "button_text": "View Details",
+      "requirements": ["No requirement for initial immunization"],
+      "situational_requirements": [
+        {
+          "condition": "Subsequent Immunizations",
+          "docs": ["Immunization record (secured from Barangay Health Station)"]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Fill-out Individual Treatment Record (ITR) and get priority number; wait for the priority number to be called.",
+          "duration": "30 Minutes"
+        },
+        {
+          "step": 2,
+          "action": "Present priority number to the BHW. Undergo immunization services, recording/signing of immunization record, and receive health teachings.",
+          "duration": "30 Minutes"
+        },
+        {
+          "step": 3,
+          "action": "Return Individual Treatment Record to the Barangay Health Worker (BHW) for filing.",
+          "duration": "10 Minutes"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Citizen's Charter",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-FAMILY-PLANNING-2026",
+      "title": "Availment of Family Planning Services",
+      "date": "2026-02-22",
+      "desc": "Under the supervision of the City Health Office, the Rural Health Midwives in the 40 Barangay Health Stations in the city gives basic family planning education, provides information on the various family planning methods, and gives family planning commodity that is suitable for the clients.",
+      "tags": ["Health", "Family Planning","Medical Services"],
+      "fee": "None",
+      "total_duration": "1 hour and 40 minutes",
+      "icon_type": "Users",
+      "icon_color": "text-pink-600",
+      "button_text": "View Details",
+      "requirements": ["There is no requirement for the initial consultation"],
+      "situational_requirements": [
+        {
+          "condition": "For the next visit",
+          "docs": [
+            "Family Planning Record (secured from Barangay Health Station)"
+          ]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Fill-out Individual Treatment Record and get priority number; wait for the priority number to be called.",
+          "duration": "30 Minutes"
+        },
+        {
+          "step": 2,
+          "action": "Present priority number to the BHW. Undergo one on one family planning counseling and administration of services based on client's needs and informed choice.",
+          "duration": "1 Hour"
+        },
+        {
+          "step": 3,
+          "action": "Return Individual Treatment Record to the BHW for filing.",
+          "duration": "10 Minute"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Citizen's Charter",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-DENTAL-SERVICES-2026",
+      "title": "Availment of Dental Services",
+      "date": "2026-02-22",
+      "desc": "This service provides oral examination, extraction and dental health education to clients. Pre-school children are also taught on developing and practicing desirable oral health habits and behavior to prevent dental diseases.",
+      "tags": ["Health", "Dental Services"],
+      "fee": "PHP 50.00 - 150.00",
+      "total_duration": "3 hours and 20 minutes",
+      "icon_type": "Smile",
+      "icon_color": "text-blue-500",
+      "button_text": "View Details",
+      "requirements": [
+        "Fasting Blood Sugar (FBS) Result (30 years old and above) - (1 Original Copy)",
+        "Blood Pressure (BP) Result - (1 Original Copy)",
+        "Request Form (1 Original Copy)"
+      ],
+      "situational_requirements": [],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Fill-out request form and submit the requirements for vital signs taking and verification.",
+          "duration": "30 Minutes"
+        },
+        {
+          "step": 2,
+          "action": "Proceed to the Dentist for interview, assessment, and issuance of Order of Payment.",
+          "duration": "30 Minutes"
+        },
+        {
+          "step": 3,
+          "action": "Go to the Cashier at the City Treasurer's Office-Satellite Office to pay the required fee and secure an Official Receipt.",
+          "duration": "1 Hour and 20 minutes"
+        },
+        {
+          "step": 4,
+          "action": "Return to the Dental Clinic, present the Official Receipt, and undergo oral examination or tooth extraction.",
+          "duration": "1 Hour"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Citizen's Charter",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-HIV-TESTING-COUNSELING-2026",
+      "title": "Availment of HIV Testing and Counseling",
+      "date": "2026-02-22",
+      "desc": "HIV testing and counseling services aim to ensure that people living with HIV are diagnosed and treated early. It also aims to link the clients with negative HIV test to appropriate prevention services.",
+      "tags": ["Health"],
+      "fee": "None",
+      "total_duration": "4 Hours and 30 minutes",
+      "icon_type": "Activity",
+      "icon_color": "text-red-600",
+      "button_text": "View Details",
+      "requirements": ["Consent Form - (1 Original Copy)"],
+      "situational_requirements": [
+        {
+          "condition": "For reactive result",
+          "docs": [
+            "Referral to a Treatment Hub (Red Star Clinic, DRMC, Tagum City)",
+            "Confirmatory test (rHIVda) at SPMC, Davao City"
+          ]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Fill-out the consent form and undergo Pre-HIV Test Counseling.",
+          "duration": "1 Hour"
+        },
+        {
+          "step": 2,
+          "action": "Proceed to the Laboratory Section for blood extraction and laboratory procedure.",
+          "duration": "3 Hours"
+        },
+        {
+          "step": 3,
+          "action": "Return to the Reproductive Health and Wellness section for Post-HIV Test Counseling and claim the result.",
+          "duration": "30 Minutes"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Citizen's Charter",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "PANABO-AVAILMENT-MEDICINES-2026",
+      "title": "Availment of Medicines",
+      "date": "2026-02-22",
+      "desc": "The Pharmacy unit situated at the Panabo City Outpatient and Safe Birthing Facility dispenses drugs and medicine to patients. Wherever available, drugs and medicines are covered free of charge under the Konsulta Package.",
+      "tags": ["Health","Medicine"],
+      "fee": "None",
+      "total_duration": "15 Minutes",
+      "icon_type": "Pill",
+      "icon_color": "text-blue-600",
+      "button_text": "View Details",
+      "requirements": [
+        "Doctor's Prescription from Panabo City Outpatient and Safe Birthing Facility, Clinics and Hospitals - (1 Original Copy)"
+      ],
+      "situational_requirements": [],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Present the Doctor's Order prescribed in the Individual Treatment Record (ITR).",
+          "duration": "3 Minutes"
+        },
+        {
+          "step": 2,
+          "action": "Wait for the issuance of medicines, medication counseling, and instructions.",
+          "duration": "10 Minutes"
+        },
+        {
+          "step": 3,
+          "action": "Proceed to OPD Nurse station for further instructions or issuance of prescription for unavailable medicines.",
+          "duration": "2 Minutes"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Citizen's Charter",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
     }
   ]
 }

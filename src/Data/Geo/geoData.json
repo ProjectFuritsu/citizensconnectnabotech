@@ -1,0 +1,234 @@
+{
+  "locations": [
+    {
+      "id": 302,
+      "name": "Agriya",
+      "category": "Tourist Spot",
+      "coords": [7.294755610085477, 125.6849781428522],
+      "address": "Garcia St Barangay, Panabo City",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 303,
+      "name": "Baryo Kambingan and Native Lechon",
+      "category": "Food",
+      "coords": [7.29411313145073, 125.67757639620886],
+      "address": "National Highway, Panabo City",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 304,
+      "name": "Mandarin Tea Garden",
+      "category": "Food",
+      "coords": [7.3025197408450655, 125.68440258445467],
+      "address": "Quezon St, Panabo, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 305,
+      "name": "K-STORE PANABO- UNLIMITED SAMGYUP & WINGS",
+      "category": "Food",
+      "coords": [7.302934771346635, 125.68328678562818],
+      "address": "Purok, Mangga, Panabo, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 306,
+      "name": "Cara's Food Haven",
+      "category": "Food",
+      "coords": [7.30125868424249, 125.68372130348543],
+      "address": "Mahogany St, Panabo, 8105 Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 307,
+      "name": "BlindSpot - Chill and Drinks",
+      "category": "Food",
+      "coords": [7.299852027976049, 125.67945593548876],
+      "address": "Lauron, Panabo, 8105 Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 308,
+      "name": "Jollibee(Gredu Branch)",
+      "category": "Food",
+      "coords": [7.299213514949699, 125.67961150360553],
+      "address": "Brgy, Gredu, Panabo, 8105 Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 309,
+      "name": "Sky Deck Garden Cafe and Restaurant",
+      "category": "Food",
+      "coords": [7.309261995579677, 125.68515694315336],
+      "address": "Tagum - Panabo Circumferential Rd, Panabo, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 310,
+      "name": "Ameling's Seafood and Grill",
+      "category": "Food",
+      "coords": [7.309932419161601, 125.68742072747315],
+      "address": "Adlaon St, Panabo, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 311,
+      "name": "Sito's Panabo",
+      "category": "Food",
+      "coords": [7.308265422512886, 125.68396692153455],
+      "address": "Near to Flyover, National Highway, Prk. 3-A San Francisco, Panabo, 8105 Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 312,
+      "name": "Payag Grill & Folk House",
+      "category": "Food",
+      "coords": [7.3009611742643585, 125.70269512864884],
+      "address": "Panabo Wharf Road, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 313,
+      "name": "Sirok Dine & Chill",
+      "category": "Food",
+      "coords": [7.301710468176692, 125.67224112877282],
+      "address": "Cabaluna Street, Panabo, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 314,
+      "name": "Bingka Lami kaayo",
+      "category": "Food",
+      "coords": [7.293963147424918, 125.67717639316672],
+      "address": "Maharlika Highway, Panabo, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 315,
+      "name": "Sukidesu Modern Japanese Cuisine Panabo",
+      "category": "Food",
+      "coords": [7.301640964331406, 125.68473213031155],
+      "address": "Barangay Santo Nino Purok Manga, 1584 Quirino Street, Panabo, 8105 Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 316,
+      "name": "Jollibee (Beside Landbank Branch)",
+      "category": "Food",
+      "coords": [7.302828498201859, 125.68200660335911],
+      "address": "Maharlika Highway, Panabo, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 317,
+      "name": "Dimsum Diner",
+      "category": "Food",
+      "coords": [7.29769732690851, 125.6790391263404],
+      "address": "National Hiway, San Francisco, Panabo, 8105 Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 318,
+      "name": "Hebrew's Cafe",
+      "category": "Coffee shop",
+      "coords": [7.297659254997329, 125.67907849172191],
+      "address": "RJ3 Complex, Panabo, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 319,
+      "name": "BeachBuns - Grill House",
+      "category": "Food",
+      "coords": [7.313712675606224, 125.69128075379965],
+      "address": "Prk 1 Salvacion San Vicente Road, Panabo, 8105 Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": true }
+    },
+    {
+      "id": 320,
+      "name": "Penong's Panabo",
+      "category": "Food",
+      "coords": [7.297912981778891, 125.67997314598097],
+      "address": "Garcia St, Panabo, 8105 Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 321,
+      "name": "Sabaw Sabaw Lang Balbacuahan",
+      "category": "Food",
+      "coords": [7.297425570785854, 125.67966747620885],
+      "address": "Garcia St, Panabo, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 322,
+      "name": "McDonald's (Panabo Branch)",
+      "category": "Food",
+      "coords": [7.306996217893499, 125.68307326804059],
+      "address": "Barangay San Francisco Hall, National Highway, Panabo, 8105 Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 323,
+      "name": "BigBoss Buffet",
+      "category": "Food",
+      "coords": [7.311479979800453, 125.684140742282],
+      "address": "Duterte, Panabo, 8105 Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    },
+    {
+      "id": 324,
+      "name": "Maria Clara Restaurant",
+      "category": "Food",
+      "coords": [7.3003551419219175, 125.70280239990662],
+      "address": "Panabo Wharf Rd, Panabo, Davao del Norte",
+      "description": "",
+      "hours": "none",
+      "payment": { "isGcash": false, "isCashOnly": false }
+    }
+  ]
+}

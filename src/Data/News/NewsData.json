@@ -3,7 +3,7 @@
     "last_updated": "2025-02-17",
     "curated-by": "NaboTech.org",
     "version": "1.0.0",
-    "slug":"/news-updates"
+    "slug": "/news-updates"
   },
   "data": [
     {
@@ -24,11 +24,10 @@
           "caption": ""
         }
       ],
-      "desc": "<span class='font-sans font-medium text-gray-900 uppercase tracking-widest text-sm mr-3'>Panabo City —</span> \n    The Barangay Sta. Cruz Day Care Center has undergone a significant transformation through the Community Skills Training and Livelihood Entrepreneurship Program (CSTEP). This project serves as a cornerstone of the city's effort to deliver better facilities for children while providing local workers with tangible industry experience.\n  </p>\n\n  \n  <h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>Infrastructure Evolution</h2>\n  <div class='w-12 h-[1px] bg-gray-300 mb-6'></div>\n  <p class='mb-8 text-lg leading-loose'>\n    The renovation highlights high-impact improvements designed for long-term utility. Key upgrades include the installation of new tiled flooring and a fully functional, hygienic kitchen suitable for daily use and school nutritional programs.\n  </p>\n\n  \n  <h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>A Unique Training Model</h2>\n  <div class='w-12 h-[1px] bg-gray-300 mb-6'></div>\n  <p class='mb-8 text-lg leading-loose'>\n    Unlike traditional construction projects, this overhaul served as a live training site. CSTEP participants applied their classroom theories to actual construction as part of their On-the-Job Training (OJT), ensuring that the project benefits the community twice: once through the facility, and again through local job creation.\n  </p>\n\n  \n  <h2 class='text-sm uppercase tracking-[0.3em]  mt-12 mb-4 font-sans font-medium'>Future Roadmap</h2>\n  <div class='w-12 h-[1px] bg-gray-300 mb-6'></div>\n  <p class='mb-16 text-lg leading-loose'>\n    Coordinated by Councilor Relampagos alongside the City Mayor’s Office and CPESO, the success in Brgy. Sta. Cruz signals the start of a broader rollout. Program officials have confirmed that after the successful completion in Brgy. Buenavista and Sta. Cruz, the initiative will move next to Barangay Mabunao. </p>",
+      "desc": "<span class='font-sans font-medium text-gray-900 uppercase tracking-widest text-sm mr-3'>Panabo City —</span><p class='mb-8 text-lg leading-loose'>The Barangay Sta. Cruz Day Care Center has undergone a significant transformation through the Community Skills Training and Livelihood Entrepreneurship Program (CSTEP). This project serves as a cornerstone of the city's effort to deliver better facilities for children while providing local workers with tangible industry experience.\n  </p>\n\n  \n  <h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>Infrastructure Evolution</h2>\n  <div class='w-12 h-[1px] bg-gray-300 mb-6'></div>\n  <p class='mb-8 text-lg leading-loose'>\n    The renovation highlights high-impact improvements designed for long-term utility. Key upgrades include the installation of new tiled flooring and a fully functional, hygienic kitchen suitable for daily use and school nutritional programs.\n  </p>\n\n  \n  <h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>A Unique Training Model</h2>\n  <div class='w-12 h-[1px] bg-gray-300 mb-6'></div>\n  <p class='mb-8 text-lg leading-loose'>\n    Unlike traditional construction projects, this overhaul served as a live training site. CSTEP participants applied their classroom theories to actual construction as part of their On-the-Job Training (OJT), ensuring that the project benefits the community twice: once through the facility, and again through local job creation.\n  </p>\n\n  \n  <h2 class='text-sm uppercase tracking-[0.3em]  mt-12 mb-4 font-sans font-medium'>Future Roadmap</h2>\n  <div class='w-12 h-[1px] bg-gray-300 mb-6'></div>\n  <p class='mb-16 text-lg leading-loose'>\n    Coordinated by Councilor Relampagos alongside the City Mayor’s Office and CPESO, the success in Brgy. Sta. Cruz signals the start of a broader rollout. Program officials have confirmed that after the successful completion in Brgy. Buenavista and Sta. Cruz, the initiative will move next to Barangay Mabunao. </p>",
       "author": "City Information Office",
       "tags": ["Education"],
       "sources": "https://panabocity.gov.ph/day-care-center-in-barangay-sta-cruz-renovated-through-cstep-program/"
-      
     },
     {
       "id": "NW-0127",
@@ -76,8 +75,7 @@
           "caption": ""
         }
       ],
-
-      "desc": "<h1>Sample</h1>",
+      "desc": "<span class='font-sans font-medium text-gray-900 uppercase tracking-widest text-sm mr-3'>Panabo City —</span><p class='mb-8 text-lg leading-loose'>Introduction paragraph here</p><h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>Header</h2><div class='w-12 h-[1px] bg-gray-300 mb-6'></div><p class='mb-8 text-lg leading-loose'>Content of the header</p><h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>Header</h2><div class='w-12 h-[1px] bg-gray-300 mb-6'></div><p class='mb-8 text-lg leading-loose'>Content of the header</p><h2 class='text-sm uppercase tracking-[0.3em] mt-12 mb-4 font-sans font-medium'>Header</h2><div class='w-12 h-[1px] bg-gray-300 mb-6'></div><p class='mb-8 text-lg leading-loose'>Content of the header</p>",
       "author": "City Information Office",
       "tags": ["Infrastructure"],
       "sources": "https://panabocity.gov.ph/blessing-and-turnover-of-the-aie-fire-substation-successfully-held/"

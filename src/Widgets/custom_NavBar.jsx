@@ -9,7 +9,7 @@ export default function Navbar() {
     { title: "Home", path: "/" },
     { title: "Guide Hub", path: "/info" },
     { title: "News & Updates", path: "/news-updates" },
-    // { title: "Get Involved", path: "/get-involved" },
+    { title: "Geographic", path: "/geo" },
   ];
 
   return (

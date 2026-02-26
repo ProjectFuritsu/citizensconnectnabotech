@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import { NewsService } from "../../Services/NewsServices/NewsService";
 import Custom_SideWidget from "../../Widgets/custom_sideWidget";
