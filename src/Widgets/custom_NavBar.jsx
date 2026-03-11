@@ -18,6 +18,7 @@ export default function Navbar() {
     { title: "Guide Hub", path: "/info" },
     { title: "News & Updates", path: "/news-updates" },
     { title: "Explore now", path: "https://nabomap.vercel.app" }, // Added 'isNew' flag
+    { title: "Price Monitoring", path: "https://panapresyo.vercel.app" }, // Added 'isNew' flag
   ];
 
   return (
