@@ -75,7 +75,6 @@ export default function NewsDetails() {
               </h1>
 
               <div className="flex flex-wrap gap-4 text-gray-500 mt-6 text-sm border-t border-b py-3">
-                <p>Published: {article.date || "none"}</p>
                 <p>Author: {article.author}</p>
                 <p>Category: {tags.length > 0 ? tags.join(", ") : "General"}</p>
               </div>
@@ -171,7 +170,15 @@ export default function NewsDetails() {
               </div>
             </section>
 
-            <div className="prose prose-lg max-w-none text-gray-800 leading-relaxed"></div>
+            <div className="prose prose-lg max-w-none text-gray-800 leading-relaxed">
+              <span className="block font-sans font-bold text-blue-800 uppercase tracking-widest text-xs mb-4">
+                Panabo City —{" "}
+                {article.date &&
+                  new Date(article.date).toLocaleDateString(undefined, {
+                    dateStyle: "long",
+                  })}
+              </span>
+            </div>
             <div
               className="text-gray-600 mb-6"
               dangerouslySetInnerHTML={{ __html: article.desc }}
@@ -206,7 +213,7 @@ export default function NewsDetails() {
                     rel="noopener noreferrer"
                     className="text-sm text-gray-600 hover:text-blue-600 transition-colors truncate font-medium"
                   >
-                    {article.sources}
+                    Click here to view the original article
                   </a>
                 </div>
               </div>

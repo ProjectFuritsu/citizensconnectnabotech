@@ -534,7 +534,7 @@
       "title": "Availment of Immunization Services",
       "date": "2026-02-22",
       "desc": "Under the supervision of the City Health Office, the Rural Health Midwives in the 40 Barangay Health Stations in the city provide free immunization to infants, 0-12 months old. The infants are vaccinated against the seven (7) immunizable diseases.",
-      "tags": ["Health", "Immunization","Medical Services"],
+      "tags": ["Health", "Immunization", "Medical Services"],
       "fee": "None",
       "total_duration": "1 Hour and 10 minutes",
       "icon_type": "Syringe",
@@ -574,7 +574,7 @@
       "title": "Availment of Family Planning Services",
       "date": "2026-02-22",
       "desc": "Under the supervision of the City Health Office, the Rural Health Midwives in the 40 Barangay Health Stations in the city gives basic family planning education, provides information on the various family planning methods, and gives family planning commodity that is suitable for the clients.",
-      "tags": ["Health", "Family Planning","Medical Services"],
+      "tags": ["Health", "Family Planning", "Medical Services"],
       "fee": "None",
       "total_duration": "1 hour and 40 minutes",
       "icon_type": "Users",
@@ -703,7 +703,7 @@
       "title": "Availment of Medicines",
       "date": "2026-02-22",
       "desc": "The Pharmacy unit situated at the Panabo City Outpatient and Safe Birthing Facility dispenses drugs and medicine to patients. Wherever available, drugs and medicines are covered free of charge under the Konsulta Package.",
-      "tags": ["Health","Medicine"],
+      "tags": ["Health", "Medicine"],
       "fee": "None",
       "total_duration": "15 Minutes",
       "icon_type": "Pill",
@@ -728,6 +728,60 @@
           "step": 3,
           "action": "Proceed to OPD Nurse station for further instructions or issuance of prescription for unavailable medicines.",
           "duration": "2 Minutes"
+        }
+      ],
+      "sources": {
+        "name": "Panabo City Citizen's Charter",
+        "url": "https://panabocity.gov.ph/panabo-city-citizens-charter-2025-1st-edition/"
+      }
+    },
+    {
+      "id": "Yakap-Program-2026",
+      "title": "Availment of Yakap Program",
+      "date": "2026-03-17",
+      "desc": "Ang PhilHealth YAKAP ay programa ng gobyerno na naglalayong tulungan ang mga Pilipino na mapangalagaan ang kanilang kalusugan at maiwasan ang sakit.",
+      "tags": ["Health"],
+      "fee": "None",
+      "total_duration": "1 Hour and 30 minutes",
+      "icon_type": "ArrowRight",
+      "icon_color": "text-green-600",
+      "button_text": "View Details",
+      "requirements": [
+        "Philhealth ID or PIN and updated Membership record(Status, Corrected Name, etc.)"
+      ],
+      "situational_requirements": [
+        {
+          "condition": "For patients that not members of PhilHealth or with expired membership",
+          "docs": [
+            "Secure PhilHealth ID and update membership record at the PhilHealth Office of the city for registration and availment of the YAKAP program"
+          ]
+        }
+      ],
+      "guidelines": [
+        {
+          "step": 1,
+          "action": "Tiyaking may PhilHealth Identification Number o PIN at updated ang iyong membership. Kung hindi ka pa miyembro o may expired membership, magtungo sa PhilHealth Office ng lungsod upang magparehistro at i-update ang iyong membership record.",
+          "duration": "Depende sa bilis ng pagproseso"
+        },
+        {
+          "step": 2,
+          "action": "Pumili ng YAKAP Clinic gamit ang eGovPH App, PhilHealth Member Portal, o sa pinakamalapit na PhilHealth Office.",
+          "duration": "Depende sa bilis ng pagproseso"
+        },
+        {
+          "step": 3,
+          "action": "Sumailalim sa FPE: medical history taking, health screening, at health education.",
+          "duration": "Depende sa bilis ng pagproseso"
+        },
+        {
+          "step": 4,
+          "action": "Pumirma sa ibibigay na form bilang pagsang-ayon sa kasunduang patuloy kang aalagaan ng napiling YAKAP Clinic.",
+          "duration": "Depende sa bilis ng pagproseso ng form at dami ng mga papirmahan"
+        },
+        {
+          "step": 5,
+          "action": "Magpakonsulta para maresetahan ng kinakailangang gamot, mabigyan ng referral para sa laboratory at/o cancer screening test kung kinakailangan, at ma-assess kung kailan ang follow-up checkup.",
+          "duration": "Depende sa bilis ng pagproseso"
         }
       ],
       "sources": {

@@ -16,7 +16,7 @@ export default function Navbar() {
   const navigation = [
     { title: "Home", path: "/" },
     { title: "Guide Hub", path: "/info" },
-    { title: "News & Updates", path: "/news-updates" },
+    // { title: "News & Updates", path: "/news-updates" },
     { title: "Explore now", path: "https://nabomap.vercel.app" }, // Added 'isNew' flag
     { title: "Price Monitoring", path: "https://panapresyo.vercel.app" }, // Added 'isNew' flag
   ];
@@ -124,30 +124,6 @@ export default function Navbar() {
           </div>
         )}
       </nav>
-
-      {/* 4. NEW FEATURE BANNER (Only on Geo Page) */}
-      {isGeoPage && (
-        <div className="bg-slate-900 text-white overflow-hidden relative">
-          {/* Subtle animated background pattern */}
-          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[16px_16px]"></div>
-          
-          <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex flex-col md:flex-row items-center justify-between relative z-10 gap-2">
-            <div className="flex items-center gap-3">
-              <div className="bg-blue-600 p-1 rounded">
-                <LucideIcons.Sparkles size={16} className="text-white" />
-              </div>
-              <p className="text-xs md:text-sm font-bold tracking-tight">
-                <span className="text-blue-400">NEW FEATURE:</span> Explore some amenities on our Digital Panabo Map
-              </p>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] uppercase font-black px-2 py-0.5 bg-white/10 rounded-full border border-white/20">
-                Released Feb 2026
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
