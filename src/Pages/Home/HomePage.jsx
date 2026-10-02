@@ -5,6 +5,9 @@ import Custom_DynamicIcon from "../../Widgets/custom_DynamicIcon";
 import Custom_SectionHeader from "../../Widgets/custom_SectionHeader";
 import { InfoDataService } from "../../Services/InfoLibServices/InfoLibService";
 import { formatDate, isFree } from "../../Theme/display";
+import { usePageMeta } from "../../SEO/usePageMeta";
+import JsonLd from "../../SEO/JsonLd";
+import { websiteSchema } from "../../SEO/schema";
 import contactData from "../../Data/contacts.json";
 
 // Shortcuts shown under the hero search bar
@@ -41,6 +44,8 @@ const tools = [
 ];
 
 export default function HomePage() {
+  usePageMeta();
+
   const guides = InfoDataService.getAllPrograms();
   const hotlines = contactData.essential_contacts;
   const categories = InfoDataService.getCategories();
@@ -56,6 +61,8 @@ export default function HomePage() {
 
   return (
     <div className="bg-canvas font-sans text-ink pb-20 md:pb-24">
+      <JsonLd data={websiteSchema()} />
+
       {/* Hero Section */}
       <section className="bg-surface border-b border-line">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24 lg:py-28 grid gap-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-20 lg:items-center">

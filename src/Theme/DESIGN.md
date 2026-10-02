@@ -10,6 +10,7 @@ How the Panabo City Citizen's Portal looks and why. Read this before building or
 | ----------- | -------------------------------------------------------------------------------------------------- |
 | `theme.css` | Design tokens (colors, radii, motion) as a Tailwind v4 `@theme` block, plus base page colors. Imported by `src/index.css`. |
 | `display.js` | The data display rules below, as code: `formatFee`, `isFree`, `formatDate`, `pluralize`, and `categoryIcons`. Import these instead of re-writing them on a page. |
+| `logo.svg`  | The portal emblem. Used by `custom_Logo.jsx` and as the SVG favicon (`index.html`). The PNG/ICO icons and share image in `public/` (`favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `og-image.png`) are rendered from it, so re-render them if the logo changes. |
 | `DESIGN.md` | This guide.                                                                                        |
 
 Shared building blocks that live outside this folder:
@@ -24,7 +25,7 @@ Change a token in `theme.css` and every utility that uses it updates. For exampl
 ## Principles
 
 1. **Data is the decoration.** Show counts, fees, processing times and dates instead of illustrations, gradients or glows.
-2. **One accent color.** `brand` is only for links, active states and data bars. Everything else is neutral.
+2. **One accent color.** `brand` is only for links, active states and data bars. Everything else is neutral. The multicolor logo is the one exception, and its colors are never used in the UI.
 3. **Color carries meaning.** `success` means free of charge and `danger` means emergency. Never use them for decoration.
 4. **Borders, not shadows.** Use 1px `border-line` to separate things. Shadows are reserved for floating layers such as the search dropdown.
 5. **Never hardcode numbers.** Compute counts, totals and dates from the JSON in `src/Data` so the page stays correct when data changes.
@@ -40,7 +41,7 @@ All tokens are Tailwind utilities: `text-*`, `bg-*`, `border-*`, `divide-*`, `de
 | Token                    | Matches     | Use for                                             |
 | ------------------------ | ----------- | --------------------------------------------------- |
 | `brand-50` … `brand-900` | blue scale  | Links (`600`), link hover (`700`), active nav (`50` bg + `700` text), data bars (`600`) |
-| `ink`                    | slate-900   | Headings, primary text, logo mark, hotline bar      |
+| `ink`                    | slate-900   | Headings, primary text, hotline bar                 |
 | `ink-soft`               | slate-700   | Values in tables, secondary strong text             |
 | `muted`                  | slate-500   | Descriptions, labels, idle nav links                |
 | `subtle`                 | slate-400   | Hints, column labels, idle icons                    |
@@ -133,7 +134,19 @@ These live in `src/Widgets` and appear on every page.
 
 ### Logo (`custom_Logo.jsx`)
 
-Use `<Custom_Logo />` wherever the brand appears; don't copy its markup. It links home.
+Use `<Custom_Logo />` wherever the brand appears; don't copy its markup. It shows the emblem (`logo.svg`, 40px) next to "Panabo City / Citizen's Portal" and links home. The emblem's `alt` is empty because the text beside it already names the link.
+
+**The emblem (`logo.svg`)**, read from the outside in:
+
+- **Arms:** two blue arms circle the city, and their hands clasp at the bottom. The city takes care of its people.
+- **Residents:** three people in the middle (green, blue, orange) stand for the citizens the portal serves.
+- **Services:** five segments arc across the top: safety (teal, shield), environment (green, leaf), city hall (blue, with dome and flag), transport (yellow, bus) and health (orange, cross).
+
+Rules for using it:
+
+- Show it on white or very light backgrounds only. White outlines separate its pieces, so on dark backgrounds those outlines show up as lines.
+- Don't recolor, stretch or crop it, and don't use its green, yellow, orange or teal anywhere in the UI.
+- Minimum size is 32px. Below that, use it only as the favicon, where the overall shape and colors still read.
 
 ## Page patterns
 

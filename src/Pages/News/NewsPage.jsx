@@ -3,8 +3,14 @@ import { Link } from "react-router-dom";
 import { NewsService } from "../../Services/NewsServices/NewsService";
 import Custom_SideWidget from "../../Widgets/custom_sideWidget";
 import Custom_PageLayout from "../../Widgets/custom_PageLayout";
+import { usePageMeta } from "../../SEO/usePageMeta";
 
 export default function NewsPage() {
+  usePageMeta({
+    title: "News & Updates",
+    description: "Announcements and updates for Panabo City residents.",
+  });
+
   const scrollRef = useRef(null);
 
   // 1. Get the data from your service

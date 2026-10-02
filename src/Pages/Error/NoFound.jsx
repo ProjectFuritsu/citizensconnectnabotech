@@ -1,4 +1,8 @@
+import { usePageMeta } from "../../SEO/usePageMeta";
+
 export default function NoFound() {
+  usePageMeta({ title: "Page not found", noindex: true });
+
   return (
     <main>
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-start h-screen md:px-8">

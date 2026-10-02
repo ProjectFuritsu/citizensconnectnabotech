@@ -21,10 +21,30 @@ import {
   parseRequirement,
   pluralize,
 } from "../../Theme/display";
+import { usePageMeta } from "../../SEO/usePageMeta";
+import JsonLd from "../../SEO/JsonLd";
+import { guideSchema } from "../../SEO/schema";
 
 export default function InfoDetailsPage() {
   const { id } = useParams();
   const doc = InfoDataService.getProgramById(id);
+
+  // Search snippet leads with the facts people look for, then the summary
+  usePageMeta(
+    doc
+      ? {
+          title: `${doc.title}: Requirements & Fees`,
+          description: [
+            `Fee: ${formatFee(doc.fee)}`,
+            doc.total_duration && `Processing time: ${doc.total_duration}`,
+            `${pluralize(doc.requirements?.length ?? 0, "requirement")}, ${pluralize(doc.guidelines?.length ?? 0, "step")}`,
+            doc.desc,
+          ]
+            .filter(Boolean)
+            .join(". "),
+        }
+      : { title: "Guide not found", noindex: true },
+  );
 
   useEffect(() => {
     window.scrollTo({
@@ -65,6 +85,8 @@ export default function InfoDetailsPage() {
 
   return (
     <div className="bg-canvas font-sans text-ink pb-20 md:pb-24">
+      <JsonLd data={guideSchema(doc)} />
+
       {/* Header */}
       <section className="bg-surface border-b border-line">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">

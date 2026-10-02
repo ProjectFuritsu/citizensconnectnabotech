@@ -24,7 +24,7 @@ export default function Navbar() {
     <>
       {/* 1. HOTLINE MARQUEE */}
       <div className="bg-ink text-white">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 h-10 flex items-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 h-10 flex items-center gap-1">
           <span className="flex items-center gap-2 shrink-0 text-xs font-medium">
             <span className="h-2 w-2 rounded-full bg-danger" />
             <span className="sm:hidden">Hotlines</span>

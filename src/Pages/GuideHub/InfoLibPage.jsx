@@ -11,6 +11,9 @@ import { InfoDataService } from "../../Services/InfoLibServices/InfoLibService";
 import Custom_InfoCard from "../../Widgets/custom_info_card";
 import Custom_DynamicIcon from "../../Widgets/custom_DynamicIcon";
 import { categoryIcons, formatDate, pluralize } from "../../Theme/display";
+import { usePageMeta } from "../../SEO/usePageMeta";
+import JsonLd from "../../SEO/JsonLd";
+import { breadcrumbSchema } from "../../SEO/schema";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -35,6 +38,18 @@ export default function InfoLibPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const tagParam = searchParams.get("tag");
   const selectedTag = allTags.includes(tagParam) ? tagParam : null;
+
+  usePageMeta(
+    selectedTag
+      ? {
+          title: `${selectedTag} Guides`,
+          description: `${pluralize(allGuides.filter((g) => g.tags.includes(selectedTag)).length, "guide")} to ${selectedTag.toLowerCase()} services in Panabo City, with requirements, fees and processing times.`,
+        }
+      : {
+          title: "Guide Hub: City Service Guides",
+          description: `Browse ${allGuides.length} guides to Panabo City services. Compare requirements, fees and processing times for ${categories.map((c) => c.name.toLowerCase()).join(", ")} services.`,
+        },
+  );
 
   const lastUpdated = useMemo(() => {
     const newest = allGuides.reduce(
@@ -115,6 +130,13 @@ export default function InfoLibPage() {
 
   return (
     <div className="bg-canvas font-sans text-ink pb-20 md:pb-24">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Guide Hub", path: "/info" },
+        ])}
+      />
+
       {/* Header */}
       <section className="bg-surface border-b border-line">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16">

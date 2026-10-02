@@ -1,9 +1,17 @@
 import { useParams, Link } from "react-router-dom";
 import { NewsService } from "../../Services/NewsServices/NewsService";
 import { useEffect, useState } from "react";
+import { usePageMeta } from "../../SEO/usePageMeta";
 
 export default function NewsDetails() {
   const { id } = useParams();
+  const metaArticle = NewsService.getProgramById(id);
+
+  usePageMeta(
+    metaArticle
+      ? { title: metaArticle.title, description: metaArticle.desc }
+      : { title: "Article not found", noindex: true },
+  );
 
   useEffect(() => {
     window.scrollTo({

@@ -1,5 +1,6 @@
 import React from "react";
 import { Search, MapPin, Download, BarChart3, Mail } from "lucide-react"; // Using Lucide for icons
+import { usePageMeta } from "../../SEO/usePageMeta";
 
 const OPPORTUNITIES = [
   {
@@ -23,6 +24,9 @@ const OPPORTUNITIES = [
 ];
 
 export default function VolunteersPage() {
+  // Placeholder content for a coming-soon feature: keep it out of search results
+  usePageMeta({ title: "Get Involved", noindex: true });
+
   return (
     <div className="min-h-screen bg-slate-50 p-8 font-sans text-slate-800">
       <div className="max-w-6xl mx-auto">
