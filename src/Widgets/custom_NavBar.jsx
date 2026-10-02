@@ -2,15 +2,11 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import contactData from "../Data/contacts.json";
+import { navbarItems } from "../Routes/navigation";
 import Custom_Logo from "./custom_Logo";
+import Custom_SoonBadge from "./custom_SoonBadge";
 
-const navigation = [
-  { title: "Home", path: "/" },
-  { title: "Guide Hub", path: "/info" },
-  // { title: "News & Updates", path: "/news-updates" },
-  { title: "City Map", path: "https://nabomap.vercel.app", external: true },
-  { title: "Market Prices", path: "https://panapresyo.vercel.app", external: true },
-];
+// Links and their flags (disabled, hidden, ...) live in src/Routes/navigation.js
 
 const linkBase =
   "inline-flex items-center gap-1 rounded-control px-3 py-2 text-sm font-medium transition-colors";
@@ -34,7 +30,7 @@ export default function Navbar() {
           {/* Empty onTouchStart lets iOS Safari apply :active, pausing on touch */}
           <div
             onTouchStart={() => {}}
-            className="group flex min-w-0 grow overflow-hidden no-scrollbar motion-reduce:overflow-x-auto [mask-image:linear-gradient(to_right,transparent,#000_1.5rem,#000_calc(100%_-_1.5rem),transparent)]"
+            className="group flex min-w-0 grow overflow-hidden no-scrollbar motion-reduce:overflow-x-auto mask-[linear-gradient(to_right,transparent,#000_1.5rem,#000_calc(100%-1.5rem),transparent)]"
           >
             <HotlineTrack />
             <HotlineTrack duplicate />
@@ -49,7 +45,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-1">
-            {navigation.map((item) => (
+            {navbarItems.map((item) => (
               <li key={item.title}>
                 <NavItem item={item} />
               </li>
@@ -70,7 +66,7 @@ export default function Navbar() {
         {/* 3. MOBILE DROPDOWN */}
         {isMobileMenuOpen && (
           <ul className="md:hidden border-t border-line px-4 py-2 flex flex-col">
-            {navigation.map((item) => (
+            {navbarItems.map((item) => (
               <li key={item.title}>
                 <NavItem
                   item={item}
@@ -111,8 +107,22 @@ const HotlineTrack = ({ duplicate = false }) => (
   </ul>
 );
 
-// Internal pages get an active state; external tools open in a new tab
+// Internal pages get an active state; external tools open in a new tab;
+// disabled items render as plain text so they can't be clicked or focused
 const NavItem = ({ item, className = "", onClick }) => {
+  if (item.disabled) {
+    return (
+      <span
+        aria-disabled="true"
+        title={`${item.title} is coming soon`}
+        className={`${linkBase} cursor-not-allowed text-subtle ${className}`}
+      >
+        {item.title}
+        <Custom_SoonBadge />
+      </span>
+    );
+  }
+
   if (item.external) {
     return (
       <a

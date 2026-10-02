@@ -124,13 +124,24 @@ These live in `src/Widgets` and appear on every page.
 - Internal pages use `NavLink`. Active state: `text-brand-700 bg-brand-50`; idle: `text-muted hover:text-ink hover:bg-canvas`.
 - External tools open in a new tab and show a small `ArrowUpRight` icon.
 - Links appear from `md` up; below that, a menu button opens a vertical list.
-- Add or remove links in the `navigation` array.
+- Links come from the shared list in `src/Routes/navigation.js`, which the footer uses too. Change an item once and both update. Each item has `title`, `path` and `group` (its footer column: "Portal" or "Tools"), plus optional flags:
+  - `external: true`: opens in a new tab and shows `ArrowUpRight`.
+  - `disabled: true`: shown in `text-subtle` with a "Soon" pill (`Custom_SoonBadge`) and `cursor-not-allowed`. It renders as plain text (`aria-disabled="true"`), so it can't be clicked or tabbed to. Use it for features that are announced but not ready.
+  - `hidden: true`: not shown anywhere. Use this instead of commenting the item out, so it's easy to switch back on.
+  - `footerOnly: true`: listed in the footer but not the navbar. Use it for secondary links that would crowd the navbar.
 
 ### Footer (`custom_Footer.jsx`)
 
 - `bg-surface border-t border-line`: logo and mission on the left, link columns on the right, copyright strip at the bottom.
 - Column labels use the small uppercase label style. External links show `ArrowUpRight`.
-- Add or remove links in the `footerNavs` array.
+- The Portal and Tools columns come from the shared navigation list (see Navbar), so the same flags apply. Only the Resources column (outside links such as the official city website) is defined in the footer itself.
+
+### Home page lists (`HomePage.jsx`)
+
+The "Popular" guide links and the Community tools cards accept the same `disabled` and `hidden` flags:
+
+- **Popular links:** a disabled link is plain `text-subtle` text.
+- **Tool cards:** a disabled card gets a dashed border, muted text and a "Soon" pill instead of the ↗ arrow, and can't be clicked.
 
 ### Logo (`custom_Logo.jsx`)
 

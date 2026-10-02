@@ -3,12 +3,17 @@ import { ArrowUpRight } from "lucide-react";
 import Custom_HomePageSearchBar from "../../Widgets/custom_HomePageSearchBar";
 import Custom_DynamicIcon from "../../Widgets/custom_DynamicIcon";
 import Custom_SectionHeader from "../../Widgets/custom_SectionHeader";
+import Custom_SoonBadge from "../../Widgets/custom_SoonBadge";
 import { InfoDataService } from "../../Services/InfoLibServices/InfoLibService";
 import { formatDate, isFree } from "../../Theme/display";
 import { usePageMeta } from "../../SEO/usePageMeta";
 import JsonLd from "../../SEO/JsonLd";
 import { websiteSchema } from "../../SEO/schema";
 import contactData from "../../Data/contacts.json";
+
+// Optional flags on popularGuides and tools items:
+//   disabled: true -> shown greyed out (tools get a "Soon" label), not clickable
+//   hidden: true   -> not shown (keeps the entry ready to switch back on)
 
 // Shortcuts shown under the hero search bar
 const popularGuides = [
@@ -28,18 +33,18 @@ const tools = [
     icon: "MapPinned",
   },
   {
-    name: "PanaPresyo",
-    title: "Market prices",
-    desc: "Recent prices of goods in local markets, before you shop.",
-    href: "https://panapresyo.vercel.app",
-    icon: "ShoppingBasket",
-  },
-  {
     name: "Evently",
     title: "City events",
     desc: "Community activities, festivals and official city gatherings.",
     href: "https://evently-panabo.vercel.app/",
     icon: "CalendarDays",
+  },
+  {
+    name: "PanaPresyo",
+    title: "Market prices",
+    desc: "Recent prices of goods in local markets, before you shop.",
+    href: "https://panapresyo.vercel.app",
+    icon: "ShoppingBasket",
   },
 ];
 
@@ -74,8 +79,8 @@ export default function HomePage() {
               Public information, made easy to find.
             </h1>
             <p className="mt-5 text-lg text-muted max-w-xl text-pretty">
-              Requirements, fees and processing times for city services, all
-              in one place.
+              Requirements, fees and processing times for city services, all in
+              one place.
             </p>
 
             {/* Search Bar */}
@@ -85,15 +90,27 @@ export default function HomePage() {
 
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
               <span className="text-subtle">Popular:</span>
-              {popularGuides.map((guide) => (
-                <Link
-                  key={guide.id}
-                  to={`/info/${guide.id}`}
-                  className="text-ink-soft underline decoration-faint underline-offset-4 hover:text-brand-600 hover:decoration-brand-600 transition-colors"
-                >
-                  {guide.label}
-                </Link>
-              ))}
+              {popularGuides
+                .filter((guide) => !guide.hidden)
+                .map((guide) =>
+                  guide.disabled ? (
+                    <span
+                      key={guide.id}
+                      aria-disabled="true"
+                      className="cursor-not-allowed text-subtle"
+                    >
+                      {guide.label}
+                    </span>
+                  ) : (
+                    <Link
+                      key={guide.id}
+                      to={`/info/${guide.id}`}
+                      className="text-ink-soft underline decoration-faint underline-offset-4 hover:text-brand-600 hover:decoration-brand-600 transition-colors"
+                    >
+                      {guide.label}
+                    </Link>
+                  ),
+                )}
             </div>
           </div>
 
@@ -103,9 +120,7 @@ export default function HomePage() {
               <h2 className="text-xs font-semibold uppercase tracking-wider text-muted">
                 At a glance
               </h2>
-              <span className="text-xs text-subtle">
-                Updated {lastUpdated}
-              </span>
+              <span className="text-xs text-subtle">Updated {lastUpdated}</span>
             </div>
             <dl className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-px bg-line">
               <GlanceStat value={guides.length} label="Service guides" />
@@ -129,35 +144,11 @@ export default function HomePage() {
         />
 
         <div className="mt-8 grid gap-3 lg:grid-cols-3">
-          {tools.map((tool) => (
-            <a
-              key={tool.name}
-              href={tool.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex gap-4 rounded-card border border-line bg-surface p-5 hover:border-brand-300 transition-colors"
-            >
-              <Custom_DynamicIcon
-                name={tool.icon}
-                className="mt-0.5 h-5 w-5 shrink-0 text-subtle group-hover:text-brand-600 transition-colors"
-              />
-              <div className="grow">
-                <p className="flex items-center gap-1.5 font-semibold group-hover:text-brand-700 transition-colors">
-                  {tool.title}
-                  <span className="text-xs font-normal text-subtle">
-                    · {tool.name}
-                  </span>
-                </p>
-                <p className="mt-1 text-sm text-muted leading-relaxed">
-                  {tool.desc}
-                </p>
-              </div>
-              <ArrowUpRight
-                size={16}
-                className="shrink-0 text-faint group-hover:text-brand-600 transition-colors"
-              />
-            </a>
-          ))}
+          {tools
+            .filter((tool) => !tool.hidden)
+            .map((tool) => (
+              <ToolCard key={tool.name} tool={tool} />
+            ))}
         </div>
       </section>
     </div>
@@ -165,10 +156,73 @@ export default function HomePage() {
 }
 
 // Sub-components for cleaner code
+
+// Community tool card: a link to the tool, or a dashed, unclickable
+// "Soon" card when the tool is disabled
+const ToolCard = ({ tool }) => {
+  const { disabled } = tool;
+  const body = (
+    <>
+      <Custom_DynamicIcon
+        name={tool.icon}
+        className={`mt-0.5 h-5 w-5 shrink-0 transition-colors ${disabled ? "text-faint" : "text-subtle group-hover:text-brand-600"}`}
+      />
+      <div className="grow">
+        <p
+          className={`flex items-center gap-1.5 font-semibold transition-colors ${disabled ? "text-muted" : "group-hover:text-brand-700"}`}
+        >
+          {tool.title}
+          <span className="text-xs font-normal text-subtle">
+            · {tool.name}
+          </span>
+        </p>
+        <p
+          className={`mt-1 text-sm leading-relaxed ${disabled ? "text-subtle" : "text-muted"}`}
+        >
+          {tool.desc}
+        </p>
+      </div>
+      {disabled ? (
+        <Custom_SoonBadge className="self-start" />
+      ) : (
+        <ArrowUpRight
+          size={16}
+          className="shrink-0 text-faint group-hover:text-brand-600 transition-colors"
+        />
+      )}
+    </>
+  );
+
+  if (disabled) {
+    return (
+      <div
+        aria-disabled="true"
+        title={`${tool.title} is coming soon`}
+        className="flex cursor-not-allowed gap-4 rounded-card border border-dashed border-line bg-surface p-5"
+      >
+        {body}
+      </div>
+    );
+  }
+
+  return (
+    <a
+      href={tool.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex gap-4 rounded-card border border-line bg-surface p-5 hover:border-brand-300 transition-colors"
+    >
+      {body}
+    </a>
+  );
+};
+
 const GlanceStat = ({ value, label, valueClassName = "text-ink" }) => (
   <div className="bg-surface px-5 py-4">
     <dt className="text-xs text-muted">{label}</dt>
-    <dd className={`mt-1 text-3xl font-semibold tabular-nums ${valueClassName}`}>
+    <dd
+      className={`mt-1 text-3xl font-semibold tabular-nums ${valueClassName}`}
+    >
       {value}
     </dd>
   </div>
