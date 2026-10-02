@@ -33,6 +33,16 @@ export const InfoDataService = {
   getAllTags: () => {
     const tags = infoData.data.flatMap((item) => item.tags);
     return [...new Set(tags)];
-  }
-  
+  },
+
+  // Primary categories (each program's first tag) with counts, largest first
+  getCategories: () => {
+    const primaryTags = [...new Set(infoData.data.map((item) => item.tags[0]))];
+    return primaryTags
+      .map((name) => ({
+        name,
+        count: infoData.data.filter((item) => item.tags.includes(name)).length,
+      }))
+      .sort((a, b) => b.count - a.count);
+  },
 };

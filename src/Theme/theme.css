@@ -1,0 +1,68 @@
+/*
+ * Citizen's Portal theme tokens (Tailwind CSS v4)
+ *
+ * Every token here becomes a Tailwind utility, e.g. --color-ink -> text-ink,
+ * --color-line -> border-line, --radius-card -> rounded-card.
+ * Usage rules live in DESIGN.md in this folder.
+ *
+ * The default Tailwind palette (blue-*, slate-*, ...) is still available, so
+ * pages that don't use these tokens yet keep working.
+ */
+
+@theme {
+  /* Brand: the single accent color. Links, active states, data bars.
+     Values match Tailwind's blue scale; swap them to rebrand the portal. */
+  --color-brand-50: oklch(97% 0.014 254.604);
+  --color-brand-100: oklch(93.2% 0.032 255.585);
+  --color-brand-200: oklch(88.2% 0.059 254.128);
+  --color-brand-300: oklch(80.9% 0.105 251.813);
+  --color-brand-400: oklch(70.7% 0.165 254.624);
+  --color-brand-500: oklch(62.3% 0.214 259.815);
+  --color-brand-600: oklch(54.6% 0.245 262.881);
+  --color-brand-700: oklch(48.8% 0.243 264.376);
+  --color-brand-800: oklch(42.4% 0.199 265.638);
+  --color-brand-900: oklch(37.9% 0.146 265.522);
+
+  /* Neutrals: text, lines and surfaces (Tailwind slate) */
+  --color-ink: oklch(20.8% 0.042 265.755); /* slate-900: headings, primary text */
+  --color-ink-soft: oklch(37.2% 0.044 257.287); /* slate-700: values, secondary text */
+  --color-muted: oklch(55.4% 0.046 257.417); /* slate-500: descriptions, labels */
+  --color-subtle: oklch(70.4% 0.04 256.788); /* slate-400: hints, idle icons */
+  --color-faint: oklch(86.9% 0.022 252.894); /* slate-300: chevrons, underlines */
+  --color-line: oklch(92.9% 0.013 255.508); /* slate-200: borders, dividers */
+  --color-track: oklch(96.8% 0.007 247.896); /* slate-100: empty bar tracks */
+  --color-canvas: oklch(98.4% 0.003 247.858); /* slate-50: page background, panel headers, row hover */
+  --color-surface: #fff; /* cards, panels, tables */
+
+  /* Status: color always carries meaning, never decoration */
+  --color-success: oklch(50.8% 0.118 165.612); /* emerald-700: free of charge */
+  --color-danger: oklch(57.7% 0.245 27.325); /* red-600: emergency icons */
+  --color-danger-strong: oklch(50.5% 0.213 27.518); /* red-700: emergency text, hotline ticker */
+  --color-danger-soft: oklch(97.1% 0.013 17.38); /* red-50: emergency hover background */
+
+  /* Shape */
+  --radius-card: 0.75rem; /* cards, panels, tables */
+  --radius-control: 0.5rem; /* inputs, buttons */
+
+  /* Motion: animate-marquee scrolls a row by its own width, forever.
+     Render the row twice side by side so the loop is seamless. */
+  --animate-marquee: marquee 30s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+/* Base: explicit page colors so translucent layers (the sticky navbar)
+   never show the browser's default canvas through them */
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+  }
+}

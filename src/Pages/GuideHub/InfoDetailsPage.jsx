@@ -1,14 +1,30 @@
-import React, { useEffect, useMemo } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import * as LucideIcons from "lucide-react";
+import { useEffect, useMemo } from "react";
+import { useParams, Link } from "react-router-dom";
+import {
+  ArrowUpRight,
+  ChevronRight,
+  Clock,
+  FileQuestionMark,
+  Info,
+  ListChecks,
+  ListOrdered,
+  Wallet,
+} from "lucide-react";
 import { InfoDataService } from "../../Services/InfoLibServices/InfoLibService";
-import Custom_PageLayout from "../../Widgets/custom_PageLayout";
+import Custom_DynamicIcon from "../../Widgets/custom_DynamicIcon";
+import Custom_InfoCard from "../../Widgets/custom_info_card";
+import Custom_SectionHeader from "../../Widgets/custom_SectionHeader";
+import {
+  formatDate,
+  formatFee,
+  isFree,
+  parseRequirement,
+  pluralize,
+} from "../../Theme/display";
 
 export default function InfoDetailsPage() {
   const { id } = useParams();
-  const doc = useMemo(() => InfoDataService.getProgramById(id), [id]);
-
-  if (!doc) return <NotFoundState />;
+  const doc = InfoDataService.getProgramById(id);
 
   useEffect(() => {
     window.scrollTo({
@@ -17,256 +33,335 @@ export default function InfoDetailsPage() {
     });
   }, [id]);
 
-  return (
-    <Custom_PageLayout>
-      {/* 2. Hero Header */}
-      <div className="max-w-7xl mx-auto px-8 pt-8 mb-10">
-        <nav className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-6">
-          <Link to="/" className="hover:text-blue-500">
-            <LucideIcons.Home size={12} />
-          </Link>
-          <span>/</span>
-          <Link to="/info" className="hover:text-blue-500">
-            Library Directory
-          </Link>
-          <span>/</span>
-          <span className="text-blue-500">{doc.title}</span>
-        </nav>
+  // Other guides in the same category, newest first
+  const relatedGuides = useMemo(() => {
+    if (!doc) return [];
+    return InfoDataService.getAllPrograms()
+      .filter((g) => g.id !== doc.id && g.tags[0] === doc.tags[0])
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 3);
+  }, [doc]);
 
-        <div className="flex justify-between items-start">
-          <div className="mb-1 w-full">
-            <header className="mb-6">
-              <h1 className="text-3xl font-bold text-slate-900 mb-3 tracking-tight">
+  if (!doc) return <NotFoundState />;
+
+  const category = doc.tags[0];
+  const categoryLink = `/info?tag=${encodeURIComponent(category)}`;
+  const requirements = doc.requirements ?? [];
+  const situational = doc.situational_requirements ?? [];
+  const steps = doc.guidelines ?? [];
+  const categoryCount = InfoDataService.getAllPrograms().filter((g) =>
+    g.tags.includes(category),
+  ).length;
+
+  const contents = [
+    { id: "requirements", label: "Requirements", count: requirements.length },
+    situational.length > 0 && {
+      id: "additional",
+      label: "Additional requirements",
+      count: situational.length,
+    },
+    { id: "process", label: "Step-by-step process", count: steps.length },
+  ].filter(Boolean);
+
+  return (
+    <div className="bg-canvas font-sans text-ink pb-20 md:pb-24">
+      {/* Header */}
+      <section className="bg-surface border-b border-line">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
+          <nav
+            aria-label="Breadcrumb"
+            className="flex flex-wrap items-center gap-1.5 text-sm text-muted"
+          >
+            <Link to="/" className="hover:text-ink transition-colors">
+              Home
+            </Link>
+            <ChevronRight size={14} className="text-faint" />
+            <Link to="/info" className="hover:text-ink transition-colors">
+              Guide Hub
+            </Link>
+            <ChevronRight size={14} className="text-faint" />
+            <Link
+              to={categoryLink}
+              className="hover:text-ink transition-colors"
+            >
+              {category}
+            </Link>
+          </nav>
+
+          <div className="mt-6 flex items-start gap-5">
+            <span className="hidden sm:grid h-14 w-14 shrink-0 place-items-center rounded-card border border-line bg-canvas">
+              <Custom_DynamicIcon
+                name={doc.icon_type}
+                className={`h-6 w-6 ${doc.icon_color || "text-brand-500"}`}
+              />
+            </span>
+            <div className="min-w-0">
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-balance">
                 {doc.title}
               </h1>
-              <p className="text-slate-500 leading-relaxed max-w-2xl mb-4">
+              <p className="mt-3 max-w-3xl text-lg text-muted text-pretty">
                 {doc.desc}
               </p>
-
-              {/* Improved Source Link */}
-              {doc.sources?.url && (
-                <a
-                  href={doc.sources.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors group"
-                >
-                  <LucideIcons.ExternalLink
-                    size={14}
-                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                  />
-                  <span>Official Source: {doc.sources.name}</span>
-                </a>
-              )}
-            </header>
-
-            {/* Clean Meta Row */}
-            <div className="flex flex-wrap gap-10 border-t border-slate-100 pt-6">
-              {/* Processing Fee */}
-              <div className="space-y-1">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                  Processing Fee
-                </p>
-                <div className="flex items-center gap-2 text-slate-900">
-                  <LucideIcons.CreditCard
-                    size={18}
-                    className="text-slate-400"
-                  />
-                  <span className="font-semibold text-sm">{doc.fee}</span>
-                </div>
-              </div>
-
-              {/* Total Duration */}
-              <div className="space-y-1">
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                  Total Duration
-                </p>
-                <div className="flex items-center gap-2 text-slate-900">
-                  <LucideIcons.CalendarDays
-                    size={18}
-                    className="text-slate-400"
-                  />
-                  <span className="font-semibold text-sm">
-                    {doc.total_duration || "10 Days, 2 Hours"}
-                  </span>
-                </div>
-              </div>
+              <p className="mt-3 text-sm text-subtle">
+                Updated {formatDate(doc.date)}
+                {doc.sources?.url && (
+                  <>
+                    {" · Source: "}
+                    <a
+                      href={doc.sources.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-600 hover:text-brand-700 transition-colors"
+                    >
+                      {doc.sources.name}
+                    </a>
+                  </>
+                )}
+              </p>
             </div>
           </div>
+
+          {/* Key facts */}
+          <dl className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-card border border-line bg-line">
+            <Fact
+              icon={Wallet}
+              label="Fee"
+              value={formatFee(doc.fee)}
+              valueClassName={isFree(doc.fee) ? "text-success" : "text-ink"}
+            />
+            <Fact
+              icon={Clock}
+              label="Processing time"
+              value={doc.total_duration || "—"}
+            />
+            <Fact
+              icon={ListChecks}
+              label="Requirements"
+              value={requirements.length}
+            />
+            <Fact icon={ListOrdered} label="Steps" value={steps.length} />
+          </dl>
         </div>
-      </div>
+      </section>
 
-      <main className="max-w-7xl mx-auto px-8 py-12 flex flex-col md:flex-row gap-16">
-        {/* 3. Left Sidebar: Contents Navigation */}
-        <aside className="w-full md:w-64 shrink-0">
-          <div className="sticky top-24 border-l border-slate-100 pl-6 space-y-6">
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-              Contents
-            </p>
-            <nav className="flex flex-col gap-4">
-              {["Requirements", "Procedure"].map((item, i) => (
-                <a
-                  key={i}
-                  href={`#section-${i}`}
-                  className="text-sm font-semibold text-slate-500 hover:text-blue-600 flex items-center gap-3 group"
-                >
-                  <span className="text-[10px] text-slate-300 group-hover:text-blue-400">
-                    0{i + 1}
-                  </span>
-                  {item}
-                </a>
-              ))}
-            </nav>
-            <div className="pt-6 border-t border-slate-50">
-              <p className="text-[11px] italic text-slate-400 leading-relaxed">
-                This guide is for informational purposes only. No actions can be
-                taken directly from this page.
-              </p>
-            </div>
-          </div>
-        </aside>
-
-        {/* 4. Document Body */}
-        <section className="flex-1 space-y-24">
-          {/* Section 1: Mandatory Prerequisites (Grid Layout) */}
-          <div id="section-0" className="relative">
-            {/* Modern Header with subtle accent */}
-            <div className="flex flex-col mb-10">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="h-1 w-10 bg-blue-600 rounded-full" />
-                <span className="text-[10px] font-bold tracking-widest uppercase text-blue-600/80">
-                  Phase 01
-                </span>
-              </div>
-              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">
-                Mandatory Prerequisites
-              </h2>
-              <p className="mt-3 text-slate-500 max-w-2xl leading-relaxed">
-                Ensure you have these materials ready before initiating the{" "}
-                <span className="text-slate-900 font-medium">
-                  {doc.title.toLowerCase()}
-                </span>{" "}
-                process to avoid delays.
-              </p>
-            </div>
-
-            {/* Grid using Informational Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {doc.requirements?.map((req, idx) => (
-                <div
-                  key={idx}
-                  className="group relative flex items-start gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-200/60 hover:border-blue-300 hover:bg-white hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300"
-                >
-                  {/* Requirement Indicator (Dot + Icon) */}
-                  <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white border border-slate-200 shadow-sm group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors">
-                    <LucideIcons.FileText
-                      size={18}
-                      className="text-slate-400 group-hover:text-white transition-colors"
-                    />
-                  </div>
-
-                  <div className="flex flex-col pt-1">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-tight mb-1">
-                      Requirement {idx + 1}
+      {/* Body */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-10 md:pt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-12">
+        <div className="min-w-0 space-y-10 md:space-y-12">
+          {/* Requirements */}
+          <section id="requirements" className="scroll-mt-24">
+            <Custom_SectionHeader
+              title="Requirements"
+              desc={`Prepare these ${pluralize(requirements.length, "item")} before you go.`}
+            />
+            <ol className="mt-6 divide-y divide-line overflow-hidden rounded-card border border-line bg-surface">
+              {requirements.map((req, idx) => {
+                const { name, copies } = parseRequirement(req);
+                return (
+                  <li key={idx} className="flex gap-4 px-5 py-4">
+                    <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-canvas text-xs font-semibold text-muted tabular-nums">
+                      {idx + 1}
                     </span>
-                    <p className="text-sm font-semibold text-slate-700 leading-snug">
-                      {req}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Section 1.1: Situational Prerequisites (Grid Layout) */}
-
-          <section className="mt-1">
-            <h2 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-              <LucideIcons.Info size={20} className="text-blue-600" />
-              Situational Requirements
-            </h2>
-            {doc.situational_requirements?.map((group, idx) => (
-              <div className="space-y-6">
-                <div
-                  key={idx}
-                  className="bg-slate-50 p-5 rounded-2xl border border-slate-100"
-                >
-                  <h3 className="text-sm font-bold text-slate-800 mb-3 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                    {group.condition}
-                  </h3>
-                  <ul className="space-y-2">
-                    {group.docs.map((docItem, dIdx) => (
-                      <li
-                        key={dIdx}
-                        className="flex items-start gap-3 text-sm text-slate-600"
-                      >
-                        <LucideIcons.FileText
-                          size={16}
-                          className="mt-0.5 text-slate-400"
-                        />
-                        {docItem}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+                    <div className="flex min-w-0 grow flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+                      <p className="text-sm font-medium leading-relaxed">
+                        {name}
+                      </p>
+                      {copies && (
+                        <span className="self-start shrink-0 rounded-full bg-canvas px-2.5 py-0.5 text-xs text-muted">
+                          {copies}
+                        </span>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
           </section>
 
-          {/* Section 2: Procedure Timeline */}
-          <div id="section-1">
-            <div className="flex items-center gap-4 mb-8">
-              <span className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-sm">
-                2
-              </span>
-              <h2 className="text-2xl font-bold text-slate-900">
-                The Standard Procedure
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {doc.guidelines?.map((step, idx) => (
-                <div key={idx} className="flex gap-6 group">
-                  <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full border-2 border-blue-100 flex items-center justify-center text-blue-500 font-bold text-xs group-hover:border-blue-500 transition-colors">
-                      0{idx + 1}
-                    </div>
-                    {idx !== doc.guidelines.length - 1 && (
-                      <div className="w-px h-full bg-slate-100 my-2" />
+          {/* Additional (situational) requirements */}
+          {situational.length > 0 && (
+            <section id="additional" className="scroll-mt-24">
+              <Custom_SectionHeader
+                title="Additional requirements"
+                desc="Only if one of these applies to you. Bring them on top of the requirements above."
+              />
+              <div className="mt-6 grid gap-3 md:grid-cols-2">
+                {situational.map((group, idx) => (
+                  <div
+                    key={idx}
+                    className="rounded-card border border-line bg-surface p-5"
+                  >
+                    <h3 className="flex items-start gap-2 text-sm font-semibold">
+                      <Info
+                        size={16}
+                        className="mt-0.5 shrink-0 text-brand-600"
+                      />
+                      {group.condition}
+                    </h3>
+                    <ul className="mt-3 space-y-2 pl-6">
+                      {group.docs.map((item, dIdx) => {
+                        const { name, copies } = parseRequirement(item);
+                        return (
+                          <li
+                            key={dIdx}
+                            className="relative text-sm leading-relaxed text-ink-soft"
+                          >
+                            <span className="absolute -left-4 top-2.5 h-1 w-1 rounded-full bg-subtle" />
+                            {name}
+                            {copies && (
+                              <span className="text-muted"> · {copies}</span>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Step-by-step process */}
+          <section id="process" className="scroll-mt-24">
+            <Custom_SectionHeader
+              title="Step-by-step process"
+              desc={`${pluralize(steps.length, "step")}${doc.total_duration ? `, ${doc.total_duration} in total` : ""}.`}
+            />
+            <ol className="mt-6 rounded-card border border-line bg-surface p-5 md:p-6">
+              {steps.map((step, idx) => (
+                <li key={idx} className="relative flex gap-4 pb-6 last:pb-0">
+                  {/* Connector line to the next step */}
+                  {idx < steps.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-4 top-10 bottom-1 w-px -translate-x-1/2 bg-line"
+                    />
+                  )}
+                  <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand-50 text-sm font-semibold text-brand-700 tabular-nums">
+                    {step.step ?? idx + 1}
+                  </span>
+                  <div className="min-w-0 pt-1">
+                    <p className="text-sm leading-relaxed">{step.action}</p>
+                    {step.duration && (
+                      <p className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-canvas px-2.5 py-1 text-xs text-muted">
+                        <Clock size={12} />
+                        {step.duration}
+                      </p>
                     )}
                   </div>
-                  <div className="flex-1 pb-12">
-                    <div className="bg-slate-50/50 p-6 rounded-2xl border border-transparent hover:bg-white hover:border-slate-100 hover:shadow-sm transition-all">
-                      <h4 className="font-bold text-slate-800 mb-2">
-                        {step.action}
-                      </h4>
-                      <p className="text-sm text-slate-500 leading-relaxed mb-4">
-                        {step.details}
-                      </p>
-
-                      <div className="flex items-center gap-2 text-[10px] font-bold text-blue-400 uppercase tracking-wider">
-                        <LucideIcons.Clock size={12} /> Est. Duration:{" "}
-                        {step.duration || "Not Stated"}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ol>
+          </section>
+        </div>
+
+        {/* Sidebar: contents and source (stacks under the content below lg) */}
+        <aside className="space-y-4 lg:sticky lg:top-24 lg:self-start">
+          <nav
+            aria-label="On this page"
+            className="hidden lg:block rounded-card border border-line bg-surface p-5"
+          >
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted">
+              On this page
+            </h2>
+            <ul className="mt-3 space-y-1">
+              {contents.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    className="-mx-2 flex items-center justify-between gap-3 rounded-control px-2 py-1.5 text-sm text-ink-soft hover:bg-canvas hover:text-brand-700 transition-colors"
+                  >
+                    {item.label}
+                    <span className="text-xs text-subtle tabular-nums">
+                      {item.count}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="rounded-card border border-line bg-surface p-5">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted">
+              Official source
+            </h2>
+            {doc.sources?.url ? (
+              <a
+                href={doc.sources.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-start gap-1 text-sm font-medium text-brand-600 hover:text-brand-700 transition-colors"
+              >
+                {doc.sources.name}
+                <ArrowUpRight size={14} className="mt-0.5 shrink-0" />
+              </a>
+            ) : (
+              <p className="mt-2 text-sm text-muted">—</p>
+            )}
+            <p className="mt-3 border-t border-line pt-3 text-xs leading-relaxed text-muted">
+              This guide is for informational purposes only. No actions can be
+              taken directly from this page.
+            </p>
           </div>
+        </aside>
+      </div>
+
+      {/* Related guides */}
+      {relatedGuides.length > 0 && (
+        <section className="max-w-7xl mx-auto px-4 md:px-8 pt-10 md:pt-12">
+          <Custom_SectionHeader
+            title={`More ${category} guides`}
+            link={{
+              to: categoryLink,
+              label: `View all ${categoryCount}`,
+            }}
+          />
+          <ul className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {relatedGuides.map((guide) => (
+              <li key={guide.id}>
+                <Custom_InfoCard doc={guide} />
+              </li>
+            ))}
+          </ul>
         </section>
-      </main>
-    </Custom_PageLayout>
+      )}
+    </div>
   );
 }
 
+// Sub-components for cleaner code
+const Fact = ({ icon: Icon, label, value, valueClassName = "text-ink" }) => (
+  <div className="bg-surface px-5 py-4">
+    <dt className="flex items-center gap-1.5 text-xs text-muted">
+      <Icon size={14} className="text-subtle" />
+      {label}
+    </dt>
+    <dd
+      className={`mt-1 text-lg font-semibold leading-snug tabular-nums ${valueClassName}`}
+    >
+      {value}
+    </dd>
+  </div>
+);
+
 function NotFoundState() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
-      <LucideIcons.FileWarning size={48} className="text-slate-300 mb-4" />
-      <h2 className="text-xl font-bold text-slate-800">Document Not Found</h2>
-      <Link to="/library" className="mt-4 text-blue-500 hover:underline">
-        Return to Directory
-      </Link>
+    <div className="bg-canvas font-sans text-ink">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-24 flex flex-col items-center text-center">
+        <FileQuestionMark size={40} className="text-subtle" />
+        <h1 className="mt-4 text-2xl font-bold tracking-tight">
+          Guide not found
+        </h1>
+        <p className="mt-2 max-w-sm text-muted">
+          This guide may have been moved or removed. Browse the Guide Hub for
+          the latest list.
+        </p>
+        <Link
+          to="/info"
+          className="mt-6 inline-flex items-center rounded-control bg-brand-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-700 transition-colors"
+        >
+          Back to Guide Hub
+        </Link>
+      </div>
     </div>
   );
 }

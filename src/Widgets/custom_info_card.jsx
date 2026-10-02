@@ -1,48 +1,71 @@
-import * as LucideIcons from "lucide-react";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import Custom_DynamicIcon from "./custom_DynamicIcon";
+import { formatDate, formatFee, isFree, pluralize } from "../Theme/display";
+
+// Guide card for the Guide Hub: the whole card links to the guide's details
 export default function Custom_InfoCard({ doc }) {
-  const DynamicIcon = ({ name, className }) => {
-    const IconComponent = LucideIcons[name];
-    // Fallback to Folder icon if the name in JSON is misspelled or missing
-    if (!IconComponent) return <LucideIcons.Folder className={className} />;
-    return <IconComponent className={className} />;
-  };
+  const requirementCount = doc.requirements?.length ?? 0;
+  const stepCount = doc.guidelines?.length ?? 0;
+
   return (
-    <div
-      key={doc.id}
-      className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col h-full hover:shadow-md transition-all duration-300"
+    <Link
+      to={`/info/${doc.id}`}
+      className="group flex h-full flex-col rounded-card border border-line bg-surface p-5 hover:border-brand-300 transition-colors"
     >
-      <div className="flex justify-between items-start mb-4">
-        <div className="bg-blue-50 p-2.5 rounded-lg">
-          <DynamicIcon
+      <div className="flex items-center gap-3">
+        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-control bg-canvas">
+          <Custom_DynamicIcon
             name={doc.icon_type}
-            className={`w-5 h-5 ${doc.icon_color || "text-blue-500"}`}
+            className={`h-4 w-4 ${doc.icon_color || "text-brand-500"}`}
           />
-        </div>
+        </span>
+        <span className="text-xs font-medium text-brand-600">
+          {doc.tags[0]}
+        </span>
+        <span className="ml-auto text-xs text-subtle tabular-nums">
+          {formatDate(doc.date)}
+        </span>
       </div>
-      <h3 className="text-lg font-bold text-slate-800 mb-1">{doc.title}</h3>
-      <p className="text-[10px] font-bold text-blue-400 uppercase tracking-wider mb-3">
-        Date: {doc.date}
-      </p>
-      <p className="text-sm text-slate-500 leading-relaxed mb-6 grow">
+
+      <h3 className="mt-4 font-semibold leading-snug text-ink group-hover:text-brand-700 transition-colors">
+        {doc.title}
+      </h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted line-clamp-3">
         {doc.desc}
       </p>
 
-      <div className="border-t border-slate-50 pt-4 mb-6 space-y-2">
-        {doc.tags.map((tag) => (
-          <div key={tag} className="flex items-center gap-2 text-blue-400">
-            <LucideIcons.Folder size={12} className="fill-current opacity-60" />
-            <span className="text-xs font-medium">{tag}</span>
+      {/* Key facts, pinned to the bottom so cards in a row line up */}
+      <div className="mt-auto pt-5">
+        <dl className="space-y-2 border-t border-line pt-4 text-sm">
+          <div className="flex justify-between gap-4">
+            <dt className="shrink-0 text-muted">Fee</dt>
+            <dd
+              className={`text-right tabular-nums ${isFree(doc.fee) ? "font-medium text-success" : "text-ink-soft"}`}
+            >
+              {formatFee(doc.fee)}
+            </dd>
           </div>
-        ))}
-      </div>
+          <div className="flex justify-between gap-4">
+            <dt className="shrink-0 text-muted">Processing time</dt>
+            <dd className="text-right text-ink-soft">{doc.total_duration}</dd>
+          </div>
+        </dl>
 
-      <Link
-        to={`/info/${doc.id}`}
-        className="w-full py-2.5 border border-blue-100 rounded-lg text-blue-700 font-bold text-xs text-center hover:bg-blue-600 hover:text-white transition-all duration-200"
-      >
-        {doc.button_text}
-      </Link>
-    </div>
+        <div className="mt-4 flex items-center justify-between gap-4 text-xs">
+          <span className="text-subtle">
+            {pluralize(requirementCount, "requirement")} ·{" "}
+            {pluralize(stepCount, "step")}
+          </span>
+          <span className="inline-flex shrink-0 items-center gap-1 font-medium text-brand-600 group-hover:text-brand-700">
+            {doc.button_text || "View details"}
+            <ArrowRight
+              size={14}
+              className="group-hover:translate-x-0.5 transition-transform"
+            />
+          </span>
+        </div>
+      </div>
+    </Link>
   );
 }

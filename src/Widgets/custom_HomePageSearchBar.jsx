@@ -82,8 +82,8 @@ export default function Custom_HomePageSearchBar() {
         value={query}
         onChange={handleSearch}
         onFocus={() => query.length >= 2 && setIsOpen(true)}
-        className="w-full pl-12 pr-32 py-4 bg-white border border-gray-200 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
-        placeholder="Search for guides, news, projects..."
+        className="w-full pl-12 pr-4 py-4 bg-white border border-gray-200 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
+        placeholder="Search guides and city services"
       />
 
       {/* 3. Display Results Dropdown */}

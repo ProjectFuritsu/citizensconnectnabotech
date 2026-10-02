@@ -1,54 +1,56 @@
 import { useState, useMemo, useEffect } from "react";
-// Import all icons to allow dynamic selection by string name
-import * as LucideIcons from "lucide-react";
+import { Link, useSearchParams } from "react-router-dom";
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Search,
+  SearchX,
+} from "lucide-react";
 import { InfoDataService } from "../../Services/InfoLibServices/InfoLibService";
-import { Link } from "react-router-dom";
-import Custom_PageLayout from "../../Widgets/custom_PageLayout";
 import Custom_InfoCard from "../../Widgets/custom_info_card";
+import Custom_DynamicIcon from "../../Widgets/custom_DynamicIcon";
+import { categoryIcons, formatDate, pluralize } from "../../Theme/display";
 
-/**
- * Helper component to render Lucide icons dynamically based on JSON string
- */
+const ITEMS_PER_PAGE = 12;
 
-// Store the Component reference, not the JSX element
-const secondaryResources = [
-  {
-    title: "Historical Archives",
-    desc: "Explore digitised records of city history and development.",
-    linkText: "Browse Archives",
-    icon: LucideIcons.History,
-    color: "text-blue-500",
-  },
-  {
-    title: "Legal Definitions",
-    desc: "Glossary of common legal terms used in public documents.",
-    linkText: "View Glossary",
-    icon: LucideIcons.Scale,
-    color: "text-blue-500",
-  },
-  {
-    title: "FAQ Database",
-    desc: "Answers to frequently asked questions about city life.",
-    linkText: "Read FAQs",
-    icon: LucideIcons.MessageSquareQuote,
-    color: "text-blue-500",
-  },
+const sortOptions = [
+  { value: "newest", label: "Newest first" },
+  { value: "az", label: "A–Z" },
+  { value: "za", label: "Z–A" },
 ];
 
 export default function InfoLibPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("Published Date");
-  const [selectedTag, setSelectedTag] = useState(null);
-
-  // Pagination State
+  const [sortBy, setSortBy] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
 
   const meta = InfoDataService.getLibraryMeta();
+  const allGuides = InfoDataService.getAllPrograms();
   const allTags = useMemo(() => InfoDataService.getAllTags(), []);
+  const categories = useMemo(() => InfoDataService.getCategories(), []);
+
+  // The selected category lives in the URL (/info?tag=Health),
+  // so home page links and shared links open the right filter
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tagParam = searchParams.get("tag");
+  const selectedTag = allTags.includes(tagParam) ? tagParam : null;
+
+  const lastUpdated = useMemo(() => {
+    const newest = allGuides.reduce(
+      (latest, guide) => (guide.date > latest ? guide.date : latest),
+      "",
+    );
+    return newest ? formatDate(newest) : meta.last_updated;
+  }, [allGuides, meta.last_updated]);
+
+  // Start at the top when arriving from another page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // 1. Filter and Sort Logic
-  const filteredPamphlets = useMemo(() => {
+  const filteredGuides = useMemo(() => {
     let results = InfoDataService.searchPrograms(searchQuery);
 
     if (selectedTag) {
@@ -56,276 +58,325 @@ export default function InfoLibPage() {
     }
 
     return [...results].sort((a, b) => {
-      if (sortBy === "A-Z") return a.title.localeCompare(b.title);
-      if (sortBy === "Z-A") return b.title.localeCompare(a.title);
-      if (sortBy === "Published Date") {
-        return new Date(b.date) - new Date(a.date);
-      }
-      return 0;
+      if (sortBy === "az") return a.title.localeCompare(b.title);
+      if (sortBy === "za") return b.title.localeCompare(a.title);
+      return new Date(b.date) - new Date(a.date);
     });
   }, [searchQuery, sortBy, selectedTag]);
 
-  // 2. Reset page to 1 when filters change
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchQuery, sortBy, selectedTag]);
+  // 2. Slice data for Pagination
+  const totalPages = Math.max(
+    1,
+    Math.ceil(filteredGuides.length / ITEMS_PER_PAGE),
+  );
+  const page = Math.min(currentPage, totalPages);
+  const startIndex = (page - 1) * ITEMS_PER_PAGE;
+  const paginatedGuides = filteredGuides.slice(
+    startIndex,
+    startIndex + ITEMS_PER_PAGE,
+  );
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // Use "auto" for an instant jump
-    });
-  }, [currentPage]);
-
-  // 3. Slice data for Pagination
-  const paginatedData = useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    return filteredPamphlets.slice(startIndex, startIndex + itemsPerPage);
-  }, [filteredPamphlets, currentPage]);
-
-  const totalPages = Math.ceil(filteredPamphlets.length / itemsPerPage);
-
-  const resetFilters = () => {
-    setSearchQuery("");
-    setSelectedTag(null);
-    setSortBy("Published Date");
+  // 3. Handlers: any filter change goes back to page 1
+  const selectTag = (tag) => {
+    setSearchParams(tag ? { tag } : {}, { replace: true });
     setCurrentPage(1);
   };
 
-  return (
-    <Custom_PageLayout>
-      {/* Hero / Search Section */}
-      <section className="relative w-full py-12 px-4 bg-linear-to-b from-blue-50/50 to-white flex flex-col items-center text-center">
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-100/40 blur-[120px] rounded-full"></div>
-          <div className="absolute -top-[10%] -right-[10%] w-[40%] h-[40%] bg-blue-100/40 blur-[120px] rounded-full"></div>
-        </div>
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1);
+  };
 
-        <div className="relative z-10 max-w-3xl w-full">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
-            Panabo City Guide Hub
+  const handleSort = (e) => {
+    setSortBy(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const resetFilters = () => {
+    setSearchQuery("");
+    setSortBy("newest");
+    selectTag(null);
+  };
+
+  const goToPage = (pageNum) => {
+    setCurrentPage(pageNum);
+    document
+      .getElementById("guide-results")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const hasFilters = searchQuery || selectedTag || sortBy !== "newest";
+
+  // A tag from the URL that isn't a primary category still gets a chip
+  const extraTag =
+    selectedTag && !categories.some((c) => c.name === selectedTag)
+      ? selectedTag
+      : null;
+
+  return (
+    <div className="bg-canvas font-sans text-ink pb-20 md:pb-24">
+      {/* Header */}
+      <section className="bg-surface border-b border-line">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 md:py-16">
+          <nav
+            aria-label="Breadcrumb"
+            className="flex items-center gap-1.5 text-sm text-muted"
+          >
+            <Link to="/" className="hover:text-ink transition-colors">
+              Home
+            </Link>
+            <ChevronRight size={14} className="text-faint" />
+            <span aria-current="page" className="font-medium text-ink">
+              Guide Hub
+            </span>
+          </nav>
+
+          <h1 className="mt-6 text-4xl md:text-5xl font-bold tracking-tight text-balance">
+            Guide Hub
           </h1>
-          <p className="text-lg text-slate-500 leading-relaxed mb-10 max-w-2xl mx-auto">
-            Access a library of public knowledge of guidelines. Updated as of{" "}
-            <span className="font-semibold text-slate-700">
-              {meta.last_updated}
-            </span>{" "}
-            by {meta.author}.
+          <p className="mt-4 text-lg text-muted max-w-2xl text-pretty">
+            Requirements, fees and step-by-step processes for{" "}
+            {allGuides.length} city services in Panabo City.
+          </p>
+          <p className="mt-2 text-sm text-subtle">
+            Updated {lastUpdated} by {meta.author}
           </p>
 
-          <div className="relative group w-full max-w-2xl mx-auto">
-            <div className="flex items-center w-full bg-white rounded-xl border border-slate-200 p-1.5 transition-all duration-300 ease-in-out shadow-sm group-focus-within:shadow-xl group-focus-within:border-blue-200">
-              <div className="pl-4 pr-3 text-slate-400 group-focus-within:text-blue-500 transition-colors">
-                <LucideIcons.Search size={18} strokeWidth={2.5} />
-              </div>
-
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="How can I help you?"
-                className="flex-1 py-3 bg-transparent border-none outline-none text-[15px] text-slate-700 placeholder:text-slate-400 font-medium"
-              />
-            </div>
-          </div>
-
-          <div className="mt-6 flex items-center justify-center gap-2 text-sm">
-            <span className="text-slate-400">Popular Topics:</span>
-            <div className="flex gap-3">
-              {["Legal", "Health", "Scholarship"].map((topic, index, array) => (
-                <div key={topic} className="flex items-center gap-3">
-                  <button
-                    onClick={() => setSearchQuery(topic)}
-                    className="text-blue-400 hover:text-blue-500 hover:underline transition-colors"
-                  >
-                    {topic}
-                  </button>
-                  {index < array.length - 1 && (
-                    <span className="w-1 h-1 bg-slate-300 rounded-full" />
-                  )}
-                </div>
-              ))}
-            </div>
+          {/* Search */}
+          <div className="relative mt-8 max-w-2xl">
+            <Search
+              size={20}
+              className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-subtle"
+            />
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={handleSearch}
+              aria-label="Search guides"
+              placeholder="Search guides, e.g. senior citizen ID"
+              className="w-full rounded-control border border-line bg-surface py-3.5 pl-12 pr-4 text-ink shadow-sm placeholder:text-subtle focus:border-transparent focus:outline-none focus:ring-2 focus:ring-brand-600 transition-shadow"
+            />
           </div>
         </div>
       </section>
 
-      <main className="max-w-7xl mx-auto px-8 py-6 flex flex-col md:flex-row gap-8">
-        {/* Sidebar */}
-        <aside className="w-full md:w-64 shrink-0">
-          <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm top-6">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="font-bold text-lg">Filters</h2>
+      {/* Filters + Results */}
+      <section
+        id="guide-results"
+        className="max-w-7xl mx-auto px-4 md:px-8 pt-10 md:pt-12 scroll-mt-24"
+      >
+        {/* Category filter: scrolls sideways on phones, wraps on wider screens */}
+        <div className="-mx-4 overflow-x-auto px-4 no-scrollbar md:mx-0 md:px-0">
+          <div
+            role="group"
+            aria-label="Filter by category"
+            className="flex w-max gap-2 md:w-auto md:flex-wrap"
+          >
+            <CategoryChip
+              label="All guides"
+              count={allGuides.length}
+              active={!selectedTag}
+              onClick={() => selectTag(null)}
+            />
+            {categories.map((category) => (
+              <CategoryChip
+                key={category.name}
+                label={category.name}
+                count={category.count}
+                icon={categoryIcons[category.name]}
+                active={selectedTag === category.name}
+                onClick={() => selectTag(category.name)}
+              />
+            ))}
+            {extraTag && (
+              <CategoryChip
+                label={extraTag}
+                count={
+                  allGuides.filter((g) => g.tags.includes(extraTag)).length
+                }
+                active
+                onClick={() => selectTag(null)}
+              />
+            )}
+          </div>
+        </div>
+
+        {/* Results bar */}
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
+          <p className="text-sm text-muted" aria-live="polite">
+            {totalPages > 1 ? (
+              <>
+                Showing{" "}
+                <span className="font-semibold text-ink tabular-nums">
+                  {startIndex + 1}–{startIndex + paginatedGuides.length}
+                </span>{" "}
+                of{" "}
+                <span className="font-semibold text-ink tabular-nums">
+                  {filteredGuides.length}
+                </span>{" "}
+                guides
+              </>
+            ) : (
+              <span className="font-semibold text-ink tabular-nums">
+                {pluralize(filteredGuides.length, "guide")}
+              </span>
+            )}
+            {selectedTag && (
+              <>
+                {" "}
+                in <span className="font-medium text-ink">{selectedTag}</span>
+              </>
+            )}
+            {searchQuery && (
+              <>
+                {" "}
+                for “<span className="font-medium text-ink">{searchQuery}</span>”
+              </>
+            )}
+          </p>
+
+          <div className="flex items-center gap-4">
+            {hasFilters && (
               <button
+                type="button"
                 onClick={resetFilters}
-                className="text-blue-500 text-sm font-medium hover:text-blue-600"
+                className="text-sm font-medium text-brand-600 hover:text-brand-700 transition-colors"
               >
                 Reset
               </button>
-            </div>
-
-            {/* Sort Dropdown */}
-            <div className="mb-8">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">
-                Sort By
-              </label>
-              <div className="relative">
+            )}
+            <label className="flex items-center gap-2 text-sm text-muted">
+              Sort
+              <span className="relative">
                 <select
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full appearance-none border border-slate-200 rounded-lg py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-100 bg-white cursor-pointer"
+                  onChange={handleSort}
+                  className="cursor-pointer appearance-none rounded-control border border-line bg-surface py-2 pl-3 pr-9 text-sm text-ink focus:border-transparent focus:outline-none focus:ring-2 focus:ring-brand-600"
                 >
-                  <option>Published Date</option>
-                  <option>A-Z</option>
-                  <option>Z-A</option>
+                  {sortOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
-                <LucideIcons.ChevronDown
+                <ChevronDown
                   size={16}
-                  className="absolute right-3 top-2.5 text-slate-400 pointer-events-none"
+                  className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-subtle"
                 />
-              </div>
-            </div>
+              </span>
+            </label>
+          </div>
+        </div>
 
-            {/* Dynamic Tag Filter */}
-            <div className="mb-8">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">
-                Categories
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {allTags.map((tag) => (
+        {/* Data Grid / Empty State */}
+        {paginatedGuides.length > 0 ? (
+          <ul className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {paginatedGuides.map((doc) => (
+              <li key={doc.id}>
+                <Custom_InfoCard doc={doc} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="mt-6 flex flex-col items-center rounded-card border border-dashed border-line bg-surface px-6 py-16 text-center">
+            <SearchX size={32} className="text-subtle" />
+            <h2 className="mt-4 font-semibold">No guides match your search</h2>
+            <p className="mt-1 max-w-sm text-sm text-muted">
+              Try a different word or category, or browse all{" "}
+              {allGuides.length} guides.
+            </p>
+            <button
+              type="button"
+              onClick={resetFilters}
+              className="mt-5 rounded-control border border-line bg-surface px-4 py-2 text-sm font-medium text-ink hover:border-brand-300 hover:text-brand-700 transition-colors"
+            >
+              Clear filters
+            </button>
+          </div>
+        )}
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <nav
+            aria-label="Pagination"
+            className="mt-10 flex items-center justify-between gap-4 border-t border-line pt-6"
+          >
+            <PageButton
+              disabled={page === 1}
+              onClick={() => goToPage(page - 1)}
+            >
+              <ChevronLeft size={16} />
+              Previous
+            </PageButton>
+
+            <div className="flex gap-1">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (pageNum) => (
                   <button
-                    key={tag}
-                    onClick={() =>
-                      setSelectedTag(selectedTag === tag ? null : tag)
-                    }
-                    className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
-                      selectedTag === tag
-                        ? "bg-blue-600 text-white"
-                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                    key={pageNum}
+                    type="button"
+                    onClick={() => goToPage(pageNum)}
+                    aria-current={pageNum === page ? "page" : undefined}
+                    className={`h-9 min-w-9 rounded-control px-2 text-sm font-medium tabular-nums transition-colors ${
+                      pageNum === page
+                        ? "bg-brand-50 text-brand-700"
+                        : "text-muted hover:bg-surface hover:text-ink"
                     }`}
                   >
-                    {tag}
+                    {pageNum}
                   </button>
-                ))}
-              </div>
+                ),
+              )}
             </div>
-          </div>
-        </aside>
 
-        {/* Content Area */}
-        <section className="flex-1">
-          <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-slate-800">
-              {searchQuery ? "Search Results" : "How to Apply"}
-            </h1>
-            {searchQuery && (
-              <p className="text-sm text-slate-400 animate-in fade-in duration-300">
-                Showing {filteredPamphlets.length} results
-              </p>
-            )}
-          </div>
-
-          {/* Data Grid / Empty State */}
-          {paginatedData.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {paginatedData.map((doc) => (
-                <Custom_InfoCard doc={doc} />
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center py-20 bg-white rounded-2xl border border-dashed border-slate-200 text-center">
-              <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mb-4">
-                <LucideIcons.Search size={32} className="text-slate-300" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-800">
-                No results found
-              </h3>
-              <p className="text-slate-500 max-w-xs mx-auto text-sm">
-                We couldn't find any documents matching "{searchQuery}".
-              </p>
-              <button
-                onClick={() => setSearchQuery("")}
-                className="mt-4 text-blue-600 font-semibold hover:underline"
-              >
-                Clear search
-              </button>
-            </div>
-          )}
-
-          {/* Pagination Controls */}
-          {filteredPamphlets.length > itemsPerPage && (
-            <div className="mt-12 flex justify-center items-center gap-4">
-              <button
-                onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                className="p-2 border border-slate-200 rounded-lg text-slate-400 hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-              >
-                <LucideIcons.ChevronLeft size={18} />
-              </button>
-
-              <div className="flex gap-2">
-                {[...Array(totalPages)].map((_, index) => {
-                  const pageNum = index + 1;
-                  return (
-                    <button
-                      key={pageNum}
-                      onClick={() => setCurrentPage(pageNum)}
-                      className={`w-10 h-10 rounded-lg font-bold text-sm transition-all ${
-                        currentPage === pageNum
-                          ? "bg-blue-500 text-white shadow-lg shadow-blue-200"
-                          : "bg-white border border-slate-200 text-slate-600 hover:border-blue-300"
-                      }`}
-                    >
-                      {pageNum}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <button
-                onClick={() =>
-                  setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-                }
-                disabled={currentPage === totalPages}
-                className="p-2 border border-slate-200 rounded-lg text-slate-400 hover:bg-white disabled:opacity-30 disabled:cursor-not-allowed transition-all"
-              >
-                <LucideIcons.ChevronRight size={18} />
-              </button>
-            </div>
-          )}
-        </section>
-      </main>
-
-      {/* Footer Resources */}
-      {/* <section className="w-full bg-[#EBF4FF] py-16 mt-12">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
-          {secondaryResources.map((item, index) => {
-            const IconComponent = item.icon;
-            return (
-              <div
-                key={index}
-                className="flex flex-col items-center text-center group"
-              >
-                <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-sm mb-6 transition-transform group-hover:-translate-y-1 text-[#3B82F6]">
-                  <IconComponent className={`w-5 h-5 ${item.color}`} />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-[14px] text-slate-600 leading-relaxed mb-5">
-                  {item.desc}
-                </p>
-                <a
-                  href="#"
-                  className="text-[#3B82F6] text-sm font-semibold hover:underline decoration-2 underline-offset-4 transition-colors"
-                >
-                  {item.linkText}
-                </a>
-              </div>
-            );
-          })}
-        </div>
-      </section> */}
-    </Custom_PageLayout>
+            <PageButton
+              disabled={page === totalPages}
+              onClick={() => goToPage(page + 1)}
+            >
+              Next
+              <ChevronRight size={16} />
+            </PageButton>
+          </nav>
+        )}
+      </section>
+    </div>
   );
 }
+
+// Sub-components for cleaner code
+const CategoryChip = ({ label, count, icon, active, onClick }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    aria-pressed={active}
+    className={`inline-flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-medium transition-colors ${
+      active
+        ? "border-brand-200 bg-brand-50 text-brand-700"
+        : "border-line bg-surface text-ink-soft hover:border-brand-300 hover:text-brand-700"
+    }`}
+  >
+    {icon && (
+      <Custom_DynamicIcon
+        name={icon}
+        className={`h-4 w-4 ${active ? "text-brand-600" : "text-subtle"}`}
+      />
+    )}
+    {label}
+    <span
+      className={`text-xs tabular-nums ${active ? "text-brand-600" : "text-subtle"}`}
+    >
+      {count}
+    </span>
+  </button>
+);
+
+const PageButton = ({ disabled, onClick, children }) => (
+  <button
+    type="button"
+    disabled={disabled}
+    onClick={onClick}
+    className="inline-flex items-center gap-1 rounded-control border border-line bg-surface px-3 py-2 text-sm font-medium text-ink-soft hover:border-brand-300 hover:text-brand-700 disabled:pointer-events-none disabled:opacity-40 transition-colors"
+  >
+    {children}
+  </button>
+);

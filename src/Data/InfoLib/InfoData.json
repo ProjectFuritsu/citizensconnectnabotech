@@ -411,7 +411,7 @@
       "tags": ["Senior Citizen"],
       "fee": "None",
       "total_duration": "30 Minutes",
-      "icon_type": "IdentificationCard",
+      "icon_type": "IdCard",
       "icon_color": "text-blue-800",
       "button_text": "View Details",
       "requirements": [

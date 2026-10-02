@@ -1,75 +1,92 @@
-export default function Custom_Footer() {
-  const footerNavs = [
-    {
-      label: "INFORMATION",
-      items: [
-        { href: "/", name: "Home" },
-        { href: "/info", name: "Guide Hub" },
-        { href: "/news-updates", name: "News & Updates" },
-      ],
-    },
-    {
-      label: "Resources",
-      items: [
-        {
-          href: "https://panabocity.gov.ph/",
-          name: "Panabo City Official Website",
-        },
-      ],
-    },
-  ];
+import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
+import Custom_Logo from "./custom_Logo";
 
+const footerNavs = [
+  {
+    label: "Portal",
+    items: [
+      { href: "/", name: "Home" },
+      { href: "/info", name: "Guide Hub" },
+      { href: "/news-updates", name: "News & Updates" },
+    ],
+  },
+  {
+    label: "Tools",
+    items: [
+      { href: "https://nabomap.vercel.app", name: "City Map", external: true },
+      { href: "https://panapresyo.vercel.app", name: "Market Prices", external: true },
+      { href: "https://evently-panabo.vercel.app/", name: "City Events", external: true },
+    ],
+  },
+  {
+    label: "Resources",
+    items: [
+      {
+        href: "https://panabocity.gov.ph/",
+        name: "Panabo City Official Website",
+        external: true,
+      },
+    ],
+  },
+];
+
+const linkStyle =
+  "inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors";
+
+export default function Custom_Footer() {
   return (
-    <footer className="bg-white px-4 py-10 max-w-7xl mx-auto md:px-8 font-sans">
-      <div className="md:flex gap-12">
+    <footer className="bg-surface border-t border-line font-sans">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-16">
         {/* Branding and Mission */}
-        <div className="flex-1 mb-10 md:mb-0">
-          <div className="flex items-center gap-4 mb-2">
-            <a href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-slate-900 rounded-lg flex items-center justify-center text-white font-bold text-xl md:text-2xl shadow-lg">
-                P
-              </div>
-              <div>
-                <h1 className="text-slate-900 font-black text-sm md:text-base uppercase leading-none">
-                  Panabo City
-                </h1>
-                <p className="text-slate-500 text-[9px] md:text-[10px] font-bold uppercase tracking-widest mt-1">
-                  Citizen's Portal
-                </p>
-              </div>
-            </a>
-          </div>
-          <p className="max-w-lg text-slate-900 text-sm leading-relaxed">
+        <div className="max-w-sm">
+          <Custom_Logo />
+          <p className="mt-4 text-sm text-muted leading-relaxed">
             Your official source for public information. Ensuring transparency
             and access to knowledge for everyone.
           </p>
         </div>
 
         {/* Navigation Links */}
-        <div className="flex-1 grid grid-cols-2 gap-0.5 sm:flex sm:justify-end sm:gap-20">
-          {footerNavs.map((nav, idx) => (
-            <ul className="space-y-4" key={idx}>
-              <h4 className="text-gray-900 font-bold text-sm tracking-wider">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-16">
+          {footerNavs.map((nav) => (
+            <div key={nav.label}>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-subtle">
                 {nav.label}
               </h4>
-              {nav.items.map((item, i) => (
-                <li key={i}>
-                  <a
-                    href={item.href}
-                    className="text-slate-900 hover:text-blue-600 text-sm transition-colors"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
+              <ul className="mt-4 space-y-3">
+                {nav.items.map((item) => (
+                  <li key={item.name}>
+                    {item.external ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={linkStyle}
+                      >
+                        {item.name}
+                        <ArrowUpRight size={12} className="text-subtle" />
+                      </a>
+                    ) : (
+                      <Link to={item.href} className={linkStyle}>
+                        {item.name}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </div>
 
       {/* Bottom Copyright Section */}
-      <div className="mt-16 pt-8 border-t border-blue-50 text-center">
-        <p className="text-slate-900 text-sm">© 2026 Made by NaboTech.org</p>
+      <div className="border-t border-line">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
+          <p className="text-xs text-subtle">
+            © {new Date().getFullYear()} Made by NaboTech.org
+          </p>
+        </div>
       </div>
     </footer>
   );
