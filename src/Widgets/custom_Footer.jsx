@@ -1,24 +1,10 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { footerGroups } from "../Routes/navigation";
+import { footerColumns } from "../Config/links";
 import Custom_Logo from "./custom_Logo";
 import Custom_SoonBadge from "./custom_SoonBadge";
 
-// Footer columns: the shared site navigation (src/Routes/navigation.js,
-// grouped by each item's `group`), plus outside resources
-const footerNavs = [
-  ...footerGroups,
-  {
-    label: "Resources",
-    items: [
-      {
-        title: "Panabo City Official Website",
-        path: "https://panabocity.gov.ph/",
-        external: true,
-      },
-    ],
-  },
-];
+// Columns (Portal, Tools, Resources) come from src/Config/site.config.json
 
 const linkStyle =
   "inline-flex items-center gap-1 text-sm text-muted hover:text-ink transition-colors";
@@ -38,7 +24,7 @@ export default function Custom_Footer() {
 
         {/* Navigation Links */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-16">
-          {footerNavs.map((nav) => (
+          {footerColumns.map((nav) => (
             <div key={nav.label}>
               <h4 className="text-xs font-semibold uppercase tracking-wider text-subtle">
                 {nav.label}

@@ -1,5 +1,5 @@
 // schema.org structured data for <JsonLd data={...} />
-import { DEFAULT_DESCRIPTION, PUBLISHER, SITE_NAME, SITE_URL } from "./site";
+import { site } from "../Config/links";
 
 const PANABO = {
   "@type": "City",
@@ -11,12 +11,12 @@ const PANABO = {
 export const websiteSchema = () => ({
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: SITE_NAME,
-  url: `${SITE_URL}/`,
-  description: DEFAULT_DESCRIPTION,
+  name: site.name,
+  url: `${site.url}/`,
+  description: site.description,
   inLanguage: "en-PH",
   about: PANABO,
-  publisher: { "@type": "Organization", name: PUBLISHER.name },
+  publisher: { "@type": "Organization", name: site.publisher },
 });
 
 // Breadcrumb trail: [{ name: "Home", path: "/" }, { name: "Guide Hub", path: "/info" }]
@@ -27,7 +27,7 @@ export const breadcrumbSchema = (crumbs) => ({
     "@type": "ListItem",
     position: i + 1,
     name: crumb.name,
-    item: `${SITE_URL}${crumb.path}`,
+    item: `${site.url}${crumb.path}`,
   })),
 });
 
@@ -40,7 +40,7 @@ export const guideSchema = (doc) => {
       "@type": "GovernmentService",
       name: doc.title,
       description: doc.desc,
-      url: `${SITE_URL}${path}`,
+      url: `${site.url}${path}`,
       serviceType: doc.tags[0],
       areaServed: PANABO,
       provider: {

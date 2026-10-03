@@ -1,0 +1,69 @@
+{
+  "$schema": "./site.config.schema.json",
+  "site": {
+    "url": "https://citizensconnectnabotech.vercel.app",
+    "name": "Panabo City Citizen's Portal",
+    "title": "Panabo City Citizen's Portal – Requirements, Fees & Steps for City Services",
+    "description": "Step-by-step guides to Panabo City services: requirements, fees and processing times for civil registry, health, legal, senior citizen, property and scholarship services.",
+    "publisher": "NaboTech.org"
+  },
+  "pages": [
+    { "title": "Home", "path": "/", "navbar": true, "footer": true },
+    { "title": "Guide Hub", "path": "/info", "navbar": true, "footer": true },
+    {
+      "title": "News & Updates",
+      "path": "/news-updates",
+      "navbar": true,
+      "footer": true,
+      "hidden": true
+    }
+  ],
+  "tools": [
+    {
+      "name": "NaboMap",
+      "label": "City Map",
+      "title": "Explore the city",
+      "description": "Food spots, cafés, pharmacies and tourist spots on an interactive map.",
+      "url": "https://nabomap.vercel.app",
+      "icon": "MapPinned",
+      "navbar": true,
+      "footer": true,
+      "home": true
+    },
+    {
+      "name": "Evently",
+      "label": "City Events",
+      "title": "City events",
+      "description": "Community activities, festivals and official city gatherings.",
+      "url": "https://evently-panabo.vercel.app/",
+      "icon": "CalendarDays",
+      "footer": true,
+      "home": true
+    },
+    {
+      "name": "PanaPresyo",
+      "label": "Market Prices",
+      "title": "Market prices",
+      "description": "Recent prices of goods in local markets, before you shop.",
+      "url": "https://panapresyo.vercel.app",
+      "icon": "ShoppingBasket",
+      "navbar": true,
+      "footer": true,
+      "home": true,
+      "disabled": true
+    }
+  ],
+  "resources": [
+    {
+      "title": "Panabo City Official Website",
+      "url": "https://panabocity.gov.ph/",
+      "footer": true
+    }
+  ],
+  "popularGuides": [
+    { "label": "Marriage License", "guideId": "PANABO-MARRIAGE-LICENSE-2026" },
+    { "label": "Senior Citizen ID", "guideId": "PANABO-SENIOR-CITIZEN-ID-2026" },
+    { "label": "Scholarship", "guideId": "PANABO-SCHOLARSHIP-PROGRAM-2026" },
+    { "label": "Medical Certificate", "guideId": "PANABO-MEDICAL-CERTIFICATE-2026" }
+  ]
+}

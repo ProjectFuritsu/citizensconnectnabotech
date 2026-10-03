@@ -9,50 +9,14 @@ import { formatDate, isFree } from "../../Theme/display";
 import { usePageMeta } from "../../SEO/usePageMeta";
 import JsonLd from "../../SEO/JsonLd";
 import { websiteSchema } from "../../SEO/schema";
-import contactData from "../../Data/contacts.json";
+import { homePopularGuides, homeTools, hotlines } from "../../Config/links";
 
-// Optional flags on popularGuides and tools items:
-//   disabled: true -> shown greyed out (tools get a "Soon" label), not clickable
-//   hidden: true   -> not shown (keeps the entry ready to switch back on)
-
-// Shortcuts shown under the hero search bar
-const popularGuides = [
-  { label: "Marriage License", id: "PANABO-MARRIAGE-LICENSE-2026" },
-  { label: "Senior Citizen ID", id: "PANABO-SENIOR-CITIZEN-ID-2026" },
-  { label: "Scholarship", id: "PANABO-SCHOLARSHIP-PROGRAM-2026" },
-  { label: "Medical Certificate", id: "PANABO-MEDICAL-CERTIFICATE-2026" },
-];
-
-// External NaboTech tools (also linked in the navbar)
-const tools = [
-  {
-    name: "NaboMap",
-    title: "Explore the city",
-    desc: "Food spots, cafés, pharmacies and tourist spots on an interactive map.",
-    href: "https://nabomap.vercel.app",
-    icon: "MapPinned",
-  },
-  {
-    name: "Evently",
-    title: "City events",
-    desc: "Community activities, festivals and official city gatherings.",
-    href: "https://evently-panabo.vercel.app/",
-    icon: "CalendarDays",
-  },
-  {
-    name: "PanaPresyo",
-    title: "Market prices",
-    desc: "Recent prices of goods in local markets, before you shop.",
-    href: "https://panapresyo.vercel.app",
-    icon: "ShoppingBasket",
-  },
-];
+// "Popular" shortcuts and Community tools come from src/Config/site.config.json
 
 export default function HomePage() {
   usePageMeta();
 
   const guides = InfoDataService.getAllPrograms();
-  const hotlines = contactData.essential_contacts;
   const categories = InfoDataService.getCategories();
 
   const freeCount = guides.filter((g) => isFree(g.fee)).length;
@@ -90,27 +54,25 @@ export default function HomePage() {
 
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
               <span className="text-subtle">Popular:</span>
-              {popularGuides
-                .filter((guide) => !guide.hidden)
-                .map((guide) =>
-                  guide.disabled ? (
-                    <span
-                      key={guide.id}
-                      aria-disabled="true"
-                      className="cursor-not-allowed text-subtle"
-                    >
-                      {guide.label}
-                    </span>
-                  ) : (
-                    <Link
-                      key={guide.id}
-                      to={`/info/${guide.id}`}
-                      className="text-ink-soft underline decoration-faint underline-offset-4 hover:text-brand-600 hover:decoration-brand-600 transition-colors"
-                    >
-                      {guide.label}
-                    </Link>
-                  ),
-                )}
+              {homePopularGuides.map((guide) =>
+                guide.disabled ? (
+                  <span
+                    key={guide.guideId}
+                    aria-disabled="true"
+                    className="cursor-not-allowed text-subtle"
+                  >
+                    {guide.label}
+                  </span>
+                ) : (
+                  <Link
+                    key={guide.guideId}
+                    to={`/info/${guide.guideId}`}
+                    className="text-ink-soft underline decoration-faint underline-offset-4 hover:text-brand-600 hover:decoration-brand-600 transition-colors"
+                  >
+                    {guide.label}
+                  </Link>
+                ),
+              )}
             </div>
           </div>
 
@@ -144,11 +106,9 @@ export default function HomePage() {
         />
 
         <div className="mt-8 grid gap-3 lg:grid-cols-3">
-          {tools
-            .filter((tool) => !tool.hidden)
-            .map((tool) => (
-              <ToolCard key={tool.name} tool={tool} />
-            ))}
+          {homeTools.map((tool) => (
+            <ToolCard key={tool.name} tool={tool} />
+          ))}
         </div>
       </section>
     </div>
@@ -179,7 +139,7 @@ const ToolCard = ({ tool }) => {
         <p
           className={`mt-1 text-sm leading-relaxed ${disabled ? "text-subtle" : "text-muted"}`}
         >
-          {tool.desc}
+          {tool.description}
         </p>
       </div>
       {disabled ? (
@@ -207,7 +167,7 @@ const ToolCard = ({ tool }) => {
 
   return (
     <a
-      href={tool.href}
+      href={tool.url}
       target="_blank"
       rel="noopener noreferrer"
       className="group flex gap-4 rounded-card border border-line bg-surface p-5 hover:border-brand-300 transition-colors"

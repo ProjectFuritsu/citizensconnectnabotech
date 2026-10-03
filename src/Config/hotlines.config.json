@@ -1,0 +1,11 @@
+{
+  "$schema": "./hotlines.config.schema.json",
+  "lastUpdated": "2026-02-18",
+  "updatedBy": "NaboTech.org",
+  "hotlines": [
+    { "name": "Police", "number": "0998 598 7104" },
+    { "name": "CDRRMO Rescue", "number": "0930 238 5937" },
+    { "name": "Fire", "number": "0928 458 7586" },
+    { "name": "Coast Guard", "number": "0969 215 1869" }
+  ]
+}

@@ -2,13 +2,7 @@ import { readFileSync } from 'node:fs'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import {
-  DEFAULT_DESCRIPTION,
-  DEFAULT_TITLE,
-  SITE_NAME,
-  SITE_URL,
-  STATIC_PATHS,
-} from './src/SEO/site.js'
+import { site, sitemapPaths } from './src/Config/links.js'
 
 const escapeHtml = (text) =>
   text
@@ -17,9 +11,10 @@ const escapeHtml = (text) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
 
-// SEO: fills the %SITE_URL%-style placeholders in index.html from
-// src/SEO/site.js, and writes sitemap.xml (home, Guide Hub and every guide)
-// and robots.txt. Both are also served by the dev server.
+// SEO: fills the %SITE_URL%-style placeholders in index.html from the "site"
+// section of src/Config/site.config.json, and writes sitemap.xml (visible
+// pages from the config plus every guide) and robots.txt. Both are also
+// served by the dev server.
 function seo() {
   const files = () => {
     const guides = JSON.parse(
@@ -27,27 +22,27 @@ function seo() {
     ).data
     const newest = guides.reduce((latest, g) => (g.date > latest ? g.date : latest), '')
     const urls = [
-      ...STATIC_PATHS.map((path) => ({ path, lastmod: newest })),
+      ...sitemapPaths.map((path) => ({ path, lastmod: newest })),
       ...guides.map((g) => ({ path: `/info/${encodeURIComponent(g.id)}`, lastmod: g.date })),
     ]
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map((u) => `  <url><loc>${escapeHtml(SITE_URL + u.path)}</loc><lastmod>${u.lastmod}</lastmod></url>`).join('\n')}
+${urls.map((u) => `  <url><loc>${escapeHtml(site.url + u.path)}</loc><lastmod>${u.lastmod}</lastmod></url>`).join('\n')}
 </urlset>
 `
     const robots = `User-agent: *
 Allow: /
 
-Sitemap: ${SITE_URL}/sitemap.xml
+Sitemap: ${site.url}/sitemap.xml
 `
     return { 'sitemap.xml': sitemap, 'robots.txt': robots }
   }
 
   const placeholders = {
-    SITE_URL,
-    SITE_NAME,
-    DEFAULT_TITLE,
-    DEFAULT_DESCRIPTION,
+    SITE_URL: site.url,
+    SITE_NAME: site.name,
+    DEFAULT_TITLE: site.title,
+    DEFAULT_DESCRIPTION: site.description,
   }
 
   return {

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import contactData from "../Data/contacts.json";
-import { navbarItems } from "../Routes/navigation";
+import { hotlines } from "../Config/links";
+import { navbarLinks } from "../Config/links";
 import Custom_Logo from "./custom_Logo";
 import Custom_SoonBadge from "./custom_SoonBadge";
 
-// Links and their flags (disabled, hidden, ...) live in src/Routes/navigation.js
+// Links and their flags (disabled, hidden, ...) come from src/Config/site.config.json
 
 const linkBase =
   "inline-flex items-center gap-1 rounded-control px-3 py-2 text-sm font-medium transition-colors";
@@ -45,7 +45,7 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-1">
-            {navbarItems.map((item) => (
+            {navbarLinks.map((item) => (
               <li key={item.title}>
                 <NavItem item={item} />
               </li>
@@ -66,7 +66,7 @@ export default function Navbar() {
         {/* 3. MOBILE DROPDOWN */}
         {isMobileMenuOpen && (
           <ul className="md:hidden border-t border-line px-4 py-2 flex flex-col">
-            {navbarItems.map((item) => (
+            {navbarLinks.map((item) => (
               <li key={item.title}>
                 <NavItem
                   item={item}
@@ -90,7 +90,7 @@ const HotlineTrack = ({ duplicate = false }) => (
     aria-hidden={duplicate || undefined}
     className={`flex min-w-full shrink-0 items-center justify-around gap-8 px-4 animate-marquee group-hover:[animation-play-state:paused] group-active:[animation-play-state:paused] group-focus-within:[animation-play-state:paused] motion-reduce:animate-none ${duplicate ? "motion-reduce:hidden" : ""}`}
   >
-    {contactData.essential_contacts.map((contact) => (
+    {hotlines.map((contact) => (
       <li key={contact.name} className="shrink-0">
         <a
           href={`tel:${contact.number.replace(/\s/g, "")}`}

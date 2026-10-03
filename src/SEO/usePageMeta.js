@@ -1,11 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import {
-  DEFAULT_DESCRIPTION,
-  DEFAULT_TITLE,
-  SITE_NAME,
-  SITE_URL,
-} from "./site";
+import { site } from "../Config/links";
 
 // Updates a <meta>/<link> that index.html already has, or adds it if missing
 function setHeadTag(selector, create, attr, value) {
@@ -43,11 +38,11 @@ export function usePageMeta({ title, description, noindex = false } = {}) {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const fullTitle = title ? `${title} | ${SITE_NAME}` : DEFAULT_TITLE;
-    const desc = truncate(description || DEFAULT_DESCRIPTION);
+    const fullTitle = title ? `${title} | ${site.name}` : site.title;
+    const desc = truncate(description || site.description);
     // Canonical ignores query strings, so filtered views (/info?tag=Health)
     // point back to the main page
-    const url = `${SITE_URL}${pathname === "/" ? "/" : pathname.replace(/\/$/, "")}`;
+    const url = `${site.url}${pathname === "/" ? "/" : pathname.replace(/\/$/, "")}`;
 
     document.title = fullTitle;
     setHeadTag('meta[name="description"]', metaByName("description"), "content", desc);

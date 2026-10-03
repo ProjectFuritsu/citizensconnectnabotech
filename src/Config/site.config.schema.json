@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Panabo City Citizen's Portal configuration",
+  "description": "Central configuration for the portal. See src/Config/README.md for examples.",
+  "type": "object",
+  "required": ["site", "pages", "tools", "resources", "popularGuides"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "site": {
+      "description": "The site's identity: used for page titles, link previews, the sitemap and robots.txt.",
+      "type": "object",
+      "required": ["url", "name", "title", "description", "publisher"],
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "description": "Public address of the site, without a trailing slash. Change this if the portal moves to a custom domain.",
+          "type": "string",
+          "pattern": "^https?://[^/]+$"
+        },
+        "name": {
+          "description": "Site name, added after each page title (\"Guide Hub | <name>\") and shown in link previews.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Home page title in browser tabs and search results. Keep it under about 70 characters.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Default description for search results and link previews. Keep it under about 160 characters.",
+          "type": "string"
+        },
+        "publisher": {
+          "description": "Who runs the site.",
+          "type": "string"
+        }
+      }
+    },
+    "pages": {
+      "description": "Pages of this site, in navbar order. They appear under \"Portal\" in the footer.",
+      "type": "array",
+      "items": { "$ref": "#/definitions/page" }
+    },
+    "tools": {
+      "description": "NaboTech tools: separate apps that open in a new tab. In the navbar they come after the pages; in the footer they appear under \"Tools\"; on the home page they're the Community tools cards.",
+      "type": "array",
+      "items": { "$ref": "#/definitions/tool" }
+    },
+    "resources": {
+      "description": "Outside links, shown under \"Resources\" in the footer.",
+      "type": "array",
+      "items": { "$ref": "#/definitions/resource" }
+    },
+    "popularGuides": {
+      "description": "\"Popular\" shortcuts under the home page search bar.",
+      "type": "array",
+      "items": { "$ref": "#/definitions/popularGuide" }
+    }
+  },
+  "definitions": {
+    "disabled": {
+      "description": "Still shown, but greyed out with a \"Soon\" label and not clickable.",
+      "type": "boolean"
+    },
+    "hidden": {
+      "description": "Not shown anywhere. Handy for switching something back on later.",
+      "type": "boolean"
+    },
+    "navbar": {
+      "description": "Show in the top navigation bar.",
+      "type": "boolean"
+    },
+    "footer": {
+      "description": "Show in the footer.",
+      "type": "boolean"
+    },
+    "page": {
+      "type": "object",
+      "required": ["title", "path"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "description": "Link text.", "type": "string" },
+        "path": {
+          "description": "Route on this site, starting with \"/\". It must exist in src/Routes/AppRoute.jsx.",
+          "type": "string",
+          "pattern": "^/"
+        },
+        "navbar": { "$ref": "#/definitions/navbar" },
+        "footer": { "$ref": "#/definitions/footer" },
+        "disabled": { "$ref": "#/definitions/disabled" },
+        "hidden": { "$ref": "#/definitions/hidden" }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "required": ["name", "label", "title", "description", "url", "icon"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "The app's name, e.g. \"NaboMap\". Shown in small text on the home page card.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Short link text for the navbar and footer, e.g. \"City Map\".",
+          "type": "string"
+        },
+        "title": {
+          "description": "Heading on the home page card, e.g. \"Explore the city\".",
+          "type": "string"
+        },
+        "description": {
+          "description": "One sentence for the home page card.",
+          "type": "string"
+        },
+        "url": {
+          "description": "Full address of the app.",
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "icon": {
+          "description": "A lucide-react icon name in PascalCase, e.g. \"MapPinned\". Browse them at https://lucide.dev/icons.",
+          "type": "string",
+          "pattern": "^[A-Z][A-Za-z0-9]*$"
+        },
+        "navbar": { "$ref": "#/definitions/navbar" },
+        "footer": { "$ref": "#/definitions/footer" },
+        "home": {
+          "description": "Show as a card in the home page's Community tools.",
+          "type": "boolean"
+        },
+        "disabled": { "$ref": "#/definitions/disabled" },
+        "hidden": { "$ref": "#/definitions/hidden" }
+      }
+    },
+    "resource": {
+      "type": "object",
+      "required": ["title", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "description": "Link text.", "type": "string" },
+        "url": {
+          "description": "Full address of the link.",
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "footer": { "$ref": "#/definitions/footer" },
+        "disabled": { "$ref": "#/definitions/disabled" },
+        "hidden": { "$ref": "#/definitions/hidden" }
+      }
+    },
+    "popularGuide": {
+      "type": "object",
+      "required": ["label", "guideId"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "description": "Link text.", "type": "string" },
+        "guideId": {
+          "description": "The guide's \"id\" in src/Data/InfoLib/InfoData.json.",
+          "type": "string"
+        },
+        "disabled": { "$ref": "#/definitions/disabled" },
+        "hidden": { "$ref": "#/definitions/hidden" }
+      }
+    }
+  }
+}
