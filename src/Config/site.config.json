@@ -26,7 +26,6 @@
       "description": "Food spots, cafés, pharmacies and tourist spots on an interactive map.",
       "url": "https://nabomap.vercel.app",
       "icon": "MapPinned",
-      "navbar": true,
       "footer": true,
       "home": true
     },
@@ -47,7 +46,72 @@
       "description": "Recent prices of goods in local markets, before you shop.",
       "url": "https://panapresyo.vercel.app",
       "icon": "ShoppingBasket",
-      "navbar": true,
+      "footer": true,
+      "home": true,
+      "disabled": true
+    },
+    {
+      "name": "Fare Checker",
+      "label": "Fare Checker",
+      "title": "Fare Checker",
+      "description": "Check the latest fares for public transportation in Panabo City.",
+      "url": "",
+      "icon": "Bus",
+      "footer": true,
+      "home": true,
+      "disabled": true
+    },
+    {
+      "name": "Citizens Project Directory",
+      "label": "Citizens Project Directory",
+      "title": "Citizens Project Directory",
+      "description": "A directory of citizen projects and initiatives in Panabo City.",
+      "url": "https://citizensprojectdirectory.vercel.app",
+      "icon": "BuildingOffice",
+      "footer": true,
+      "home": true,
+      "disabled": true
+    },
+    {
+      "name": "Citizens Volunteers Hub",
+      "label": "Citizens Volunteers Hub",
+      "title": "Citizens Volunteers Hub",
+      "description": "A hub where citizen can find volunteer opportunities in Panabo City.",
+      "url": "https://citizensvolunteershub.vercel.app",
+      "icon": "HandHelping",
+      "footer": true,
+      "home": true,
+      "disabled": true
+    },
+    {
+      "name": "Disaster Preparedness Guide",
+      "label": "Disaster Preparedness Guide",
+      "title": "Disaster Preparedness Guide",
+      "description": "Information and resources for disaster preparedness in Panabo City.",
+      "url": "https://disasterpreparednessguide.vercel.app",
+      "icon": "House",
+      "footer": true,
+      "home": true,
+      "disabled": true
+    },
+    {
+      "name": "Developers Hub",
+      "label": "Developers Hub",
+      "title": "Developers Hub",
+      "description": "A hub for developers to find resources and collaborate on projects in Panabo City.",
+      "url": "https://developershub.vercel.app",
+      "icon": "Code",
+      "footer": true,
+      "home": true,
+      "disabled": true
+    },
+    {
+      "name": "More Tools",
+      "label": "More Tools",
+      "title": "More Tools",
+      "description": "Additional tools and resources for residents of Panabo City.",
+      "url": "https://moretools.vercel.app",
+      "icon": "Tools",
       "footer": true,
       "home": true,
       "disabled": true
