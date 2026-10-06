@@ -95,12 +95,12 @@
       "disabled": true
     },
     {
-      "name": "Developers Hub",
-      "label": "Developers Hub",
-      "title": "Developers Hub",
-      "description": "A hub for developers to find resources and collaborate on projects in Panabo City.",
-      "url": "https://developershub.vercel.app",
-      "icon": "Code",
+      "name": "Open Data Hub",
+      "label": "Open Data Hub",
+      "title": "Open Data Hub",
+      "description": "Access to open data and resources for Panabo City.",
+      "url": "https://opendatahub.vercel.app",
+      "icon": "Database",
       "footer": true,
       "home": true,
       "disabled": true

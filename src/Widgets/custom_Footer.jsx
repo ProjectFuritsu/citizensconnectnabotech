@@ -17,8 +17,7 @@ export default function Custom_Footer() {
         <div className="max-w-sm">
           <Custom_Logo />
           <p className="mt-4 text-sm text-muted leading-relaxed">
-            Your official source for public information. Ensuring transparency
-            and access to knowledge for everyone.
+            A community portal providing panabo citizens, businesses, and visitors with information and services.
           </p>
         </div>
 

@@ -102,7 +102,7 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto px-4 md:px-8 pt-10 md:pt-12">
         <Custom_SectionHeader
           title="Community tools"
-          desc="More NaboTech services for Panabo City."
+          desc="More services for Panabo City."
         />
 
         <div className="mt-8 grid gap-3 lg:grid-cols-3">
