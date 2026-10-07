@@ -55,7 +55,7 @@
       "label": "Fare Checker",
       "title": "Fare Checker",
       "description": "Check the latest fares for public transportation in Panabo City.",
-      "url": "",
+      "url": "https://panabofarechecker.vercel.app/",
       "icon": "Bus",
       "footer": true,
       "home": true,
