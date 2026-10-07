@@ -58,8 +58,7 @@
       "url": "https://panabofarechecker.vercel.app/",
       "icon": "Bus",
       "footer": true,
-      "home": true,
-      "disabled": true
+      "home": true
     },
     {
       "name": "Citizens Project Directory",
