@@ -10,7 +10,12 @@ sources.json          ← official source links, always shown on the page
 
 The original reports behind the "Download the original report" button are in `public/reports/budget/`.
 
-The year files are loaded only when someone opens `/budget`, so they don't slow down the rest of the site.
+**Only what's shown is loaded:**
+
+- **Every year's `totals`:** bundled with the site, a few numbers per year. They drive the year buttons, the "Revenue and spending over the years" chart and the "vs last year" figures.
+- **A year's lines** (`revenue` and `expenditures`): loaded only when that year is opened, so a visitor who looks at 2024 never downloads 2021–2023.
+
+The file name sets the year: `years/2025.json` is 2025. Keep `"year"` inside the file the same; if they differ, the browser console says so.
 
 ## Where the numbers come from
 

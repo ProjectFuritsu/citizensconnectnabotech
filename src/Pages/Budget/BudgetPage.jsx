@@ -11,7 +11,8 @@ import {
   RefreshCw,
   Search,
 } from "lucide-react";
-import { useBudgetData } from "../../Hooks/useBudgetData";
+import { useBudgetYear } from "../../Hooks/useBudgetYear";
+import { BudgetService } from "../../Services/BudgetServices/BudgetService";
 import Custom_SectionHeader from "../../Widgets/custom_SectionHeader";
 import { formatPercent, formatPeso, formatPesoCompact, pluralize } from "../../Theme/display";
 import { usePageMeta } from "../../SEO/usePageMeta";
@@ -45,13 +46,15 @@ export default function BudgetPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  const { status, budget, error, retry } = useBudgetData();
-  const years = budget?.years ?? [];
+  const years = BudgetService.years; // every year's headline figures, newest first
   const [query, setQuery] = useState("");
 
   // Year and tab live in the URL (/budget?year=2023&view=revenue) so views can be shared
   const [searchParams, setSearchParams] = useSearchParams();
-  const year = budget?.getYear(Number(searchParams.get("year"))) ?? years[0] ?? null;
+  const selected = years.find((y) => y.year === Number(searchParams.get("year"))) ?? years[0] ?? null;
+  // Only the selected year's lines are loaded. While another year loads,
+  // `year` is still the one on screen.
+  const { status, data: year, error, retry } = useBudgetYear(selected?.year);
   const view = VIEWS.some((v) => v.id === searchParams.get("view"))
     ? searchParams.get("view")
     : "overview";
@@ -63,7 +66,7 @@ export default function BudgetPage() {
 
   const downloadCsv = () => {
     // Leading BOM so Excel opens the peso sign and accents correctly
-    const blob = new Blob(["\uFEFF" + budget.toCsv(year.year)], {
+    const blob = new Blob(["\uFEFF" + BudgetService.toCsv(year)], {
       type: "text/csv;charset=utf-8",
     });
     const url = URL.createObjectURL(blob);
@@ -101,13 +104,13 @@ export default function BudgetPage() {
             from, year by year.
           </p>
 
-          {year && (
+          {selected && (
             <>
               {/* Controls: one row that scopes everything below */}
               <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
                 <div role="group" aria-label="Choose a year" className="flex flex-wrap gap-2">
                   {years.map((y) => {
-                    const active = y.year === year.year;
+                    const active = y.year === selected.year;
                     return (
                       <button
                         key={y.year}
@@ -128,10 +131,11 @@ export default function BudgetPage() {
                 <button
                   type="button"
                   onClick={downloadCsv}
-                  className="inline-flex items-center gap-2 rounded-control border border-line bg-surface px-3.5 py-2 text-sm font-medium text-ink-soft hover:border-brand-300 hover:text-brand-700 transition-colors"
+                  disabled={status !== "ready"}
+                  className="inline-flex items-center gap-2 rounded-control border border-line bg-surface px-3.5 py-2 text-sm font-medium text-ink-soft hover:border-brand-300 hover:text-brand-700 transition-colors disabled:pointer-events-none disabled:opacity-50"
                 >
                   <Download size={16} />
-                  Download {year.year} CSV
+                  Download {selected.year} CSV
                 </button>
               </div>
 
@@ -176,7 +180,9 @@ export default function BudgetPage() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        {status === "loading" && (
+        {/* Only before the first year has loaded; after that, switching years
+            keeps the current one on screen (dimmed if it takes a moment) */}
+        {status === "loading" && !year && (
           <div role="status" className="mt-10 flex items-center justify-center gap-3 rounded-card border border-line bg-surface px-6 py-16 text-sm text-muted">
             <RefreshCw size={18} className="animate-spin text-subtle motion-reduce:animate-none" />
             Loading budget data…
@@ -203,8 +209,11 @@ export default function BudgetPage() {
           </div>
         )}
 
-        {status === "ready" && year && (
-          <>
+        {status !== "error" && year && (
+          <div
+            aria-busy={status === "loading"}
+            className={status === "loading" ? "opacity-60 transition-opacity delay-150" : undefined}
+          >
             <p className="flex items-start gap-2 pt-6 text-sm text-muted">
               <Info size={16} className="mt-0.5 shrink-0 text-subtle" />
               <span>
@@ -227,17 +236,17 @@ export default function BudgetPage() {
               <OverviewView
                 year={year}
                 years={years}
-                previous={budget.getPreviousYear(year.year)}
+                previous={BudgetService.getPreviousYear(year.year)}
                 onSelectYear={(y) => update({ year: y })}
               />
             )}
             {view === "spending" && <SpendingView year={year} term={query.trim().toLowerCase()} />}
             {view === "revenue" && <RevenueView year={year} term={query.trim().toLowerCase()} />}
             {view === "table" && <TableView year={year} term={query.trim().toLowerCase()} />}
-          </>
+          </div>
         )}
 
-        {status === "ready" && !year && (
+        {!selected && (
           <div className="mt-10 rounded-card border border-dashed border-line bg-surface px-6 py-12 text-center">
             <PiggyBank size={32} className="mx-auto text-subtle" />
             <h2 className="mt-3 text-lg font-semibold">No budget figures posted yet</h2>
@@ -247,7 +256,7 @@ export default function BudgetPage() {
           </div>
         )}
 
-        <OfficialSources sources={budget?.sources ?? FALLBACK_SOURCES} />
+        <OfficialSources sources={BudgetService.sources} />
       </div>
     </div>
   );
@@ -499,21 +508,7 @@ function TableView({ year, term }) {
   );
 }
 
-// --- Official sources (always shown) ---
-
-// Shown even when the data can't load, so residents can still find the reports
-const FALLBACK_SOURCES = [
-  {
-    name: "DILG Full Disclosure Policy Portal",
-    url: "https://fdpp.dilg.gov.ph/",
-    description: "Budgets and financial reports that local governments are required to publish.",
-  },
-  {
-    name: "Commission on Audit",
-    url: "https://www.coa.gov.ph/",
-    description: "Annual Audit Reports, where these figures come from.",
-  },
-];
+// --- Official sources (always shown, from src/Data/Budget/sources.json) ---
 
 function OfficialSources({ sources }) {
   if (sources.length === 0) return null;
