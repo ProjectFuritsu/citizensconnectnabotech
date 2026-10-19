@@ -6,6 +6,9 @@ import guideData from "../Data/InfoLib/InfoData.json";
 
 export const site = config.site;
 
+// Public Cloudflare R2 bucket URL ("" = not connected yet)
+export const r2Url = (config.data?.r2Url ?? "").replace(/\/+$/, "");
+
 const visible = (item) => !item.hidden;
 
 // One link shape for the navbar and footer: { title, path, external, disabled }
@@ -64,8 +67,28 @@ export const homePopularGuides = config.popularGuides.filter((guide) => {
   return true;
 });
 
-// Emergency hotlines: { name, number } in display order
+// Emergency hotlines: { name, number, category, description } in display order
 export const hotlines = hotlineConfig.hotlines.filter(visible);
+export const hotlinesUpdated = hotlineConfig.lastUpdated;
+
+// Hotlines grouped by category for the Emergency Hotlines page, in this
+// order; groups with no numbers are left out
+const HOTLINE_CATEGORIES = [
+  { id: "emergency", label: "Emergency response", icon: "Siren" },
+  { id: "hospital", label: "Hospitals", icon: "Hospital" },
+  { id: "towing", label: "Towing", icon: "Truck" },
+  { id: "utility", label: "Utilities", icon: "PlugZap" },
+  { id: "government", label: "City offices", icon: "Landmark" },
+  { id: undefined, label: "Other numbers", icon: "Phone" },
+];
+export const hotlineGroups = HOTLINE_CATEGORIES.map((group) => ({
+  ...group,
+  items: hotlines.filter((h) =>
+    group.id
+      ? h.category === group.id
+      : !HOTLINE_CATEGORIES.some((c) => c.id && c.id === h.category),
+  ),
+})).filter((group) => group.items.length > 0);
 
 // Pages listed in sitemap.xml (each guide's page is added automatically)
 export const sitemapPaths = config.pages

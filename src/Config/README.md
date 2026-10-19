@@ -69,13 +69,27 @@ Items appear in the order they're listed.
 { "label": "Dental Services", "guideId": "PANABO-DENTAL-SERVICES-2026" }
 ```
 
-**Update the emergency hotlines** in `hotlines.config.json`. They scroll in the bar above the navbar, and the home page counts them. Write numbers the way people should read them; spaces are removed automatically for tap-to-call. Update `lastUpdated` when you check the numbers.
+**Update the emergency hotlines** in `hotlines.config.json`. They're used in three places:
+
+- the Emergency Hotlines page (`/hotlines`);
+- the scrolling bar above the navbar;
+- the home page count.
+
+Write numbers the way people should read them; spaces are removed automatically for tap-to-call. Update `lastUpdated` when you check the numbers, because the hotlines page shows it.
 
 ```json
-{ "name": "Police", "number": "0998 598 7104" }
+{ "name": "Panabo Polyclinic", "number": "0912 345 6789", "category": "hospital", "description": "24/7 emergency room" }
 ```
 
-Add `"hidden": true` to hide a number that's temporarily out of service.
+- **`category`:** groups the number on the hotlines page. Use `"emergency"` (police, fire, rescue), `"hospital"`, `"towing"`, `"utility"` (power, water) or `"government"` (city offices). Numbers without a category go under "Other numbers". A group appears only once it has at least one number.
+- **`description`:** optional; shown under the number.
+- **`"hidden": true`:** hides a number that's temporarily out of service.
+
+The pages' own data (outages, barangay directory, garbage schedule) lives in `src/Data/EverydayInfo/`; its README explains each file.
+
+**Budget data (Cloudflare R2):** `data.r2Url` is `"/data"`, this site's own path. `vercel.json` forwards `/data` to the R2 bucket, so the Budget page works even for visitors whose internet provider blocks `r2.dev`. Locally, `npm run dev` forwards `/data` to the live site. While `data.r2Url` is `""`, the page says no figures are posted yet. See `r2-upload/README.md`.
+
+Never put R2 access keys in this file: it's part of the public website.
 
 **Move to a custom domain:** change `site.url` (no trailing slash). Page links, link previews, the sitemap and robots.txt all follow.
 

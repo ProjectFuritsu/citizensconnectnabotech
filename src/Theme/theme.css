@@ -40,6 +40,26 @@
   --color-danger-strong: oklch(50.5% 0.213 27.518); /* red-700: emergency text, hotline ticker */
   --color-danger-soft: oklch(97.1% 0.013 17.38); /* red-50: emergency hover background */
 
+  /* Chart series: data marks only (bars, slices, legend swatches), never
+     text or UI. Each group below was checked with the dataviz palette
+     validator (contrast + colorblind separation); change them together. */
+  /* Money in: blue. Light = budgeted (target), dark = actually collected */
+  --color-revenue-target: #7fa8f5;
+  --color-revenue: #155dfc;
+  /* Money out: orange. Light = budgeted (final budget), dark = actually spent */
+  --color-budget: #f2a07a;
+  --color-expense: #eb6834;
+  /* Budget changes during the year (original -> final): diverging pair */
+  --color-increase: #2a78d6;
+  --color-decrease: #e34948;
+  /* Share-of-total slices (top 5), plus neutral "Other" */
+  --color-slice-1: #1baf7a;
+  --color-slice-2: #eda100;
+  --color-slice-3: #e87ba4;
+  --color-slice-4: #008300;
+  --color-slice-5: #6250d6;
+  --color-slice-other: #a8a29e;
+
   /* Shape */
   --radius-card: 0.75rem; /* cards, panels, tables */
   --radius-control: 0.5rem; /* inputs, buttons */

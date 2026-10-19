@@ -1,0 +1,11 @@
+{
+  "$schema": "./service-interruptions.schema.json",
+  "officialSources": [
+    {
+      "name": "Davao Light",
+      "type": "power",
+      "url": "https://www.davaolight.com/"
+    }
+  ],
+  "interruptions": []
+}

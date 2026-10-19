@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Emergency hotlines",
-  "description": "Numbers shown in the scrolling hotline bar above the navbar and counted on the home page. See src/Config/README.md.",
+  "description": "Numbers shown on the Emergency Hotlines page, in the scrolling hotline bar above the navbar, and counted on the home page. See src/Config/README.md.",
   "type": "object",
   "required": ["hotlines"],
   "additionalProperties": false,
@@ -32,6 +32,15 @@
             "description": "Phone number as people should read it, e.g. \"0998 598 7104\". Spaces are removed automatically for the tap-to-call link.",
             "type": "string",
             "pattern": "^[0-9+()\\s-]+$"
+          },
+          "category": {
+            "description": "Group on the Emergency Hotlines page: \"emergency\" (police, fire, rescue), \"hospital\", \"towing\", \"utility\" (power, water) or \"government\" (city offices). Numbers without one are listed under \"Other numbers\".",
+            "type": "string",
+            "enum": ["emergency", "hospital", "towing", "utility", "government"]
+          },
+          "description": {
+            "description": "Optional short note shown under the number on the Emergency Hotlines page, e.g. \"24/7\" or \"Panabo City Police Station\".",
+            "type": "string"
           },
           "hidden": {
             "description": "Not shown anywhere. Handy for a number that's temporarily out of service.",

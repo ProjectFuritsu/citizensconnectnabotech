@@ -24,6 +24,50 @@ export const formatDate = (date) =>
     timeZone: "UTC",
   });
 
+// Start/end of an outage in Philippine time, whatever the visitor's timezone:
+// same day  -> "Sat, Oct 10 · 8:00 AM – 5:00 PM"
+// multi-day -> "Sat, Oct 10, 8:00 AM – Sun, Oct 11, 5:00 PM"
+export const formatTimeRange = (start, end) => {
+  const zone = { timeZone: "Asia/Manila" };
+  const day = (d) =>
+    new Date(d).toLocaleDateString("en-US", {
+      ...zone,
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    });
+  const time = (d) =>
+    new Date(d).toLocaleTimeString("en-US", {
+      ...zone,
+      hour: "numeric",
+      minute: "2-digit",
+    });
+  return day(start) === day(end)
+    ? `${day(start)} · ${time(start)} – ${time(end)}`
+    : `${day(start)}, ${time(start)} – ${day(end)}, ${time(end)}`;
+};
+
+// Pesos: exact for tables ("₱2,850,123,456"), compact for headline
+// figures and chart axes ("₱2.85B", "₱415.25M")
+export const formatPeso = (amount) =>
+  new Intl.NumberFormat("en-PH", {
+    style: "currency",
+    currency: "PHP",
+    maximumFractionDigits: 0,
+  }).format(amount);
+
+export const formatPesoCompact = (amount) =>
+  new Intl.NumberFormat("en-PH", {
+    style: "currency",
+    currency: "PHP",
+    notation: "compact",
+    maximumFractionDigits: 2,
+  }).format(amount);
+
+// 0.3214 -> "32.1%"
+export const formatPercent = (fraction, digits = 1) =>
+  `${(fraction * 100).toFixed(digits)}%`;
+
 // pluralize(1, "guide") -> "1 guide", pluralize(9, "guide") -> "9 guides"
 export const pluralize = (count, word) =>
   `${count} ${count === 1 ? word : `${word}s`}`;

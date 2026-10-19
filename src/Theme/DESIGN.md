@@ -70,6 +70,24 @@ All tokens are Tailwind utilities: `text-*`, `bg-*`, `border-*`, `divide-*`, `de
 | --------- | ----------------- | ------------------------------------------------------------- |
 | `marquee` | `animate-marquee` | Endless sideways scroll (30s per loop). Moves a row by its own width, so render the row twice side by side. |
 
+### Chart colors
+
+These are for data marks only (bars, slices, legend swatches), never for text or UI. Each group was checked with the dataviz palette validator for contrast and colorblind separation, so change a group's colors together and re-validate.
+
+| Tokens | Meaning |
+| --- | --- |
+| `revenue-target` (light) / `revenue` (dark blue) | Money in: budgeted / actually collected |
+| `budget` (light) / `expense` (dark orange) | Money out: budgeted / actually spent |
+| `increase` (blue) / `decrease` (red) | Budget raised / cut during the year. A diverging pair, not good/bad. |
+| `slice-1` … `slice-5`, `slice-other` | Share-of-total slices (top 5 + gray "Other") |
+
+**Rules:**
+
+- **Same meaning, same color.** Blue is always money in and orange is always money out, on every chart. Light vs dark of the same hue means budgeted vs actual.
+- **Green and red are never used for "good/bad".** A budget increase isn't automatically good.
+- **Slice colors are below 3:1 contrast,** so every slice also has a text label with its value.
+- **Two or more series always get a legend.** One series doesn't (the title names it).
+
 ## Typography
 
 The site uses Tailwind's default sans-serif system font stack.
@@ -167,7 +185,27 @@ Rules for using it:
 
 ## Page patterns
 
-Reference implementations: `src/Pages/Home/HomePage.jsx`, `src/Pages/GuideHub/InfoLibPage.jsx` (Guide Hub list) and `src/Pages/GuideHub/InfoDetailsPage.jsx` (guide details).
+Reference implementations:
+
+- `src/Pages/Home/HomePage.jsx`
+- `src/Pages/GuideHub/InfoLibPage.jsx` (Guide Hub list)
+- `src/Pages/GuideHub/InfoDetailsPage.jsx` (guide details)
+- `src/Pages/EverydayInfo/EverydayInfoPage.jsx`: jump links, honest empty states, a directory with search, a remembered selection and a week strip
+- `src/Pages/Hotlines/HotlinesPage.jsx`: large tap-to-call cards, grouped by category
+- `src/Pages/Budget/`: a data dashboard. It has:
+  - a year + view control row that scopes everything below and lives in the URL;
+  - stat tiles showing a compact figure with the exact amount underneath;
+  - meters;
+  - paired budget-vs-actual bars;
+  - diverging change bars;
+  - a donut of six slices at most;
+  - a year column chart with tooltip and "View as table";
+  - sortable tables with a reported-totals row;
+  - CSV download.
+
+  The chart components are in `components/BudgetCharts.jsx`.
+
+**Empty data:** when a section has no data yet, say so plainly ("No interruptions posted here yet", "Not yet posted"). Never word it as if nothing exists, and point people to an official source. Show progress where it helps, e.g. "Details posted for 3 of 40 barangays".
 
 ### Section header
 
@@ -338,7 +376,7 @@ These are implemented in `display.js`, so use those functions rather than re-wri
 
 ## Migrating older pages
 
-These use the tokens: the home page, the Guide Hub list (`InfoLibPage.jsx`), guide details (`InfoDetailsPage.jsx`), the guide card, navbar, footer and logo. These still use raw Tailwind colors and can move over gradually: News pages, Volunteers, error pages, `custom_PageLayout.jsx` (now only used by `NewsPage.jsx`), and the search bar widget.
+These use the tokens: the home page, the Guide Hub list (`InfoLibPage.jsx`), guide details (`InfoDetailsPage.jsx`), Everyday Info, Emergency Hotlines, the guide card, navbar, footer and logo. These still use raw Tailwind colors and can move over gradually: News pages, Volunteers, error pages, `custom_PageLayout.jsx` (now only used by `NewsPage.jsx`), and the search bar widget.
 
 | Raw class                        | Token            |
 | -------------------------------- | ---------------- |

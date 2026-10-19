@@ -7,9 +7,15 @@
     "description": "Step-by-step guides to Panabo City services: requirements, fees and processing times for civil registry, health, legal, senior citizen, property and scholarship services.",
     "publisher": "NaboTech.org"
   },
+  "data": {
+    "r2Url": "/data"
+  },
   "pages": [
     { "title": "Home", "path": "/", "navbar": true, "footer": true },
     { "title": "Guide Hub", "path": "/info", "navbar": true, "footer": true },
+    { "title": "Everyday Info", "path": "/everyday", "navbar": true, "footer": true, "hidden": true },
+    { "title": "Emergency Hotlines", "path": "/hotlines", "navbar": true, "footer": true },
+    { "title": "Budget Transparency", "path": "/budget", "navbar": true, "footer": true },
     {
       "title": "News & Updates",
       "path": "/news-updates",

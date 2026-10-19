@@ -1,3 +1,9 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    {
+      "source": "/data/:path*",
+      "destination": "https://pub-91dc9bb8dbe441e286321cf2a56274c8.r2.dev/:path*"
+    },
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }

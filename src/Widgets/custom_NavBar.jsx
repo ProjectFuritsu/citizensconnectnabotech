@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { hotlines } from "../Config/links";
 import { navbarLinks } from "../Config/links";
@@ -9,7 +9,7 @@ import Custom_SoonBadge from "./custom_SoonBadge";
 // Links and their flags (disabled, hidden, ...) come from src/Config/site.config.json
 
 const linkBase =
-  "inline-flex items-center gap-1 rounded-control px-3 py-2 text-sm font-medium transition-colors";
+  "inline-flex items-center gap-1 whitespace-nowrap rounded-control px-3 py-2 text-sm font-medium transition-colors";
 const linkIdle = "text-muted hover:text-ink hover:bg-canvas";
 const linkActive = "text-brand-700 bg-brand-50";
 
@@ -21,11 +21,15 @@ export default function Navbar() {
       {/* 1. HOTLINE MARQUEE */}
       <div className="bg-ink text-white">
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-10 flex items-center gap-1">
-          <span className="flex items-center gap-2 shrink-0 text-xs font-medium">
+          {/* Label opens the full Emergency Hotlines page */}
+          <Link
+            to="/hotlines"
+            className="flex items-center gap-2 shrink-0 text-xs font-medium hover:underline underline-offset-2"
+          >
             <span className="h-2 w-2 rounded-full bg-danger" />
             <span className="sm:hidden">Hotlines</span>
             <span className="hidden sm:inline">Emergency hotlines</span>
-          </span>
+          </Link>
           <span className="h-4 w-px shrink-0 bg-white/15" />
           {/* Empty onTouchStart lets iOS Safari apply :active, pausing on touch */}
           <div
@@ -44,7 +48,7 @@ export default function Navbar() {
           <Custom_Logo />
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-1">
+          <ul className="hidden lg:flex items-center gap-1">
             {navbarLinks.map((item) => (
               <li key={item.title}>
                 <NavItem item={item} />
@@ -57,7 +61,7 @@ export default function Navbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
-            className="md:hidden -mr-2 p-2 rounded-control text-muted hover:text-ink hover:bg-canvas transition-colors"
+            className="lg:hidden -mr-2 p-2 rounded-control text-muted hover:text-ink hover:bg-canvas transition-colors"
           >
             {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -65,7 +69,7 @@ export default function Navbar() {
 
         {/* 3. MOBILE DROPDOWN */}
         {isMobileMenuOpen && (
-          <ul className="md:hidden border-t border-line px-4 py-2 flex flex-col">
+          <ul className="lg:hidden border-t border-line px-4 py-2 flex flex-col">
             {navbarLinks.map((item) => (
               <li key={item.title}>
                 <NavItem

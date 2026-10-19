@@ -1,0 +1,15 @@
+{
+  "$schema": "./sources.schema.json",
+  "officialSources": [
+    {
+      "name": "DILG Full Disclosure Policy Portal",
+      "url": "https://fdpp.dilg.gov.ph/",
+      "description": "Budgets and financial reports that local governments are required to publish."
+    },
+    {
+      "name": "Commission on Audit",
+      "url": "https://www.coa.gov.ph/",
+      "description": "Annual Audit Reports, where these figures come from."
+    }
+  ]
+}

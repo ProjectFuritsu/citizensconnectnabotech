@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Official budget sources",
+  "description": "Links to where residents can read the original reports. Always shown on the Budget Transparency page.",
+  "type": "object",
+  "required": ["officialSources"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "officialSources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "url": { "type": "string", "pattern": "^https?://" },
+          "description": { "description": "One sentence about what's there.", "type": "string" }
+        }
+      }
+    }
+  }
+}

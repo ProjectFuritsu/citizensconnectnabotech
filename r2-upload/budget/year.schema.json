@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "One fiscal year of Panabo City's budget and actual amounts",
+  "description": "From the Commission on Audit's Annual Audit Report: Statement of Comparison of Budget and Actual Amounts (SCBAA). One file per year in src/Data/Budget/years/; the site picks up new files automatically. See README.md.",
+  "type": "object",
+  "required": ["year", "source", "totals", "revenue", "expenditures"],
+  "additionalProperties": false,
+  "definitions": {
+    "amount": {
+      "description": "Pesos as a plain number (no commas or ₱). Negative amounts are written with a minus sign, not parentheses.",
+      "type": "number"
+    },
+    "amounts": {
+      "type": "object",
+      "required": ["original", "final", "actual"],
+      "additionalProperties": false,
+      "properties": {
+        "original": { "description": "Budgeted amount, original (as first approved).", "$ref": "#/definitions/amount" },
+        "final": { "description": "Budgeted amount, final (after supplemental budgets and realignments).", "$ref": "#/definitions/amount" },
+        "actual": { "description": "Actual amount collected or spent.", "$ref": "#/definitions/amount" }
+      }
+    }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "year": { "description": "Fiscal year.", "type": "integer", "minimum": 1990, "maximum": 2100 },
+    "source": { "description": "The document these figures come from. Shown on the page.", "type": "string" },
+    "sourceFile": { "description": "The file they were extracted from, for your records.", "type": "string" },
+    "totals": {
+      "description": "Totals exactly as printed in the report. The site checks that the lines below add up to these and warns in the browser console if they don't.",
+      "type": "object",
+      "required": ["revenue", "currentAppropriations", "totalAppropriations"],
+      "additionalProperties": false,
+      "properties": {
+        "revenue": { "description": "Total Revenue and Receipts.", "$ref": "#/definitions/amounts" },
+        "currentAppropriations": { "description": "Total Current Appropriations: this year's budget.", "$ref": "#/definitions/amounts" },
+        "continuingAppropriations": { "description": "Total Continuing Appropriations: unspent budgets carried over from earlier years.", "$ref": "#/definitions/amounts" },
+        "totalAppropriations": { "description": "Total Appropriations (current + continuing).", "$ref": "#/definitions/amounts" },
+        "surplus": { "description": "Surplus (Deficit) for the current period.", "$ref": "#/definitions/amounts" }
+      }
+    },
+    "revenue": {
+      "description": "Revenue lines, e.g. Local Sources › Tax Revenue › Tax Revenue - Property.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["category", "item", "original", "final", "actual"],
+        "additionalProperties": false,
+        "properties": {
+          "category": { "description": "Local Sources, External Sources, or Receipts from Borrowings.", "type": "string" },
+          "group": { "description": "Optional middle level, e.g. Tax Revenue, Non-Tax Revenue.", "type": "string" },
+          "item": { "type": "string" },
+          "original": { "$ref": "#/definitions/amount" },
+          "final": { "$ref": "#/definitions/amount" },
+          "actual": { "$ref": "#/definitions/amount" }
+        }
+      }
+    },
+    "expenditures": {
+      "description": "Spending lines by sector, e.g. General Public Services › Personnel Services.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["appropriation", "sector", "item", "original", "final", "actual"],
+        "additionalProperties": false,
+        "properties": {
+          "appropriation": {
+            "description": "\"current\": this year's budget. \"continuing\": budgets carried over from earlier years.",
+            "type": "string",
+            "enum": ["current", "continuing"]
+          },
+          "sector": { "description": "e.g. General Public Services, Education, Economic Services, Other Purposes.", "type": "string" },
+          "group": { "description": "Optional middle level under Other Purposes, e.g. Debt Service, LDRRMF, 20% Development Fund, Others.", "type": "string" },
+          "item": { "description": "e.g. Personnel Services, Maintenance and Other Operating Expenses, Capital Outlay, Aid to Barangays.", "type": "string" },
+          "original": { "$ref": "#/definitions/amount" },
+          "final": { "$ref": "#/definitions/amount" },
+          "actual": { "$ref": "#/definitions/amount" }
+        }
+      }
+    }
+  }
+}
