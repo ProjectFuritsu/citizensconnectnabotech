@@ -2,12 +2,15 @@
 
 This folder is the **master copy of the `budget-data` R2 bucket**. The Budget Transparency page (`/budget`) loads everything from the bucket; nothing here is bundled into the website. Keep this folder and the bucket identical: edit here, commit, then upload what changed.
 
+The bucket's top level matches this folder's top level (there's no `r2-upload/` or `budget/` folder inside the bucket):
+
 ```
-budget/index.json            ← which years exist; the page reads this first
-budget/sources.json          ← official source links, always shown on the page
-budget/years/2021.json …     ← one file per fiscal year
-budget/*.schema.json         ← editor help and checks (uploading them is optional)
-aar/2021/… aar/2024/…        ← the original financial statements ("Download the original report")
+index.json               ← which years exist; the page reads this first
+sources.json             ← official source links, always shown on the page
+years/2021.json …        ← one file per fiscal year
+*.schema.json            ← editor help and checks (uploading them is optional)
+aar/2021/… aar/2024/…    ← the original financial statements ("Download the original report")
+README.md                ← this file (not needed in the bucket)
 ```
 
 ## How the site reaches the bucket
@@ -49,8 +52,8 @@ Add any other address the site runs on, such as a custom domain for the site, to
 **Updating the bucket:**
 
 1. Edit the files here and commit.
-2. Upload the changed files to `budget-data`, keeping the paths (`budget/years/2021.json`, not `2021.json`).
-3. Open `https://citizensconnectnabotech.vercel.app/data/budget/index.json` to check. It goes through Vercel, so it works on any network.
+2. Upload the changed files to `budget-data`, keeping the paths (`years/2021.json`, not `2021.json`).
+3. Open `https://citizensconnectnabotech.vercel.app/data/index.json` to check. It goes through Vercel, so it works on any network.
 
 **How the page behaves:**
 
@@ -101,10 +104,10 @@ Empty template rows from the report (all zeros) are left out.
 
 ## Adding a new year
 
-1. **Create the year file:** from the new Annual Audit Report's SCBAA, create `budget/years/2025.json` in the format above. The extractor used for 2021–2024 can do this and runs the same checks; ask for it to be added to the project as a script.
+1. **Create the year file:** from the new Annual Audit Report's SCBAA, create `years/2025.json` in the format above. The extractor used for 2021–2024 can do this and runs the same checks; ask for it to be added to the project as a script.
 2. **Add the original report:** put the financial statements file in `aar/2025/`.
-3. **List the year:** add it to the top of `years` in `budget/index.json`:
+3. **List the year:** add it to the top of `years` in `index.json`:
    ```json
-   { "year": 2025, "data": "budget/years/2025.json", "sourceDocument": "aar/2025/<file name>" }
+   { "year": 2025, "data": "years/2025.json", "sourceDocument": "aar/2025/<file name>" }
    ```
 4. **Publish:** commit, upload the new and changed files to the bucket, and open `/budget`. The new year appears as the first chip.

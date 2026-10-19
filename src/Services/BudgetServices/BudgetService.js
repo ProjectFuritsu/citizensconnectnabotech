@@ -1,9 +1,9 @@
 import { r2Url } from "../../Config/links";
 
 // Budget data lives in a Cloudflare R2 bucket ("data.r2Url" in
-// src/Config/site.config.json): budget/index.json lists the years, and each
-// year is budget/years/<year>.json. The bucket's master copy is the r2-upload/
-// folder in the project root (see r2-upload/README.md).
+// src/Config/site.config.json): index.json at the bucket root lists the years,
+// and each year is years/<year>.json. The bucket's master copy is the
+// r2-upload/ folder in the project root (see r2-upload/README.md).
 
 const round = (n) => Math.round(n * 100) / 100;
 const sumBy = (items, key) => round(items.reduce((t, i) => t + (i[key] ?? 0), 0));
@@ -110,9 +110,9 @@ const fetchJson = async (path) => {
 };
 
 async function loadFromR2() {
-  const index = await fetchJson("budget/index.json");
+  const index = await fetchJson("index.json");
   const [sources, ...years] = await Promise.all([
-    fetchJson(index.sources ?? "budget/sources.json"),
+    fetchJson(index.sources ?? "sources.json"),
     ...index.years.map(async (entry) =>
       prepareYear(
         await fetchJson(entry.data),
