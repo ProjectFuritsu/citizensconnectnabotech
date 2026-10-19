@@ -71,14 +71,7 @@ Sitemap: ${site.url}/sitemap.xml
   }
 }
 
-// Budget data: the site loads it from /data, which vercel.json forwards to the
-// Cloudflare R2 bucket. Locally, /data is forwarded to the live site, so
-// `npm run dev` shows what's in the bucket, even where r2.dev is blocked.
-const dataProxy = { '/data': { target: site.url, changeOrigin: true } }
-
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [tailwindcss(), react(), seo()],
-  server: { proxy: dataProxy },
-  preview: { proxy: dataProxy },
 })

@@ -1,9 +1,8 @@
-import { r2Url } from "../../Config/links";
-
-// Budget data lives in a Cloudflare R2 bucket ("data.r2Url" in
-// src/Config/site.config.json): index.json at the bucket root lists the years,
-// and each year is years/<year>.json. The bucket's master copy is the
-// r2-upload/ folder in the project root (see r2-upload/README.md).
+// Budget data: one JSON file per fiscal year in src/Data/Budget/years/ (see
+// src/Data/Budget/README.md). The files are split out of the main bundle and
+// only loaded when the Budget page opens.
+const yearFiles = import.meta.glob("../../Data/Budget/years/*.json", { import: "default" });
+const loadSources = () => import("../../Data/Budget/sources.json").then((m) => m.default);
 
 const round = (n) => Math.round(n * 100) / 100;
 const sumBy = (items, key) => round(items.reduce((t, i) => t + (i[key] ?? 0), 0));
@@ -48,7 +47,7 @@ const groupLines = (lines, field) => {
     .sort((a, b) => b.final - a.final);
 };
 
-function prepareYear(raw, sourceDocumentUrl = null) {
+function prepareYear(raw) {
   const current = raw.expenditures.filter((e) => e.appropriation === "current");
   const continuing = raw.expenditures.filter((e) => e.appropriation === "continuing");
   const t = raw.totals;
@@ -78,7 +77,7 @@ function prepareYear(raw, sourceDocumentUrl = null) {
   return {
     year: raw.year,
     source: raw.source,
-    sourceDocumentUrl, // the original report on R2, when available
+    sourceDocumentUrl: raw.sourceDocument ?? null, // the original report, when available
     raw, // as stored, for the CSV download
     budget: withStats(t.currentAppropriations), // this year's budget
     revenue: { ...t.revenue, collected: ratio(t.revenue.actual, t.revenue.final) },
@@ -97,30 +96,12 @@ function prepareYear(raw, sourceDocumentUrl = null) {
   };
 }
 
-// --- Loading ---
-
-const fetchJson = async (path) => {
-  const response = await fetch(`${r2Url}/${path}`);
-  if (!response.ok) throw new Error(`${path} returned HTTP ${response.status}`);
-  try {
-    return await response.json();
-  } catch {
-    throw new Error(`${path} isn't valid JSON (check the file and data.r2Url)`);
-  }
-};
-
-async function loadFromR2() {
-  const index = await fetchJson("index.json");
-  const [sources, ...years] = await Promise.all([
-    fetchJson(index.sources ?? "sources.json"),
-    ...index.years.map(async (entry) =>
-      prepareYear(
-        await fetchJson(entry.data),
-        entry.sourceDocument ? `${r2Url}/${entry.sourceDocument}` : null,
-      ),
-    ),
+async function loadData() {
+  const [sources, ...rawYears] = await Promise.all([
+    loadSources(),
+    ...Object.values(yearFiles).map((load) => load()),
   ]);
-  return { years, sources: sources.officialSources, updated: index.updated ?? null };
+  return { years: rawYears.map(prepareYear), sources: sources.officialSources };
 }
 
 // One CSV with every line of a year, as in the report
@@ -141,12 +122,11 @@ const toCsv = (raw) => {
 };
 
 // Wraps loaded data with the lookups the page uses
-const toBudget = ({ years, sources, updated }) => {
+const toBudget = ({ years, sources }) => {
   const sorted = [...years].sort((a, b) => b.year - a.year); // newest first
   return {
     years: sorted,
     sources,
-    updated,
     getYear: (year) => sorted.find((y) => y.year === year) ?? null,
     // The closest earlier year, for "vs last year" comparisons
     getPreviousYear: (year) => sorted.find((y) => y.year < year) ?? null,
@@ -161,12 +141,8 @@ const toBudget = ({ years, sources, updated }) => {
 let pending = null;
 
 export const BudgetService = {
-  // False until data.r2Url is set; the page then shows a "coming soon" note
-  configured: Boolean(r2Url),
-
   load: () => {
-    if (!r2Url) return Promise.reject(new Error("data.r2Url is not set"));
-    pending ??= loadFromR2().then(toBudget).catch((error) => {
+    pending ??= loadData().then(toBudget).catch((error) => {
       pending = null;
       throw error;
     });

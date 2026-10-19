@@ -20,9 +20,8 @@ import { breadcrumbSchema } from "../../SEO/schema";
 import { DivergingBars, DonutChart, Meter, PairedBars, YearsChart } from "./components/BudgetCharts";
 import BudgetTable from "./components/BudgetTable";
 
-// Data: loaded from Cloudflare R2 (data.r2Url in src/Config/site.config.json),
-// from the Commission on Audit's Annual Audit Reports. The bucket's master
-// copy is the r2-upload/ folder (see r2-upload/README.md).
+// Data: src/Data/Budget (one JSON file per year), from the Commission on
+// Audit's Annual Audit Reports. See src/Data/Budget/README.md.
 const VIEWS = [
   { id: "overview", label: "Overview" },
   { id: "spending", label: "Spending lines" },
@@ -238,7 +237,7 @@ export default function BudgetPage() {
           </>
         )}
 
-        {(status === "unconfigured" || (status === "ready" && !year)) && (
+        {status === "ready" && !year && (
           <div className="mt-10 rounded-card border border-dashed border-line bg-surface px-6 py-12 text-center">
             <PiggyBank size={32} className="mx-auto text-subtle" />
             <h2 className="mt-3 text-lg font-semibold">No budget figures posted yet</h2>

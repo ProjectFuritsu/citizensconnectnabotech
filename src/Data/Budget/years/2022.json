@@ -3,6 +3,7 @@
   "year": 2022,
   "source": "2022 Annual Audit Report (Commission on Audit), Statement of Comparison of Budget and Actual Amounts",
   "sourceFile": "09-PanaboCity2022_Part1-Financial_Statements.xlsx",
+  "sourceDocument": "/reports/budget/09-PanaboCity2022_Part1-Financial_Statements.xlsx",
   "totals": {
     "revenue": {"original": 2137207487.47, "final": 2655171672.33, "actual": 2702195642.23},
     "currentAppropriations": {"original": 1294168408.38, "final": 1830252244.03, "actual": 1211487737.65},

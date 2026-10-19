@@ -26,6 +26,11 @@
     "year": { "description": "Fiscal year.", "type": "integer", "minimum": 1990, "maximum": 2100 },
     "source": { "description": "The document these figures come from. Shown on the page.", "type": "string" },
     "sourceFile": { "description": "The file they were extracted from, for your records.", "type": "string" },
+    "sourceDocument": {
+      "description": "Link for the page's \"Download the original report\" button: a file in public/, written from the site root, e.g. \"/reports/budget/09-PanaboCity2024_Part1-FS.pdf\". Leave it out to hide the button.",
+      "type": "string",
+      "pattern": "^(/|https?://)"
+    },
     "totals": {
       "description": "Totals exactly as printed in the report. The site checks that the lines below add up to these and warns in the browser console if they don't.",
       "type": "object",

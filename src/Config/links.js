@@ -6,9 +6,6 @@ import guideData from "../Data/InfoLib/InfoData.json";
 
 export const site = config.site;
 
-// Public Cloudflare R2 bucket URL ("" = not connected yet)
-export const r2Url = (config.data?.r2Url ?? "").replace(/\/+$/, "");
-
 const visible = (item) => !item.hidden;
 
 // One link shape for the navbar and footer: { title, path, external, disabled }

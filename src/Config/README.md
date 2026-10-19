@@ -85,11 +85,7 @@ Write numbers the way people should read them; spaces are removed automatically 
 - **`description`:** optional; shown under the number.
 - **`"hidden": true`:** hides a number that's temporarily out of service.
 
-The pages' own data (outages, barangay directory, garbage schedule) lives in `src/Data/EverydayInfo/`; its README explains each file.
-
-**Budget data (Cloudflare R2):** `data.r2Url` is `"/data"`, this site's own path. `vercel.json` forwards `/data` to the R2 bucket, so the Budget page works even for visitors whose internet provider blocks `r2.dev`. Locally, `npm run dev` forwards `/data` to the live site. While `data.r2Url` is `""`, the page says no figures are posted yet. See `r2-upload/README.md`.
-
-Never put R2 access keys in this file: it's part of the public website.
+The pages' own data (outages, barangay directory, garbage schedule) lives in `src/Data/EverydayInfo/`; its README explains each file. The Budget page's figures live in `src/Data/Budget/`.
 
 **Move to a custom domain:** change `site.url` (no trailing slash). Page links, link previews, the sitemap and robots.txt all follow.
 

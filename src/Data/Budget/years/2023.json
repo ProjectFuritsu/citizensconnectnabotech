@@ -3,6 +3,7 @@
   "year": 2023,
   "source": "2023 Annual Audit Report (Commission on Audit), Statement of Comparison of Budget and Actual Amounts",
   "sourceFile": "09-PanaboCity2023_Part1-FS.xlsx",
+  "sourceDocument": "/reports/budget/09-PanaboCity2023_Part1-FS.xlsx",
   "totals": {
     "revenue": {"original": 2284410751.51, "final": 2569666800.77, "actual": 2568572915.4},
     "currentAppropriations": {"original": 1488790026.81, "final": 1856173663.77, "actual": 1280058362.93},

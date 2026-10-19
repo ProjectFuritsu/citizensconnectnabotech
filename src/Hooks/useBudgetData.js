@@ -1,19 +1,13 @@
 import { useEffect, useState } from "react";
 import { BudgetService } from "../Services/BudgetServices/BudgetService";
 
-// Loads the budget data from Cloudflare R2.
-// status: "unconfigured" (no data.r2Url yet) | "loading" | "ready" | "error";
-// retry() tries again after an error.
+// Loads the budget data files (src/Data/Budget).
+// status: "loading" | "ready" | "error"; retry() tries again after an error.
 export function useBudgetData() {
-  const [state, setState] = useState({
-    status: BudgetService.configured ? "loading" : "unconfigured",
-    budget: null,
-    error: null,
-  });
+  const [state, setState] = useState({ status: "loading", budget: null, error: null });
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
-    if (!BudgetService.configured) return;
     let cancelled = false;
     BudgetService.load()
       .then((budget) => {

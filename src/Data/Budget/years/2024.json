@@ -3,6 +3,7 @@
   "year": 2024,
   "source": "2024 Annual Audit Report (Commission on Audit), Statement of Comparison of Budget and Actual Amounts",
   "sourceFile": "09-PanaboCity2024_Part1-FS.pdf (pages 5-7)",
+  "sourceDocument": "/reports/budget/09-PanaboCity2024_Part1-FS.pdf",
   "totals": {
     "revenue": {"original": 2264532607.76, "final": 2606721284.87, "actual": 2582763976.54},
     "currentAppropriations": {"original": 1662052496.31, "final": 2013398477.15, "actual": 1362542542.19},

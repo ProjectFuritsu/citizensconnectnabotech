@@ -51,18 +51,6 @@
       "type": "array",
       "items": { "$ref": "#/definitions/resource" }
     },
-    "data": {
-      "description": "Where data files are loaded from.",
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "r2Url": {
-          "description": "Where the browser loads the R2 bucket's files from, without a trailing slash. \"/data\" (recommended): this site's own path, which vercel.json forwards to the bucket, so it works even for visitors whose internet provider blocks r2.dev. Or the bucket's own public URL (a custom domain, or https://pub-….r2.dev), which the browser then fetches directly and which needs a CORS policy. Never the S3 API URL (….r2.cloudflarestorage.com), and never access keys: this file is public. While it's \"\", the page says no figures are posted yet.",
-          "type": "string",
-          "pattern": "^(https?://[^\\s]+[^/\\s]|/[^\\s]*[^/\\s])?$"
-        }
-      }
-    },
     "popularGuides": {
       "description": "\"Popular\" shortcuts under the home page search bar.",
       "type": "array",
