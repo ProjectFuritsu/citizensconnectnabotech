@@ -1,4 +1,5 @@
-// Data display rules from DESIGN.md, shared by every page that shows guides
+// Data display rules from DESIGN.md, shared by every page: fees, dates,
+// pesos, percentages, counts, requirements and chart bar lengths
 
 // Icon for each primary guide category (lucide-react export names)
 export const categoryIcons = {
@@ -23,29 +24,6 @@ export const formatDate = (date) =>
     year: "numeric",
     timeZone: "UTC",
   });
-
-// Start/end of an outage in Philippine time, whatever the visitor's timezone:
-// same day  -> "Sat, Oct 10 · 8:00 AM – 5:00 PM"
-// multi-day -> "Sat, Oct 10, 8:00 AM – Sun, Oct 11, 5:00 PM"
-export const formatTimeRange = (start, end) => {
-  const zone = { timeZone: "Asia/Manila" };
-  const day = (d) =>
-    new Date(d).toLocaleDateString("en-US", {
-      ...zone,
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-    });
-  const time = (d) =>
-    new Date(d).toLocaleTimeString("en-US", {
-      ...zone,
-      hour: "numeric",
-      minute: "2-digit",
-    });
-  return day(start) === day(end)
-    ? `${day(start)} · ${time(start)} – ${time(end)}`
-    : `${day(start)}, ${time(start)} – ${day(end)}, ${time(end)}`;
-};
 
 // Pesos: exact for tables ("₱2,850,123,456"), compact for headline
 // figures and chart axes ("₱2.85B", "₱415.25M")

@@ -91,7 +91,7 @@ Only `label`, `url` and `icon` are required. `name`, `title` and `description` a
 **Add a page to the navbar:** the page must already exist as a route in `src/Routes/AppRoute.jsx`. Then add it to `pages`:
 
 ```json
-{ "title": "Get Involved", "path": "/get-involved", "navbar": true, "footer": true }
+{ "title": "About", "path": "/about", "navbar": true, "footer": true }
 ```
 
 **Hide a page for now:** add `"hidden": true` to its entry; remove the flag to bring it back.
