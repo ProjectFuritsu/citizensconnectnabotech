@@ -68,9 +68,14 @@ export const formatPesoCompact = (amount) =>
 export const formatPercent = (fraction, digits = 1) =>
   `${(fraction * 100).toFixed(digits)}%`;
 
-// pluralize(1, "guide") -> "1 guide", pluralize(9, "guide") -> "9 guides"
+// pluralize(1, "guide") -> "1 guide", pluralize(9, "guide") -> "9 guides",
+// pluralize(2285, "notice") -> "2,285 notices"
 export const pluralize = (count, word) =>
-  `${count} ${count === 1 ? word : `${word}s`}`;
+  `${count.toLocaleString("en-US")} ${count === 1 ? word : `${word}s`}`;
+
+// A share of a total, whole percent; a small non-zero share reads "<1%", not "0%"
+export const formatShare = (fraction) =>
+  fraction > 0 && fraction < 0.005 ? "<1%" : formatPercent(fraction, 0);
 
 // Splits a trailing copy count off a requirement so it can be shown apart:
 // "Recent CEDULA - (2 photocopies)" -> { name: "Recent CEDULA", copies: "2 photocopies" }
@@ -81,3 +86,7 @@ export const parseRequirement = (text) => {
     ? { name: match[1], copies: match[2] }
     : { name: text, copies: null };
 };
+
+// Bar length as a share of the largest value; a sliver stays visible for tiny values
+export const barWidth = (value, max) =>
+  value > 0 ? `${Math.max((value / max) * 100, 0.75)}%` : "0%";

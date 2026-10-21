@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { site } from "../Config/links";
+import { site } from "../Services/SiteService";
 
 // Updates a <meta>/<link> that index.html already has, or adds it if missing
 function setHeadTag(selector, create, attr, value) {

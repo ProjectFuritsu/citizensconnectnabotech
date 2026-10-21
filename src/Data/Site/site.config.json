@@ -1,0 +1,161 @@
+{
+  "$schema": "./site.config.schema.json",
+  "site": {
+    "url": "https://citizensconnectnabotech.vercel.app",
+    "name": "Panabo City Citizen's Portal",
+    "title": "Panabo City Citizen's Portal – Requirements, Fees & Steps for City Services",
+    "description": "Step-by-step guides to Panabo City services: requirements, fees and processing times for civil registry, health, legal, senior citizen, property and scholarship services.",
+    "publisher": "NaboTech.org"
+  },
+  "pages": [
+    { "title": "Home", "path": "/", "navbar": true, "footer": true },
+    {
+      "title": "Guide Hub",
+      "path": "/info",
+      "icon": "BookOpen",
+      "group": "Services",
+      "description": "Requirements, fees and steps for city services",
+      "navbar": true,
+      "footer": true
+    },
+    {
+      "title": "Budget",
+      "path": "/budget",
+      "icon": "PiggyBank",
+      "group": "Transparency",
+      "description": "Where the city's money came from and where it went",
+      "navbar": true,
+      "footer": true
+    },
+    {
+      "title": "Procurement",
+      "path": "/procurement",
+      "icon": "Gavel",
+      "group": "Transparency",
+      "description": "What offices put up for bidding, and who won the contracts",
+      "navbar": true,
+      "footer": true
+    },
+    { "title": "Emergency Hotlines", "path": "/hotlines", "navbar": true, "footer": true }
+  ],
+  "tools": [
+    {
+      "name": "NaboMap",
+      "label": "City Map",
+      "title": "Explore the city",
+      "description": "Food spots, cafés, pharmacies and tourist spots on an interactive map.",
+      "url": "https://nabomap.vercel.app",
+      "icon": "MapPinned",
+      "group": "Services",
+      "navbar": true,
+      "footer": true
+    },
+    {
+      "name": "Evently",
+      "label": "City Events",
+      "title": "City events",
+      "description": "Community activities, festivals and official city gatherings.",
+      "url": "https://evently-panabo.vercel.app/",
+      "icon": "CalendarDays",
+      "group": "Services",
+      "navbar": true,
+      "footer": true
+    },
+    {
+      "name": "PanaPresyo",
+      "label": "Market Prices",
+      "title": "Market prices",
+      "description": "Recent prices of goods in local markets, before you shop.",
+      "url": "https://panapresyo.vercel.app",
+      "icon": "ShoppingBasket",
+      "group": "Services",
+      "navbar": true,
+      "footer": true,
+      "disabled": true
+    },
+    {
+      "name": "Fare Checker",
+      "label": "Fare Checker",
+      "title": "Fare Checker",
+      "description": "Check the latest fares for public transportation in Panabo City.",
+      "url": "https://panabofarechecker.vercel.app/",
+      "icon": "Bus",
+      "group": "Services",
+      "navbar": true,
+      "footer": true
+    },
+    {
+      "name": "Citizens Project Directory",
+      "label": "Citizens Project Directory",
+      "title": "Citizens Project Directory",
+      "description": "A directory of citizen projects and initiatives in Panabo City.",
+      "url": "https://citizensprojectdirectory.vercel.app",
+      "icon": "Building2",
+      "group": "Services",
+      "navbar": true,
+      "footer": true,
+      "disabled": true
+    },
+    {
+      "name": "Citizens Volunteers Hub",
+      "label": "Citizens Volunteers Hub",
+      "title": "Citizens Volunteers Hub",
+      "description": "A hub where citizen can find volunteer opportunities in Panabo City.",
+      "url": "https://citizensvolunteershub.vercel.app",
+      "icon": "HandHelping",
+      "group": "Services",
+      "navbar": true,
+      "footer": true,
+      "disabled": true
+    },
+    {
+      "name": "Disaster Preparedness Guide",
+      "label": "Disaster Preparedness Guide",
+      "title": "Disaster Preparedness Guide",
+      "description": "Information and resources for disaster preparedness in Panabo City.",
+      "url": "https://disasterpreparednessguide.vercel.app",
+      "icon": "House",
+      "group": "Services",
+      "navbar": true,
+      "footer": true,
+      "disabled": true
+    },
+    {
+      "name": "Open Data Hub",
+      "label": "Open Data Hub",
+      "title": "Open Data Hub",
+      "description": "Access to open data and resources for Panabo City.",
+      "url": "https://opendatahub.vercel.app",
+      "icon": "Database",
+      "group": "Services",
+      "navbar": true,
+      "footer": true,
+      "disabled": true
+    },
+    {
+      "name": "More Tools",
+      "label": "More Tools",
+      "title": "More Tools",
+      "description": "Additional tools and resources for residents of Panabo City.",
+      "url": "https://moretools.vercel.app",
+      "icon": "Wrench",
+      "group": "Services",
+      "navbar": true,
+      "footer": true,
+      "disabled": true
+    }
+  ],
+  "resources": [
+    {
+      "title": "Panabo City Official Website",
+      "url": "https://panabocity.gov.ph/",
+      "footer": true
+    }
+  ],
+  "popularGuides": [
+    { "label": "Marriage License", "guideId": "PANABO-MARRIAGE-LICENSE-2026" },
+    { "label": "Senior Citizen ID", "guideId": "PANABO-SENIOR-CITIZEN-ID-2026" },
+    { "label": "Scholarship", "guideId": "PANABO-SCHOLARSHIP-PROGRAM-2026" },
+    { "label": "Medical Certificate", "guideId": "PANABO-MEDICAL-CERTIFICATE-2026" }
+  ]
+}

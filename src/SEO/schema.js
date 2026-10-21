@@ -1,5 +1,5 @@
 // schema.org structured data for <JsonLd data={...} />
-import { site } from "../Config/links";
+import { site } from "../Services/SiteService";
 
 const PANABO = {
   "@type": "City",

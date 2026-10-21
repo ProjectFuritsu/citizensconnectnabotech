@@ -1,83 +1,45 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { ChevronRight, Phone } from "lucide-react";
-import Custom_DynamicIcon from "../../Widgets/custom_DynamicIcon";
-import { hotlineGroups, hotlinesUpdated } from "../../Config/links";
+import { Phone } from "lucide-react";
+import Icon from "../../Components/Icon";
+import { Container, Page, PageHeader } from "../../Components/Page";
+import { Section } from "../../Components/Section";
+import { hotlineGroups, hotlinesUpdated } from "../../Services/SiteService";
 import { formatDate } from "../../Theme/display";
 import { usePageMeta } from "../../SEO/usePageMeta";
-import JsonLd from "../../SEO/JsonLd";
-import { breadcrumbSchema } from "../../SEO/schema";
 
 // Kept deliberately light so it loads fast: numbers come from
-// src/Config/hotlines.config.json, grouped by their "category"
+// src/Data/Site/hotlines.json, grouped by their "category"
 export default function HotlinesPage() {
   usePageMeta({
     title: "Emergency Hotlines",
-    description:
-      "Police, fire, rescue and other emergency numbers for Panabo City. Tap a number to call.",
+    description: "Police, fire, rescue and other emergency numbers for Panabo City. Tap a number to call.",
   });
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
-    <div className="bg-canvas font-sans text-ink pb-20 md:pb-24">
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Emergency Hotlines", path: "/hotlines" },
-        ])}
+    <Page>
+      <PageHeader
+        title="Emergency Hotlines"
+        path="/hotlines"
+        intro="Tap a number to call. Save the ones you need before an emergency happens."
+        note={hotlinesUpdated && `Numbers last checked ${formatDate(hotlinesUpdated)}`}
       />
 
-      {/* Header */}
-      <section className="bg-surface border-b border-line">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-10 md:py-14">
-          <nav
-            aria-label="Breadcrumb"
-            className="flex items-center gap-1.5 text-sm text-muted"
-          >
-            <Link to="/" className="hover:text-ink transition-colors">
-              Home
-            </Link>
-            <ChevronRight size={14} className="text-faint" />
-            <span aria-current="page" className="font-medium text-ink">
-              Emergency Hotlines
-            </span>
-          </nav>
-
-          <h1 className="mt-6 text-4xl md:text-5xl font-bold tracking-tight">
-            Emergency Hotlines
-          </h1>
-          <p className="mt-4 text-lg text-muted max-w-2xl text-pretty">
-            Tap a number to call. Save the ones you need before an emergency
-            happens.
-          </p>
-          {hotlinesUpdated && (
-            <p className="mt-2 text-sm text-subtle">
-              Numbers last checked {formatDate(hotlinesUpdated)}
-            </p>
-          )}
-        </div>
-      </section>
-
-      {/* Groups */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <Container>
         {hotlineGroups.map((group) => (
-          <section key={group.label} className="pt-10 md:pt-12">
-            <h2 className="flex items-center gap-2 text-xl font-semibold tracking-tight">
-              <Custom_DynamicIcon
+          <Section
+            key={group.label}
+            title={group.label}
+            icon={
+              <Icon
                 name={group.icon}
                 className={`h-5 w-5 ${group.id === "emergency" ? "text-danger" : "text-subtle"}`}
               />
-              {group.label}
-            </h2>
-
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            }
+          >
+            <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {group.items.map((hotline) => (
                 <li key={hotline.name}>
                   <a
-                    href={`tel:${hotline.number.replace(/\s/g, "")}`}
+                    href={hotline.tel}
                     className="group flex h-full items-center justify-between gap-4 rounded-card border border-line bg-surface p-5 hover:border-danger hover:bg-danger-soft transition-colors"
                   >
                     <div className="min-w-0">
@@ -85,11 +47,7 @@ export default function HotlinesPage() {
                       <p className="mt-1 text-2xl font-semibold tabular-nums tracking-tight group-hover:text-danger-strong transition-colors">
                         {hotline.number}
                       </p>
-                      {hotline.description && (
-                        <p className="mt-1 text-sm text-muted">
-                          {hotline.description}
-                        </p>
-                      )}
+                      {hotline.description && <p className="mt-1 text-sm text-muted">{hotline.description}</p>}
                     </div>
                     <span
                       aria-hidden="true"
@@ -101,9 +59,9 @@ export default function HotlinesPage() {
                 </li>
               ))}
             </ul>
-          </section>
+          </Section>
         ))}
-      </div>
-    </div>
+      </Container>
+    </Page>
   );
 }

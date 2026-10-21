@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import { site, sitemapPaths } from './src/Config/links.js'
+import { site, sitemapPaths } from './src/Services/SiteService.js'
 
 const escapeHtml = (text) =>
   text
@@ -12,13 +12,13 @@ const escapeHtml = (text) =>
     .replace(/"/g, '&quot;')
 
 // SEO: fills the %SITE_URL%-style placeholders in index.html from the "site"
-// section of src/Config/site.config.json, and writes sitemap.xml (visible
+// section of src/Data/Site/site.config.json, and writes sitemap.xml (visible
 // pages from the config plus every guide) and robots.txt. Both are also
 // served by the dev server.
 function seo() {
   const files = () => {
     const guides = JSON.parse(
-      readFileSync(new URL('./src/Data/InfoLib/InfoData.json', import.meta.url), 'utf8'),
+      readFileSync(new URL('./src/Data/Guides/guides.json', import.meta.url), 'utf8'),
     ).data
     const newest = guides.reduce((latest, g) => (g.date > latest ? g.date : latest), '')
     const urls = [

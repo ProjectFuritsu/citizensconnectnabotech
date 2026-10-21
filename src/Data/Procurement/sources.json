@@ -1,0 +1,40 @@
+{
+  "officialSources": [
+    {
+      "name": "PhilGEPS Open Data",
+      "url": "https://philgeps.gov.ph/CmsHomePages/open-data",
+      "description": "Where the quarterly procurement files on this page come from. Download them to check the figures yourself."
+    },
+    {
+      "name": "PhilGEPS",
+      "url": "https://www.philgeps.gov.ph/",
+      "description": "Philippine Government Electronic Procurement System: the government's official website for bid notices and contract awards."
+    }
+  ],
+  "lawSources": [
+    {
+      "name": "RA 9184 and its 2016 Revised IRR",
+      "short": "RA 9184 rules",
+      "url": "https://www.gppb.gov.ph/wp-content/uploads/2024/07/Updated-2016-Revised-IRR-of-RA-No.-9184-as-of-19-July-2024.pdf",
+      "description": "The procurement law for the 2021–2024 notices (GPPB, updated as of 19 July 2024). The approved budget as the ceiling for bids: Sec. 31.1. Procurement methods: Sec. 48–53."
+    },
+    {
+      "name": "IRR of RA 12009, the New Government Procurement Act",
+      "short": "RA 12009 rules",
+      "url": "https://www.officialgazette.gov.ph/downloads/2025/02feb/20250210-IRR-RA-12009-FRM.pdf",
+      "description": "The procurement law in effect since 13 August 2024, with its rules effective 25 February 2025 (Official Gazette)."
+    },
+    {
+      "name": "Procurement methods under RA 12009",
+      "short": "GPPB explainer",
+      "url": "https://www.gppb.gov.ph/fit-for-purpose-procurement-modalities-under-ra-12009/",
+      "description": "Plain-language explainer from the Government Procurement Policy Board: the eleven methods, and how they differ from RA 9184."
+    },
+    {
+      "name": "Small value procurement under RA 12009",
+      "short": "GPPB explainer on small value procurement",
+      "url": "https://www.gppb.gov.ph/enhancing-procurement-efficiency-with-small-value-procurement-under-ra-12009/",
+      "description": "At least three price quotes are requested; one quote can be enough to proceed."
+    }
+  ]
+}

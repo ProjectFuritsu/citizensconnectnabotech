@@ -1,16 +1,34 @@
-# React + Vite
+# Panabo City Citizen's Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Public information about Panabo City, made easy to find: step-by-step guides to city services, emergency hotlines, and transparency dashboards for the city budget and government procurement. Live at [citizensconnectnabotech.vercel.app](https://citizensconnectnabotech.vercel.app). Made by NaboTech.org.
 
-Currently, two official plugins are available:
+Built with React 19, Vite 7, Tailwind CSS 4 and React Router 7; deployed on Vercel.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Run it
 
-## React Compiler
+```bash
+npm install --legacy-peer-deps
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+`--legacy-peer-deps` is needed until `eslint-plugin-react-hooks` supports ESLint 10 (see [TODO.md](TODO.md)). Other commands: `npm run lint`, `npm run build`, `npm run preview`.
 
-## Expanding the ESLint configuration
+## Where things are
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+├── Data/         everything the site shows: settings, content, original documents
+├── Pages/        one folder per page; page-only parts in its components/
+├── Components/   shared UI: page layout, sections, stats, controls, states, tables, charts
+├── Services/     reads and prepares the data (one per data folder) + shared helpers
+├── Hooks/        shared React hooks (year data, URL state, sorting, paging)
+├── Routes/       the list of pages
+├── SEO/          page titles, link previews, structured data
+└── Theme/        design tokens, display helpers, logo, DESIGN.md
+scripts/          data pipelines (procurement)
+public/           icons and the share image
+```
+
+- **To change content or links,** edit `src/Data/`. No code change is needed; [src/Data/README.md](src/Data/README.md) explains each folder and its source.
+- **To change how things look,** read [src/Theme/DESIGN.md](src/Theme/DESIGN.md) and reuse `src/Components/`.
+- **For open work, and which file to edit for common changes,** see [TODO.md](TODO.md).

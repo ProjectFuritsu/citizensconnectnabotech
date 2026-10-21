@@ -1,0 +1,453 @@
+{
+  "$comment": "COA Annual Audit Reports on the City Government of Panabo. Files in src/Data/Audit/reports/<year>/; each file path is relative to that folder. See src/Data/Audit/README.md.",
+  "reports": [
+    {
+      "year": 2021,
+      "title": "2021 Annual Audit Report on the City Government of Panabo",
+      "files": [
+        {
+          "label": "Cover",
+          "file": "2021/01-PanaboCity2021_Cover.docx",
+          "format": "DOCX",
+          "sizeKB": 39,
+          "originalName": "01-PanaboCity2021_Cover.docx",
+          "sha256": "0d7d0e17b9bf208d0d1c79505e1a014354ea8d4c62e17bc6a6a819991a16524a"
+        },
+        {
+          "label": "Transmittal letter",
+          "file": "2021/02-PanaboCity2021_Transmittal_Letters.pdf",
+          "format": "PDF",
+          "sizeKB": 2771,
+          "originalName": "02-PanaboCity2021_Transmittal_Letters.pdf",
+          "sha256": "ba88a44bf6a856017afa8b5181008310d8b4c803b763dd5093d82c14c46c9f81"
+        },
+        {
+          "label": "Executive summary",
+          "file": "2021/03-PanaboCity2021_Executive_Summary.docx",
+          "format": "DOCX",
+          "sizeKB": 42,
+          "originalName": "03-PanaboCity2021_Executive_Summary.docx",
+          "sha256": "3d4a1225d4de2c3fee23729ca7aa4c143dccf3585d0fab1e73ecee470a1c5555"
+        },
+        {
+          "label": "Table of contents",
+          "file": "2021/04-PanaboCity2021_Table_of_Contents.docx",
+          "format": "DOCX",
+          "sizeKB": 20,
+          "originalName": "04-PanaboCity2021_Table_of_Contents.docx",
+          "sha256": "c73d64fc5874dd9fd10b392d39ca03cbc0778f55f14acd068cd17c47b3c322d4"
+        },
+        {
+          "label": "Flyleaves",
+          "file": "2021/05-PanaboCity2021_Flyleaves.docx",
+          "format": "DOCX",
+          "sizeKB": 28,
+          "originalName": "05-PanaboCity2021_Flyleaves.docx",
+          "sha256": "68a0a12ba7966df2de045245227f64cb386b1656f13d56c2d26aa2e3fb01666e"
+        },
+        {
+          "label": "Part 1: Independent auditor's report",
+          "file": "2021/06-PanaboCity2021_Part1-Auditors_Report.pdf",
+          "format": "PDF",
+          "sizeKB": 873,
+          "originalName": "06-PanaboCity2021_Part1-Auditor's_Report.pdf",
+          "sha256": "e5f8641b94d1d11312ae42087ebd48a0150939e65207a80ce40a0fd21d87662a"
+        },
+        {
+          "label": "Part 1: Statement of management's responsibility",
+          "file": "2021/07-PanaboCity2021_Part1-Mgmt_Responsibity_for_FS.pdf",
+          "format": "PDF",
+          "sizeKB": 324,
+          "originalName": "07-PanaboCity2021_Part1-Mgmt_Responsibity_for_FS.pdf",
+          "sha256": "2e54bccfa5c1d419abe494bd8fee09c99f3d8e922b4984399566ce73c0943803"
+        },
+        {
+          "label": "Part 1: Financial statements",
+          "file": "2021/08-PanaboCity2021_Part1-FS.xlsx",
+          "format": "XLSX",
+          "sizeKB": 45,
+          "originalName": "08-PanaboCity2021_Part1-FS.xlsx",
+          "sha256": "5f38ddfa1a4bab41c9ad9966dde25a201af60b843a5b0d842cbfac4c77ac4471"
+        },
+        {
+          "label": "Part 1: Notes to the financial statements",
+          "file": "2021/09-PanaboCity2021_Part1-Notes_to_FS.docx",
+          "format": "DOCX",
+          "sizeKB": 323,
+          "originalName": "09-PanaboCity2021_Part1-Notes_to_FS.docx",
+          "sha256": "297d544cc832a0f71ecbeeb4554f384e2b82f344402d02ae9383f1fc6a47e661"
+        },
+        {
+          "label": "Part 2: Observations and recommendations",
+          "role": "findings",
+          "file": "2021/10-PanaboCity2021_Part2-Observations_and_Recomm.docx",
+          "format": "DOCX",
+          "sizeKB": 1351,
+          "originalName": "10-PanaboCity2021_Part2-Observations_and_Recomm.docx",
+          "sha256": "4eafe03c5f2a6acceeec498ab2b3ffa872f5187b9cfa42feffa76376bd7076b9"
+        },
+        {
+          "label": "Part 3: Status of prior years' recommendations",
+          "role": "followUp",
+          "file": "2021/11-PanaboCity2021_Part3-Status_of_PYs_Recomm.docx",
+          "format": "DOCX",
+          "sizeKB": 90,
+          "originalName": "11-PanaboCity2021_Part3-Status_of_PYs_Recomm.docx",
+          "sha256": "a683dad5ac56751d1889a7ecfe1a9a88aa8614c752a9d0971196d96fd884c044"
+        },
+        {
+          "label": "Part 4: Annexes A–M",
+          "file": "2021/12-PanaboCity2021_Part4-Annexes_A-M.xlsx",
+          "format": "XLSX",
+          "sizeKB": 583,
+          "originalName": "12-PanaboCity2021_Part4-Annexes_A-M.xlsx",
+          "sha256": "403b02347bc61bce1aca52ce4b57d0506464d02aef7f7cb2921034987e375dd6"
+        }
+      ]
+    },
+    {
+      "year": 2022,
+      "title": "2022 Annual Audit Report on the City Government of Panabo",
+      "files": [
+        {
+          "label": "Cover",
+          "file": "2022/01-PanaboCity2022_Cover.docx",
+          "format": "DOCX",
+          "sizeKB": 71,
+          "originalName": "01-PanaboCity2022_Cover.docx",
+          "sha256": "d0ed430949aeb8c28cc5e8d36d0c25840f94566918e41338e1f214fddaa7c3fd"
+        },
+        {
+          "label": "Transmittal letter",
+          "file": "2022/02-PanaboCity2022_Transmittal_Letter.pdf",
+          "format": "PDF",
+          "sizeKB": 794,
+          "originalName": "02-PanaboCity2022_Transmittal_Letter.pdf",
+          "sha256": "ac59d0dfc4310314c6d79ca841950bab82283d6c6a645547a39fe1d97cfb7cff"
+        },
+        {
+          "label": "Agency Action Plan and Status of Implementation (AAPSI)",
+          "file": "2022/03-PanaboCity2022_AAPSI.docx",
+          "format": "DOCX",
+          "sizeKB": 17,
+          "originalName": "03-PanaboCity2022_AAPSI.docx",
+          "sha256": "c747ebd89b4154a16fa29440e2e5a2ccf3106c10fcbce04c231caa73d09458d2"
+        },
+        {
+          "label": "Executive summary",
+          "file": "2022/04-PanaboCity2022_Executive_Summary.docx",
+          "format": "DOCX",
+          "sizeKB": 28,
+          "originalName": "04-PanaboCity2022_Executive_Summary.docx",
+          "sha256": "7167e42f6fe9187aeefe15c03101ef5a63caff5dad3d6129773de55eb878d54c"
+        },
+        {
+          "label": "Table of contents",
+          "file": "2022/05-PanaboCity2022_Table_of_Contents.docx",
+          "format": "DOCX",
+          "sizeKB": 17,
+          "originalName": "05-PanaboCity2022_Table_of_Contents.docx",
+          "sha256": "3ea5928b4c4712ecd8a1b0bcd012598772a3ff15ad1ae5cfbe44cb8c58914c81"
+        },
+        {
+          "label": "Flyleaves",
+          "file": "2022/06-PanaboCity2022_Flyleaves.docx",
+          "format": "DOCX",
+          "sizeKB": 15,
+          "originalName": "06-PanaboCity2022_Flyleaves.docx",
+          "sha256": "bb76f7f8626b1c2ead14f43a189f3c9c20a169555a0256c956c23381b5d98348"
+        },
+        {
+          "label": "Part 1: Independent auditor's report",
+          "file": "2022/07-PanaboCity2022_Part1-Auditors_Report.pdf",
+          "format": "PDF",
+          "sizeKB": 465,
+          "originalName": "07-PanaboCity2022_Part1-Auditor's_Report.pdf",
+          "sha256": "5eda1012cbfd6e0ba8fb89434a0cd1bd13590beb8d64ebee6c52c937654040a2"
+        },
+        {
+          "label": "Part 1: Statement of management's responsibility",
+          "file": "2022/08-PanaboCity2022_Part1-Mgmt_Responsibility_for_FS.pdf",
+          "format": "PDF",
+          "sizeKB": 301,
+          "originalName": "08-PanaboCity2022_Part1-Mgmt_Responsibility_for_FS.pdf",
+          "sha256": "3deb2ded9f7bb91745a81fbef0a1c2d33653e2daa75727563b75e33d8308ab19"
+        },
+        {
+          "label": "Part 1: Financial statements",
+          "file": "2022/09-PanaboCity2022_Part1-Financial_Statements.xlsx",
+          "format": "XLSX",
+          "sizeKB": 44,
+          "originalName": "09-PanaboCity2022_Part1-Financial_Statements.xlsx",
+          "sha256": "b3afd0ecaae1ca966bebbffbc600f3600a420ebc2c2a72df44ae25f89d3dda1e"
+        },
+        {
+          "label": "Part 1: Notes to the financial statements",
+          "file": "2022/10-PanaboCity2022_Part1-Notes_to_FS.docx",
+          "format": "DOCX",
+          "sizeKB": 152,
+          "originalName": "10-PanaboCity2022_Part1-Notes_to_FS.docx",
+          "sha256": "e255b23b4965f4196d2b2794ea76cd291eaadfcd9ea14671000860ef1ee9da1e"
+        },
+        {
+          "label": "Part 2: Observations and recommendations",
+          "role": "findings",
+          "file": "2022/11-PanaboCity2022_Part2-Observations_and_Recomm.docx",
+          "format": "DOCX",
+          "sizeKB": 283,
+          "originalName": "11-PanaboCity2022_Part2-Observations_and_Recomm.docx",
+          "sha256": "13a949fdb99cab173f93960c19ac89a6bf63c5869ba7a9b1d89ae7994ab8d4b7"
+        },
+        {
+          "label": "Part 3: Status of prior years' recommendations",
+          "role": "followUp",
+          "file": "2022/12-PanaboCity2022_Part3-Status_of_PYs_Recomm.docx",
+          "format": "DOCX",
+          "sizeKB": 47,
+          "originalName": "12-PanaboCity2022_Part3-Status_of_PYs_Recomm.docx",
+          "sha256": "044f04ca097eababd66d02a875935c76eca6f0e486e5626af660be07cfcd8db2"
+        },
+        {
+          "label": "Part 4: Annexes",
+          "file": "2022/13-PanaboCity2022_Part4-Annexes.xlsx",
+          "format": "XLSX",
+          "sizeKB": 329,
+          "originalName": "13-PanaboCity2022_Part4-Annexes.xlsx",
+          "sha256": "a8f68b4344f95900deabbcba5fa137b1e0419d9a7e45f9477752789301402ef6"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "title": "2023 Annual Audit Report on the City Government of Panabo",
+      "files": [
+        {
+          "label": "Cover",
+          "file": "2023/01-PanaboCity2023_Cover.docx",
+          "format": "DOCX",
+          "sizeKB": 72,
+          "originalName": "01-PanaboCity2023_Cover.docx",
+          "sha256": "8e976bccddd53b67d2e60f62c037619c62241b6ac7348ca3797589dabdc35cad"
+        },
+        {
+          "label": "Transmittal letter",
+          "file": "2023/02-PanaboCity2023_Transmittal_Letter.pdf",
+          "format": "PDF",
+          "sizeKB": 506,
+          "originalName": "02-PanaboCity2023_Transmittal_Letter.pdf",
+          "sha256": "79e6442bd5a82f19e3067ecd24e8f5b542747ba8f5b6214d26c5a25ad5f73f66"
+        },
+        {
+          "label": "Agency Action Plan and Status of Implementation (AAPSI)",
+          "file": "2023/03-PanaboCity2023_AAPSI.docx",
+          "format": "DOCX",
+          "sizeKB": 20,
+          "originalName": "03-PanaboCity2023_AAPSI.docx",
+          "sha256": "3d1f4731eedd18087594f9f6aa6400a13ae3d0dca64f91ec044a2e887726cf0e"
+        },
+        {
+          "label": "Executive summary",
+          "file": "2023/04-PanaboCity2023_Executive_Summary.docx",
+          "format": "DOCX",
+          "sizeKB": 43,
+          "originalName": "04-PanaboCity2023_Executive Summary.docx",
+          "sha256": "47ccbe9181b053e7a3449077cc62c8d94533d4674452c6b1dda7030b2e8c6662"
+        },
+        {
+          "label": "Table of contents",
+          "file": "2023/05-PanaboCity2023_Table_of_Contents.docx",
+          "format": "DOCX",
+          "sizeKB": 22,
+          "originalName": "05-PanaboCity2023_Table_of_Contents.docx",
+          "sha256": "6ecaf0eb53db0a6913459b5653c97d3bb9d481d0a10b89ee97a7c5cd444c6fa9"
+        },
+        {
+          "label": "Flyleaves",
+          "file": "2023/06-PanaboCity2023_Flyleaves.docx",
+          "format": "DOCX",
+          "sizeKB": 17,
+          "originalName": "06-PanaboCity2023_Flyleaves.docx",
+          "sha256": "ba92a68561cf4462f4cd5001d6d28bfd8a7cace4b09f76874749e47485cf3470"
+        },
+        {
+          "label": "Part 1: Independent auditor's report",
+          "file": "2023/07-PanaboCity2023_Part1-Auditors_Report.pdf",
+          "format": "PDF",
+          "sizeKB": 453,
+          "originalName": "07-PanaboCity2023_Part1-Auditor's_Report.pdf",
+          "sha256": "230599319de0f92eda5f8828eda13b6dc07b76da1338ebc8f3c1f7c5db7d1fa6"
+        },
+        {
+          "label": "Part 1: Statement of management's responsibility",
+          "file": "2023/08-PanaboCity2023_Part1-Mgmt_Responsibility_for_FS.pdf",
+          "format": "PDF",
+          "sizeKB": 183,
+          "originalName": "08-PanaboCity2023_Part1-Mgmt_Responsibility_for_FS.pdf",
+          "sha256": "5255ffbf8790b65c1c5b7cf5c7eab09662c3edab6a05fc6728b0bc3b02012b54"
+        },
+        {
+          "label": "Part 1: Financial statements",
+          "file": "2023/09-PanaboCity2023_Part1-FS.xlsx",
+          "format": "XLSX",
+          "sizeKB": 43,
+          "originalName": "09-PanaboCity2023_Part1-FS.xlsx",
+          "sha256": "f31ddcd54124d20401b771af3133ceb02f63077a6a2a3b3a2ea02d65366948d2"
+        },
+        {
+          "label": "Part 1: Notes to the financial statements",
+          "file": "2023/10-PanaboCity2023_Part1-Notes_to_FS.docx",
+          "format": "DOCX",
+          "sizeKB": 298,
+          "originalName": "10-PanaboCity2023_Part1-Notes_to_FS.docx",
+          "sha256": "f1e14d2cbffdc4799a6fde1a0ef207fd10699a6f1fd46c98adaaf71471dc95c2"
+        },
+        {
+          "label": "Part 2: Observations and recommendations",
+          "role": "findings",
+          "file": "2023/11-PanaboCity2023_Part2-Observations_and_Recomm.pdf",
+          "format": "PDF",
+          "sizeKB": 1478,
+          "originalName": "11-PanaboCity2023_Part2-Observations_and_Recomm.pdf",
+          "sha256": "c1772ee1189a78cfae3983ff5e114344831ca0afa0506c7fcd22c8f6d16a4137"
+        },
+        {
+          "label": "Part 3: Status of prior years' recommendations",
+          "role": "followUp",
+          "file": "2023/12-PanaboCity2023_Part3-Status_of_PYs_Recomm.docx",
+          "format": "DOCX",
+          "sizeKB": 112,
+          "originalName": "12-PanaboCity2023_Part3-Status_of_PYs_Recomm.docx",
+          "sha256": "4375c79591f732749f73574fbc3504b13dd99ef566f669a095fec88fec752599"
+        },
+        {
+          "label": "Part 4: Annexes",
+          "file": "2023/13-PanaboCity2023_Part4-Annexes.xlsx",
+          "format": "XLSX",
+          "sizeKB": 4507,
+          "originalName": "13-PanaboCity2023_Part4-Annexes.xlsx",
+          "sha256": "79dde3cc6272f83c96d40be860e9f41ba3d30f3eca70296fc5b9fc427aacc3d4"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "title": "2024 Annual Audit Report on the City Government of Panabo",
+      "files": [
+        {
+          "label": "Cover",
+          "file": "2024/01-PanaboCity2024_Cover.pdf",
+          "format": "PDF",
+          "sizeKB": 31,
+          "originalName": "01-PanaboCity2024_Cover.pdf",
+          "sha256": "3874bfdc899323e0df199561cec9983d26a2cb594bed595787672e56af22bc31"
+        },
+        {
+          "label": "Transmittal letter",
+          "file": "2024/02-PanaboCity2024_Transmittal_to_LCE.pdf",
+          "format": "PDF",
+          "sizeKB": 744,
+          "originalName": "02-PanaboCity2024_Transmittal_to_LCE.pdf",
+          "sha256": "79a0d6f9d04316e63fc6b19f74210a0fe92d15d5e555ed51d1e32874ac230d6d"
+        },
+        {
+          "label": "Agency Action Plan and Status of Implementation (AAPSI)",
+          "file": "2024/03-PanaboCity2024_AAPSI.pdf",
+          "format": "PDF",
+          "sizeKB": 18,
+          "originalName": "03-PanaboCity2024_AAPSI.pdf",
+          "sha256": "fad2bbee289229cf32306e60fc2c84283fa3b46697ab6b40c7395285e2732635"
+        },
+        {
+          "label": "Executive summary",
+          "file": "2024/04-PanaboCity2024_Executive_Summary.pdf",
+          "format": "PDF",
+          "sizeKB": 413,
+          "originalName": "04-PanaboCity2024_Executive_Summary.pdf",
+          "sha256": "36007bcd646d3820d5941ba325850952275c8d13dfbe7eda2e03a5fbf8ccde60"
+        },
+        {
+          "label": "Table of contents",
+          "file": "2024/05-PanaboCity2024_Table_of_Contents.pdf",
+          "format": "PDF",
+          "sizeKB": 207,
+          "originalName": "05-PanaboCity2024_Table_of_Contents.pdf",
+          "sha256": "f1a08c0cd2ce00dff2e52074654f85e7035d285b08d9668bdcc086c63d68ac79"
+        },
+        {
+          "label": "Flyleaves",
+          "file": "2024/06-PanaboCity2024_Flyleaves.pdf",
+          "format": "PDF",
+          "sizeKB": 86,
+          "originalName": "06-PanaboCity2024_Flyleaves.pdf",
+          "sha256": "14482273b87a436b3cd8de30dbaf341ab90584aa5d1b861502668f95b2a6aa39"
+        },
+        {
+          "label": "Part 1: Independent auditor's report",
+          "file": "2024/07-PanaboCity2024_Part1-Auditors_Report.pdf",
+          "format": "PDF",
+          "sizeKB": 206,
+          "originalName": "07-PanaboCity2024_Part1-Auditor's_Report.pdf",
+          "sha256": "dd85856878b468b7e5e423a00e890c9e6dfd25a8ebe48c97a981cfe64b48ebe6"
+        },
+        {
+          "label": "Part 1: Statement of management's responsibility",
+          "file": "2024/08-PanaboCity2024_Part1-Mgmt_Responsibility_for_FS.pdf",
+          "format": "PDF",
+          "sizeKB": 442,
+          "originalName": "08-PanaboCity2024_Part1-Mgmt_Responsibility_for_FS.pdf",
+          "sha256": "c60c3f9c765c923350881006c57a556498e782e064b80125729aa97c9d90e7ce"
+        },
+        {
+          "label": "Part 1: Financial statements",
+          "file": "2024/09-PanaboCity2024_Part1-FS.pdf",
+          "format": "PDF",
+          "sizeKB": 265,
+          "originalName": "09-PanaboCity2024_Part1-FS.pdf",
+          "sha256": "215f1e43646de50e82fb1c1e0ae8d40a69338677700983704b3f2e83a7ffd835"
+        },
+        {
+          "label": "Part 1: Notes to the financial statements",
+          "file": "2024/10-PanaboCity2024_Part1-Notes_to_FS.pdf",
+          "format": "PDF",
+          "sizeKB": 1247,
+          "originalName": "10-PanaboCity2024_Part1-Notes_to_FS.pdf",
+          "sha256": "8b3c1789c3fa92a14175a0b2ba53e0a106b4f9de65563d8ccff231d12db1dc8f"
+        },
+        {
+          "label": "Part 2: Observations and recommendations",
+          "role": "findings",
+          "file": "2024/11-PanaboCity2024_Part2-Observations_and_Recomm.pdf",
+          "format": "PDF",
+          "sizeKB": 4451,
+          "originalName": "11-PanaboCity2024_Part2-Observations_and_Recomm.pdf",
+          "sha256": "494ae8ebe18453726b77efec2aa1556f9e9a9e688876a2a25ccec0c56b11968e"
+        },
+        {
+          "label": "Part 3: Status of prior years' recommendations",
+          "role": "followUp",
+          "file": "2024/12-PanaboCity2024_Part3-Status_of_PYs_Recomm.pdf",
+          "format": "PDF",
+          "sizeKB": 721,
+          "originalName": "12-PanaboCity2024_Part3-Status_of_PYs_Recomm.pdf",
+          "sha256": "5afe4935014cfaa3abfabace0a9bb5d439de72b6f01d000289e460fce31b4e9a"
+        },
+        {
+          "label": "Part 4: Annexes A–C",
+          "file": "2024/13-PanaboCity2024_Part4-Annexes_A-C.pdf",
+          "format": "PDF",
+          "sizeKB": 317,
+          "originalName": "13-PanaboCity2024_Part4-Annexes_A-C.pdf",
+          "sha256": "316bf34a028bfe3bcad40282727263abf7add172f5801ab526ee2e46dfd56a8f"
+        },
+        {
+          "label": "Part 4: Annex D",
+          "file": "2024/14-PanaboCity2024_Part4-Annex_D.pdf",
+          "format": "PDF",
+          "sizeKB": 1691,
+          "originalName": "14-PanaboCity2024_Part4-Annex_D.pdf",
+          "sha256": "45236836539cadec373ead96dfbed9f79860d529a5721ced30ebbf2e56c83861"
+        }
+      ]
+    }
+  ]
+}

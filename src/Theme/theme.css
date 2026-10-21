@@ -86,3 +86,9 @@
     color: var(--color-ink);
   }
 }
+
+/* Quiet text link: underlined in a faint color that turns brand on hover.
+   For links inside sentences and lists (DESIGN.md "Links"). */
+@utility link-quiet {
+  @apply underline decoration-faint underline-offset-4 transition-colors hover:text-brand-600 hover:decoration-brand-600;
+}

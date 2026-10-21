@@ -8,7 +8,7 @@ sources.json          ← official source links, always shown on the page
 *.schema.json         ← field descriptions and checks for the editor
 ```
 
-The original reports behind the "Download the original report" button are in `public/reports/budget/`.
+The original reports behind the "Download the original report" link are the COA audit report files in `src/Data/Audit/reports/`; each year's `sourceDocument` names one.
 
 **Only what's shown is loaded:**
 
@@ -19,26 +19,15 @@ The file name sets the year: `years/2025.json` is 2025. Keep `"year"` inside the
 
 ## Where the numbers come from
 
-Each year comes from the **Commission on Audit's Annual Audit Report** for Panabo City, specifically Part 1 – Financial Statements, *Statement of Comparison of Budget and Actual Amounts* (SCBAA):
+Each year comes from the **Commission on Audit's Annual Audit Report** for Panabo City: Part 1 – Financial Statements, *Statement of Comparison of Budget and Actual Amounts*. The numbers were extracted by script and checked line by line and total by total against the report; all four years match to the centavo.
 
-| Year | Source file (in `public/reports/budget/`)               |
-| ---- | ------------------------------------------------------- |
-| 2021 | `08-PanaboCity2021_Part1-FS.xlsx`, sheet SCBAA          |
-| 2022 | `09-PanaboCity2022_Part1-Financial_Statements.xlsx`, sheet SCBAA |
-| 2023 | `09-PanaboCity2023_Part1-FS.xlsx`, sheet SCBAA          |
-| 2024 | `09-PanaboCity2024_Part1-FS.pdf`, pages 5–7             |
+**[METHODOLOGY.md](METHODOLOGY.md) has the full story:**
 
-The figures were extracted automatically, then checked against the report itself:
-
-- **Differences:** for every line, the "Difference Original and Final Budget" and "Difference Final Budget and Actual" columns were recomputed and compared with the printed ones.
-- **Totals:** the lines were checked to add up to the printed totals (revenue, current, continuing and total appropriations).
-
-All four years match to the centavo. The page repeats the totals check every time it loads, and warns in the browser console if a file doesn't add up.
-
-Two item names were made consistent across years so the years line up:
-
-- "MPBF" (2021–2023) and "Miscellaneous Personnel Benefits Fund (PS)" (2024) became **"Miscellaneous Personnel Benefits Fund (MPBF)"**.
-- 2022's "Share from the National Internal Revenue Taxes" became **"… (IRA)"**, as in the other years.
+- the exact source file and pages for each year;
+- what Original, Final and Actual mean;
+- how the numbers were extracted and checked;
+- how every figure on the page is calculated;
+- caveats, and reference totals for spot checks.
 
 ## The format
 
@@ -52,7 +41,7 @@ One line per row of the report. Only Original, Final and Actual are stored; the 
 - **`group`:** only on lines under Other Purposes, e.g. `"Debt Service"`, `"LDRRMF"`, `"20% Development Fund"`, `"Others"`.
 - **Revenue lines:** use `category` (Local Sources, External Sources, Receipts from Borrowings), an optional `group` (Tax Revenue, Non-Tax Revenue) and `item`.
 - **`totals`:** copies the report's printed totals, used for the check above.
-- **`sourceDocument`:** link to the original report, e.g. `"/reports/budget/09-PanaboCity2024_Part1-FS.pdf"`. Leave it out to hide the download button.
+- **`sourceDocument`:** the original report file, as its path in `src/Data/Audit/reports/`, e.g. `"2024/09-PanaboCity2024_Part1-FS.pdf"`. Leave it out to hide the download link.
 - **Amounts:** plain numbers in pesos (no commas or ₱). A negative is `-123.45`, not `(123.45)`.
 
 Empty template rows from the report (all zeros) are left out.
@@ -64,5 +53,5 @@ In VS Code, hover over any field for an explanation; mistakes are underlined in 
 ## Adding a new year
 
 1. **Create the year file:** from the new Annual Audit Report's SCBAA, create `years/2025.json` in the format above. The extractor used for 2021–2024 can do this and runs the same checks; ask for it to be added to the project as a script.
-2. **Add the original report:** put the financial statements file in `public/reports/budget/` and set `sourceDocument` to `"/reports/budget/<file name>"`.
+2. **Add the original report:** add the year's COA report files as described in `src/Data/Audit/README.md`, then set `sourceDocument` to `"<year>/<Part 1 financial statements file>"`.
 3. **Publish:** commit and deploy, then open `/budget`. The new year appears as the first chip.

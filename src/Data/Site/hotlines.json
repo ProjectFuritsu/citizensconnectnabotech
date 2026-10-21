@@ -1,0 +1,13 @@
+{
+  "$schema": "./hotlines.schema.json",
+  "lastUpdated": "2026-02-18",
+  "updatedBy": "NaboTech.org",
+  "hotlines": [
+    { "name": "Police", "number": "0998 598 7104", "category": "emergency" },
+    { "name": "CDRRMO Rescue", "number": "0930 238 5937", "category": "emergency" },
+    { "name": "Fire", "number": "0928 458 7586", "category": "emergency" },
+    { "name": "Coast Guard", "number": "0969 215 1869", "category": "emergency" },
+    { "name": "Davao Light", "number": "0919 056 3572", "category": "utility" },
+    { "name": "Mayor’s Office", "number": "0998 810 7142", "category": "government" }
+  ]
+}

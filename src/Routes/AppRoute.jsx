@@ -1,32 +1,24 @@
-import { Routes, Route } from "react-router-dom";
-import NoFound from "../Pages/Error/NoFound";
-import InfoLibPage from "../Pages/GuideHub/InfoLibPage";
-import HomePage from "../Pages/Home/HomePage";
-import NewsPage from "../Pages/News/NewsPage";
-import NewsDetails from "../Pages/News/NewsDetails";
-import InfoDetailsPage from "../Pages/GuideHub/InfoDetailsPage";
-import VolunteersPage from "../Pages/Volunteers/VolunteersPage";
-import UnderMaintenance from "../Pages/Error/UnderMaintainance";
-import EverydayInfoPage from "../Pages/EverydayInfo/EverydayInfoPage";
-import HotlinesPage from "../Pages/Hotlines/HotlinesPage";
+import { Route, Routes } from "react-router-dom";
 import BudgetPage from "../Pages/Budget/BudgetPage";
+import GuidePage from "../Pages/Guides/GuidePage";
+import GuidesPage from "../Pages/Guides/GuidesPage";
+import HomePage from "../Pages/Home/HomePage";
+import HotlinesPage from "../Pages/Hotlines/HotlinesPage";
+import NotFoundPage from "../Pages/NotFound/NotFoundPage";
+import ProcurementPage from "../Pages/Procurement/ProcurementPage";
 
-const AppRoutes = () => {
+// Every page of the site. A page also needs an entry in
+// src/Data/Site/site.config.json to appear in the navbar, footer and sitemap.
+export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/info" element={<InfoLibPage />} />
-      <Route path="/info/:id" element={<InfoDetailsPage />} />
-      <Route path="/everyday" element={<EverydayInfoPage />} />
+      <Route path="/info" element={<GuidesPage />} />
+      <Route path="/info/:id" element={<GuidePage />} />
       <Route path="/hotlines" element={<HotlinesPage />} />
       <Route path="/budget" element={<BudgetPage />} />
-      <Route path="/news-updates" element={<NewsPage />} />
-      <Route path="/news-updates/:id" element={<NewsDetails />} />
-      <Route path="/get-involved" element={<VolunteersPage />} />
-      {/* 404 Catch-all Route */}
-      <Route path="*" element={<NoFound />} />
+      <Route path="/procurement" element={<ProcurementPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
-};
-
-export default AppRoutes;
+}
