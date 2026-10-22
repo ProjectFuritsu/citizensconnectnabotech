@@ -157,6 +157,16 @@
       "title": "Panabo City Official Website",
       "url": "https://panabocity.gov.ph/",
       "footer": true
+    },
+    {
+      "title": "PhilGEPS",
+      "url": "https://www.philgeps.gov.ph/",
+      "footer": true
+    },
+    {
+      "title": "Commission on Audit (COA)",
+      "url": "https://www.coa.gov.ph/",
+      "footer": true
     }
   ],
   "popularGuides": [
