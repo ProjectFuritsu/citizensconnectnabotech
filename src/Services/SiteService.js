@@ -35,18 +35,20 @@ const resourceLink = (resource) => ({
 // Pages, then tools, that have the flag ("navbar" or "footer"), in the order
 // they're listed. Items with a "group" are gathered into one entry,
 // { group: "Services", pages, tools }, placed where the group's first item
-// is; items without a group stay single links.
+// is; items without a group stay single links. In the footer, "footerGroup"
+// overrides "group" (e.g. a plain navbar link that sits under Services).
 const arrange = (flag) => {
   const entries = [];
   const groups = new Map();
   const add = (item, link) => {
-    if (!item.group) return entries.push(link);
-    if (!groups.has(item.group)) {
-      const group = { group: item.group, pages: [], tools: [] };
-      groups.set(item.group, group);
+    const name = (flag === "footer" && item.footerGroup) || item.group;
+    if (!name) return entries.push(link);
+    if (!groups.has(name)) {
+      const group = { group: name, pages: [], tools: [] };
+      groups.set(name, group);
       entries.push(group);
     }
-    groups.get(item.group)[link.external ? "tools" : "pages"].push(link);
+    groups.get(name)[link.external ? "tools" : "pages"].push(link);
   };
   config.pages.filter((p) => visible(p) && p[flag]).forEach((p) => add(p, pageLink(p)));
   config.tools.filter((t) => visible(t) && t[flag]).forEach((t) => add(t, toolLink(t)));
@@ -56,20 +58,39 @@ const arrange = (flag) => {
 // Navbar: plain links and group dropdowns
 export const navbarEntries = arrange("navbar");
 
-// Footer columns: pages without a group, one column per group, tools
-// without a group, then resources. Empty columns are left out.
+// Footer columns: one per group, plus "Portal" for pages without a group,
+// each placed where its first page is listed (like the navbar dropdowns).
+// Then tools without a group, then resources. Empty columns are left out.
+const footerColumnsOf = (entries) => {
+  const columns = [];
+  let portal = null;
+  for (const entry of entries) {
+    if (entry.group) columns.push({ label: entry.group, items: [...entry.pages, ...entry.tools] });
+    else if (!entry.external) {
+      if (!portal) columns.push((portal = { label: "Portal", items: [] }));
+      portal.items.push(entry);
+    }
+  }
+  return columns;
+};
 const footerEntries = arrange("footer");
 export const footerColumns = [
-  { label: "Portal", items: footerEntries.filter((e) => !e.group && !e.external) },
-  ...footerEntries
-    .filter((e) => e.group)
-    .map((g) => ({ label: g.group, items: [...g.pages, ...g.tools] })),
+  ...footerColumnsOf(footerEntries),
   { label: "Tools", items: footerEntries.filter((e) => !e.group && e.external) },
   {
     label: "Resources",
     items: config.resources.filter((r) => visible(r) && r.footer).map(resourceLink),
   },
 ].filter((column) => column.items.length > 0);
+
+// Every community tool, in the shape of a link (for the About page)
+export const tools = config.tools.filter(visible).map(toolLink);
+
+// Where to report a mistake: a mailto: or web link, or null when not set
+const contact = (site.contact ?? "").trim();
+export const contactLink = contact
+  ? { label: contact, href: contact.includes("@") && !contact.includes("://") ? `mailto:${contact}` : contact }
+  : null;
 
 // Home page: "Popular" shortcuts under the search bar
 export const homePopularGuides = config.popularGuides.filter((guide) => {

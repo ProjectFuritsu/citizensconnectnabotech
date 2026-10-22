@@ -1,6 +1,8 @@
-# Panabo City Citizen's Portal
+# BetterPanabo
 
-Public information about Panabo City, made easy to find: step-by-step guides to city services, emergency hotlines, and transparency dashboards for the city budget and government procurement. Live at [citizensconnectnabotech.vercel.app](https://citizensconnectnabotech.vercel.app). Made by NaboTech.org.
+The Panabo City Community Portal.
+
+Public information about Panabo City, made easy to find: step-by-step guides to city services, emergency hotlines, and transparency dashboards for the city budget and government procurement. [Visit BetterPanabo](https://citizensconnectnabotech.vercel.app).
 
 Built with React 19, Vite 7, Tailwind CSS 4 and React Router 7; deployed on Vercel.
 
@@ -25,7 +27,7 @@ src/
 ├── Routes/       the list of pages
 ├── SEO/          page titles, link previews, structured data
 └── Theme/        design tokens, display helpers, logo, DESIGN.md
-scripts/          data pipelines (procurement)
+scripts/          data pipelines (procurement) and the logo builder (logo)
 public/           icons and the share image
 ```
 

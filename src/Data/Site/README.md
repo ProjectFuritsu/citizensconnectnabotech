@@ -25,16 +25,19 @@ Items appear in the order they're listed.
 
 ## Groups (navbar dropdowns)
 
-Give pages and tools the same `"group"` to put them in one navbar dropdown and one footer column. Right now:
+Give pages and tools the same `"group"` to put them in one navbar dropdown and one footer column. Whether the group shows in the navbar, the footer or both follows its items' `"navbar"` and `"footer"` flags. Right now:
 
-| Group | What's in it |
-| ----- | ------------ |
-| **Services** | Guide Hub, then every community tool (under "Community tools") |
-| **Transparency** | Budget, Procurement |
+| Group | What's in it | Where |
+| ----- | ------------ | ----- |
+| **Services** | Guide Hub, then every community tool (under "Community tools"); in the footer, Emergency Hotlines too | Navbar and footer |
+| **Transparency** | Budget, Procurement | Navbar only |
+| **About** | About this site, Terms of Use | Footer only |
 
-Home and Emergency Hotlines have no group, so they stay plain links (and go under "Portal" in the footer).
+Home and Emergency Hotlines have no group, so they're plain navbar links. Home isn't in the footer; with `"footer": true`, a page without a group appears in a "Portal" column.
 
-- **Where a dropdown appears:** where its first page is listed in `pages`. To move a whole group, move its first page. A group with only tools comes after the pages.
+**A different column in the footer:** `"footerGroup"` puts a page in another footer column without touching the navbar. Emergency Hotlines has `"footerGroup": "Services"`, so it's a plain link in the navbar and listed under Services (after Guide Hub) in the footer.
+
+- **Where a dropdown or footer column appears:** where its first page is listed in `pages`; the footer's Portal column sits where the first page without a group is. To move a whole group, move its first page. That's why the About pages are listed first: their column comes first in the footer, and they don't affect the navbar. A group with only tools comes after the pages.
 - **Inside a dropdown:** pages first, each with its `icon` and one-line `description`, then tools with their icons.
 - **On phones:** each group becomes a labelled section of the menu.
 - **Group names** are matched exactly: `"Services"` and `"services"` would make two dropdowns.
@@ -117,6 +120,14 @@ Write numbers the way people should read them; spaces are removed automatically 
 - **`category`:** groups the number on the hotlines page. Use `"emergency"` (police, fire, rescue), `"hospital"`, `"towing"`, `"utility"` (power, water) or `"government"` (city offices). Numbers without a category go under "Other numbers". A group appears only once it has at least one number.
 - **`description`:** optional; shown under the number.
 - **`"hidden": true`:** hides a number that's temporarily out of service.
+
+**The name and tagline:** `site.name` ("BetterPanabo") is in page titles, the footer line and link previews. `site.tagline` ("Panabo City Community Portal") appears under the name in the logo, and on the home and About pages.
+
+**The content license:** `site.license` (name, short name, link) is shown in the footer line, the About page's License section and the Terms of Use. It's [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/): the content is dedicated to the public domain.
+
+**Add a contact for reporting mistakes:** set `site.contact` to an email address (`"hello@example.org"`) or a link, such as a Facebook page. It appears at the end of the About page as "Spotted a mistake? Let us know: …"; while it's `""`, that line is hidden.
+
+**The GitHub link:** `site.repository` is linked as "View the source on GitHub" under the mission in the footer. Delete the field to hide the link.
 
 **Move to a custom domain:** change `site.url` (no trailing slash). Page links, link previews, the sitemap and robots.txt all follow.
 

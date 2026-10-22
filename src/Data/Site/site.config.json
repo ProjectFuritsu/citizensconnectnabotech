@@ -2,13 +2,22 @@
   "$schema": "./site.config.schema.json",
   "site": {
     "url": "https://citizensconnectnabotech.vercel.app",
-    "name": "Panabo City Citizen's Portal",
-    "title": "Panabo City Citizen's Portal – Requirements, Fees & Steps for City Services",
-    "description": "Step-by-step guides to Panabo City services: requirements, fees and processing times for civil registry, health, legal, senior citizen, property and scholarship services.",
-    "publisher": "NaboTech.org"
+    "name": "BetterPanabo",
+    "tagline": "Panabo City Community Portal",
+    "title": "BetterPanabo – Public Information About Panabo City, Made Easy to Find",
+    "description": "Step-by-step guides to Panabo City services, emergency hotlines, and the city's budget and procurement records, explained in plain language.",
+    "contact": "",
+    "repository": "https://github.com/ProjectFuritsu/citizensconnectnabotech",
+    "license": {
+      "name": "CC0 1.0 Universal",
+      "short": "CC0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
   },
   "pages": [
-    { "title": "Home", "path": "/", "navbar": true, "footer": true },
+    { "title": "About this site", "path": "/about", "group": "About", "footer": true },
+    { "title": "Terms of Use", "path": "/terms", "group": "About", "footer": true },
+    { "title": "Home", "path": "/", "navbar": true },
     {
       "title": "Guide Hub",
       "path": "/info",
@@ -24,8 +33,7 @@
       "icon": "PiggyBank",
       "group": "Transparency",
       "description": "Where the city's money came from and where it went",
-      "navbar": true,
-      "footer": true
+      "navbar": true
     },
     {
       "title": "Procurement",
@@ -33,10 +41,9 @@
       "icon": "Gavel",
       "group": "Transparency",
       "description": "What offices put up for bidding, and who won the contracts",
-      "navbar": true,
-      "footer": true
+      "navbar": true
     },
-    { "title": "Emergency Hotlines", "path": "/hotlines", "navbar": true, "footer": true }
+    { "title": "Emergency Hotlines", "path": "/hotlines", "navbar": true, "footer": true, "footerGroup": "Services" }
   ],
   "tools": [
     {

@@ -31,7 +31,7 @@ const truncate = (text, max = 160) =>
 /**
  * Sets the page title, description, canonical URL and social tags.
  * Call once per page: usePageMeta({ title: "Guide Hub", description: "..." })
- * - title: page name; " | Panabo City Citizen's Portal" is added. Omit for the home page.
+ * - title: page name; " | <site name>" is added. Omit for the home page.
  * - noindex: true for pages search engines should skip (e.g. not found)
  */
 export function usePageMeta({ title, description, noindex = false } = {}) {

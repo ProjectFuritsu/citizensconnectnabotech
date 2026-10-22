@@ -1,7 +1,7 @@
 {
-  "name": "Panabo City Citizen's Portal",
-  "short_name": "Panabo Portal",
-  "description": "Step-by-step guides to Panabo City services: requirements, fees and processing times.",
+  "name": "BetterPanabo",
+  "short_name": "BetterPanabo",
+  "description": "Public information about Panabo City, made easy to find: city service guides, emergency hotlines, and the city's budget and procurement.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

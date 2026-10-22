@@ -16,7 +16,6 @@ export const websiteSchema = () => ({
   description: site.description,
   inLanguage: "en-PH",
   about: PANABO,
-  publisher: { "@type": "Organization", name: site.publisher },
 });
 
 // Breadcrumb trail: [{ name: "Home", path: "/" }, { name: "Guide Hub", path: "/info" }]

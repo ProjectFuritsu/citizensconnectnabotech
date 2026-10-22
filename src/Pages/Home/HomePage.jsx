@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Container } from "../../Components/Page";
 import { Stat } from "../../Components/Stat";
 import { GuideService } from "../../Services/GuideService";
-import { homePopularGuides, hotlines } from "../../Services/SiteService";
+import { homePopularGuides, hotlines, site } from "../../Services/SiteService";
 import { formatDate, isFree } from "../../Theme/display";
 import { usePageMeta } from "../../SEO/usePageMeta";
 import JsonLd from "../../SEO/JsonLd";
@@ -25,7 +25,7 @@ export default function HomePage() {
 
       <Container className="py-16 md:py-24 lg:py-28 grid gap-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-20 lg:items-center">
         <div>
-          <p className="text-sm font-medium text-brand-600">Panabo City Citizen's Portal</p>
+          <p className="text-sm font-medium text-brand-600">{site.name} · {site.tagline}</p>
           <h1 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-balance">
             Public information, made easy to find.
           </h1>

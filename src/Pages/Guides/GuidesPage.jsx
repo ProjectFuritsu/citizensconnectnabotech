@@ -81,7 +81,7 @@ export default function GuidesPage() {
         title="Guide Hub"
         path="/info"
         intro={`Requirements, fees and step-by-step processes for ${guides.length} city services in Panabo City.`}
-        note={`Updated ${lastUpdated ? formatDate(lastUpdated) : meta.last_updated} by ${meta.author}`}
+        note={`Updated ${lastUpdated ? formatDate(lastUpdated) : meta.last_updated}`}
       >
         <div className="mt-8 max-w-2xl">
           <SearchInput

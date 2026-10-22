@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Panabo City Citizen's Portal configuration",
+  "title": "BetterPanabo site configuration",
   "description": "Central configuration for the portal. See src/Data/Site/README.md for examples.",
   "type": "object",
   "required": ["site", "pages", "tools", "resources", "popularGuides"],
@@ -10,7 +10,7 @@
     "site": {
       "description": "The site's identity: used for page titles, link previews, the sitemap and robots.txt.",
       "type": "object",
-      "required": ["url", "name", "title", "description", "publisher"],
+      "required": ["url", "name", "tagline", "title", "description"],
       "additionalProperties": false,
       "properties": {
         "url": {
@@ -22,6 +22,10 @@
           "description": "Site name, added after each page title (\"Guide Hub | <name>\") and shown in link previews.",
           "type": "string"
         },
+        "tagline": {
+          "description": "What the site is, in a few words, e.g. \"Panabo City Community Portal\". Shown under the name in the logo, on the home page and on the About page.",
+          "type": "string"
+        },
         "title": {
           "description": "Home page title in browser tabs and search results. Keep it under about 70 characters.",
           "type": "string"
@@ -30,9 +34,25 @@
           "description": "Default description for search results and link previews. Keep it under about 160 characters.",
           "type": "string"
         },
-        "publisher": {
-          "description": "Who runs the site.",
+        "license": {
+          "description": "The license for the site's content, shown in the footer, on the About page and in the Terms of Use.",
+          "type": "object",
+          "required": ["name", "short", "url"],
+          "additionalProperties": false,
+          "properties": {
+            "name": { "description": "Full name, e.g. \"CC0 1.0 Universal\".", "type": "string" },
+            "short": { "description": "Short name for the footer, e.g. \"CC0\".", "type": "string" },
+            "url": { "description": "The license's official page.", "type": "string", "pattern": "^https?://" }
+          }
+        },
+        "contact": {
+          "description": "Where people can report a mistake: an email address (\"hello@example.org\") or a link, e.g. a Facebook page. Shown on the About page; leave it \"\" to hide the contact line.",
           "type": "string"
+        },
+        "repository": {
+          "description": "The site's source code on GitHub, linked under the mission in the footer. Leave it out to hide the link.",
+          "type": "string",
+          "pattern": "^https?://"
         }
       }
     },
@@ -42,7 +62,7 @@
       "items": { "$ref": "#/definitions/page" }
     },
     "tools": {
-      "description": "NaboTech tools: separate apps that open in a new tab. In a navbar group they're listed under \"Community tools\", after the group's pages; without a group they come after the pages, and appear under \"Tools\" in the footer.",
+      "description": "Community tools: separate apps that open in a new tab. In a navbar group they're listed under \"Community tools\", after the group's pages; without a group they come after the pages, and appear under \"Tools\" in the footer.",
       "type": "array",
       "items": { "$ref": "#/definitions/tool" }
     },
@@ -91,6 +111,11 @@
           "pattern": "^/"
         },
         "group": { "$ref": "#/definitions/group" },
+        "footerGroup": {
+          "description": "Puts the page in this footer column instead of its \"group\" (or the Portal column), without changing the navbar. E.g. Emergency Hotlines is a plain navbar link but sits under \"Services\" in the footer.",
+          "type": "string",
+          "minLength": 1
+        },
         "description": {
           "description": "One short line under the link in its navbar dropdown. Only used when the page has a group.",
           "type": "string"

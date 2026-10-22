@@ -1,6 +1,6 @@
-# Citizen's Portal Design System
+# BetterPanabo Design System
 
-How the Panabo City Citizen's Portal looks and why. Read this before building or restyling a page.
+How BetterPanabo, the Panabo City Community Portal, looks and why. Read this before building or restyling a page.
 
 **Style in one line:** minimal, but data-forward. Real numbers from `src/Data` do the work that decoration would do on other sites.
 
@@ -10,7 +10,7 @@ How the Panabo City Citizen's Portal looks and why. Read this before building or
 | ----------- | -------------------------------------------------------------------------------------------------- |
 | `theme.css` | Design tokens (colors, radii, motion) as a Tailwind v4 `@theme` block, base page colors, and the `link-quiet` utility. Imported by `src/index.css`. |
 | `display.js` | The data display rules below, as code: `formatFee`, `isFree`, `formatDate`, `formatPeso`, `formatPercent`, `pluralize`, `parseRequirement`, `barWidth` and `categoryIcons`. Import these instead of re-writing them on a page. |
-| `logo.svg`  | The portal emblem. Used by `src/Components/Logo.jsx` and as the SVG favicon (`index.html`). The PNG/ICO icons and share image in `public/` (`favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `og-image.png`) are rendered from it, so re-render them if the logo changes. |
+| `logo.svg`  | The BetterPanabo mark, used by `src/Components/Logo.jsx`. Generated, with the favicons, home-screen icons and share image in `public/`, by `scripts/logo/build-logo.cjs`; see "Logo" below. |
 | `DESIGN.md` | This guide.                                                                                        |
 
 What appears where (navbar links and groups, footer columns, popular guides, site name and URL) is set in **`src/Data/Site/site.config.json`**, not in the components.
@@ -167,16 +167,16 @@ These live in `src/Components` and appear on every page.
 
 ### Footer (`Footer.jsx`)
 
-- `bg-surface border-t border-line`: logo and mission on the left, link columns on the right, copyright strip at the bottom.
-- Column labels use the small uppercase label style. External links show `ArrowUpRight`.
-- Columns come from `src/Data/Site/site.config.json`, each item marked `"footer": true`:
-  - Portal: pages without a group.
-  - One column per group (Services, Transparency).
+- `bg-surface border-t border-line`, with a copyright strip at the bottom.
+- **Layout:** from tablet (`md`) up, two columns (1 : 2). On the left: the logo, the mission and a "View the source on GitHub" link (`site.repository`; hidden when it's not set). On the right: the link columns side by side in equal widths (`grid-flow-col auto-cols-fr`, so it fits however many columns the config has). On phones, everything stacks in a single column.
+- Column labels use the small uppercase label style. External links show `ArrowUpRight`. "Soon" labels sit inline after the name, so long names wrap naturally.
+- Columns come from `src/Data/Site/site.config.json`, each item marked `"footer": true`, in this order:
+  - One column per group, plus a Portal column for any footer pages without a group, each placed where its first page is listed. Now: **About** (About this site, Terms of Use) and **Services** (Guide Hub, Emergency Hotlines, then the community tools). Emergency Hotlines is a plain navbar link but sits under Services in the footer through `"footerGroup"`. Home and the Transparency pages are navbar-only, so there's no Portal or Transparency column.
   - Tools: tools without a group.
   - Resources.
 
   Empty columns are left out.
-- From `lg` up, the logo column is a fixed `16rem` and the link columns share the rest. "Soon" labels sit inline after the name, so long names wrap naturally.
+- The bottom strip reads "{year} {site name} · All content is public domain under CC0 unless otherwise specified", with "CC0" linking to the license (`site.license` in the config). The About page and Terms of Use explain it.
 
 ### Home page (`HomePage.jsx`)
 
@@ -197,19 +197,26 @@ Every item in the config accepts these flags, and they look the same wherever th
 
 ### Logo (`Logo.jsx`)
 
-Use `<Logo />` wherever the brand appears; don't copy its markup. It shows the emblem (`logo.svg`, 40px) next to "Panabo City / Citizen's Portal" and links home. The emblem's `alt` is empty because the text beside it already names the link.
+Use `<Logo />` wherever the brand appears; don't copy its markup. It links home and shows:
+- the mark (`logo.svg`, 48px);
+- the name, "BetterPanabo", as a wordmark in `text-lg font-bold text-logo`;
+- the tagline, "Panabo City Community Portal", in `text-xs text-muted`.
 
-**The emblem (`logo.svg`)**, read from the outside in:
+The name and tagline come from `site.name` and `site.tagline` in `src/Data/Site/site.config.json`. The mark's `alt` is empty because the text beside it already names the link.
 
-- **Arms:** two blue arms circle the city, and their hands clasp at the bottom. The city takes care of its people.
-- **Residents:** three people in the middle (green, blue, orange) stand for the citizens the portal serves.
-- **Services:** five segments arc across the top: safety (teal, shield), environment (green, leaf), city hall (blue, with dome and flag), transport (yellow, bus) and health (orange, cross).
+**The mark:** a banana plant rising in front of the sun.
+- **The banana plant** stands for Panabo, known for its banana plantations, and for growth: a *better* Panabo.
+- **The sun with horizon stripes** is a new day.
+
+It's flat: two-tone leaves with torn notches like real banana leaves, a shaded trunk, and a yellow-to-orange sun. The stripes are cut out of the sun, so they show the background.
+
+**Files:** `scripts/logo/build-logo.cjs` draws the mark and writes every logo file. That's `logo.svg`, plus in `public/`: `favicon.svg`, `favicon.ico`, the home-screen icons and `og-image.png`. To change the logo, edit the colors or leaves in that script and run it (instructions at the top); don't edit the generated files.
 
 Rules for using it:
 
-- Show it on white or very light backgrounds only. White outlines separate its pieces, so on dark backgrounds those outlines show up as lines.
-- Don't recolor, stretch or crop it, and don't use its green, yellow, orange or teal anywhere in the UI.
-- Minimum size is 32px. Below that, use it only as the favicon, where the overall shape and colors still read.
+- Prefer white or light backgrounds. It also holds up on dark ones, since it has no outlines.
+- Don't recolor, stretch or crop it. Its greens, yellow and orange are for the logo only; the UI keeps `brand` blue. The one exception is `text-logo`, the wordmark's dark green.
+- Below 32px, use the favicon version (no sun stripes), which stays clear down to 16px.
 
 ## Page patterns
 
@@ -219,6 +226,18 @@ Reference implementations:
 - `src/Pages/Guides/GuidesPage.jsx` (Guide Hub list) and `GuidePage.jsx` (guide details)
 - `src/Pages/Hotlines/HotlinesPage.jsx`: large tap-to-call cards, grouped by category
 - `src/Pages/NotFound/NotFoundPage.jsx`: "not found" for unknown addresses and missing guides
+- `src/Pages/About/AboutPage.jsx`, in order:
+  - the mission as a highlighted statement (`border-l-4 border-l-brand-600`, `text-xl md:text-2xl`);
+  - why it was built;
+  - numbered objectives;
+  - link cards to each part of the portal;
+  - a source-per-part list;
+  - commitment cards with icon tiles;
+  - the license;
+  - who runs the site.
+
+  Its counts and year ranges come from the services, so they never go stale.
+- `src/Pages/Terms/TermsPage.jsx`: long-form text: a "Last updated" note under the title, then short sections at a readable width (`max-w-3xl`).
 - `src/Pages/Budget/`: a data dashboard. It has:
   - a year + view control row that scopes everything below and lives in the URL;
   - stat tiles showing a compact figure with the exact amount underneath;
@@ -282,7 +301,7 @@ A `bg-surface` strip with `border-b border-line` containing:
 
 1. A breadcrumb (`Home › Guide Hub`) in `text-sm text-muted`, with the current page in `text-ink` and `aria-current="page"`. Search engines get the same trail.
 2. The `h1` (page title size) and a one-line lead in `text-lg text-muted`.
-3. An optional freshness line (`note`), e.g. "Updated Mar 17, 2026 by NaboTech.org", in `text-sm text-subtle`. Compute the date from the newest item.
+3. An optional freshness line (`note`), e.g. "Updated Mar 17, 2026", in `text-sm text-subtle`. Compute the date from the newest item.
 4. Any controls, as children: a search input at most `max-w-2xl`, or a dashboard's year chips, CSV button and tabs.
 
 ### Search input (`SearchInput`)

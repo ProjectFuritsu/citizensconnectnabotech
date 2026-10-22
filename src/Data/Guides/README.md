@@ -6,7 +6,7 @@
 
 ```json
 {
-  "metadata": { "last_updated": "Feb. 18, 2026", "author": "NaboTech.org", "version": "1.0.0", "slug": "/info" },
+  "metadata": { "last_updated": "Feb. 18, 2026", "author": "BetterPanabo", "version": "1.0.0", "slug": "/info" },
   "data": [ { …one guide… } ]
 }
 ```
